@@ -1,0 +1,4 @@
+[core]
+	editor = /Applications/Emacs.app/Contents/MacOS/Emacs -nw
+[alias]
+	ad = !git rev-parse --is-inside-work-tree > /dev/null && cd $(git rev-parse --show-toplevel) && xattr -cr && find . -name .DS_Store | xargs rm -rf && git add .

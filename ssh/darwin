@@ -1,0 +1,4 @@
+Host *
+  AddKeysToAgent yes
+  HostKeyAlgorithms +ssh-dss
+  UseKeychain yes

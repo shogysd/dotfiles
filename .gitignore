@@ -1,0 +1,7 @@
+git-completion.bash
+.DS_Store
+*tmp*
+ssh_config_files.zip
+/ssh_config_files/config_files
+/ssh/config
+gitconfig_envdep_ln

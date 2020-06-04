@@ -1,0 +1,32 @@
+[include]
+	path = ~/.gitconfig_userinfo
+	path = ~/config_files/git/gitconfig_envdep_ln
+[core]
+	excludesfile = ~/.gitignore_global
+	pager = less
+	autocrlf = input
+[color]
+	ui = true
+[push]
+	default = simple
+[fetch]
+	prune = true
+[alias]
+	br = branch -v
+	cl = clone
+	cla = clone --recursive
+	co = checkout
+	comm = !git rev-parse --is-inside-work-tree > /dev/null && cd $(git rev-parse --show-toplevel) && git commit
+	df = diff
+	di = diff
+	diffname = diff --name-only
+	diffword = diff --word-diff
+	din = diff --name-only
+	diw = diff --word-diff
+	gr = grep -n
+	grepn = grep -n
+	hash = rev-parse --short HEAD
+	st = status
+	sub = submodule update --init --recursive
+	repoup-origin = !git fetch origin && git reset --hard origin/$(git symbolic-ref --short refs/remotes/origin/HEAD | xargs basename)
+	repoup-upstream = !git fetch origin && git reset --hard upstream/$(git symbolic-ref --short refs/remotes/origin/HEAD | xargs basename)

@@ -1,0 +1,97 @@
+if [ -z "$PS1" ]; then
+    return
+fi
+
+### load local conf
+if [ -f ~/.bash_local ]; then
+    . ~/.bash_local
+fi
+
+
+### directory check
+if [ ! -d "$HOME/.ssh" ]; then
+    mkdir ${HOME}/.ssh && echo "$HOME/.ssh was created."
+fi
+
+if [ ! -d "$HOME/.ssh/local_conf" ]; then
+    mkdir ${HOME}/.ssh/local_conf && echo "$HOME/.ssh/local_conf was created."
+fi
+
+if [ ! -d "$HOME/.ssh/controlmaster" ] && [ "${SSH_CONNECTION}" = "" ]; then
+    mkdir ${HOME}/.ssh/controlmaster && echo "$HOME/.ssh/controlmaster was created."
+fi
+
+if [ ! -d "$HOME/bin" ] ; then
+    mkdir ${HOME}/bin && \
+    echo "$HOME/bin was created."
+fi
+for path_name in $( find ~/bin -maxdepth 1 -type d -or -type l -not -name '.*' ); do
+    if [ ! "$( echo $PATH | grep ${path_name} )" ]; then
+        PATH="${path_name}:$PATH"
+    fi
+    export PATH
+done
+
+
+### load config files
+if [ ! -d ~/config_files ]; then
+    echo "~/config_files : No such directory"
+fi
+
+if [ -f ~/config_files/bash/environments ]; then
+    . ~/config_files/bash/environments
+else
+    echo "~/config_files/bash/environments : No such file"
+fi
+
+if [ -f ~/config_files/bash/rc_script.sh ]; then
+    . ~/config_files/bash/rc_script.sh
+else
+    echo "~/config_files/bash/rc_script.sh : No such file"
+fi
+
+if [ -f ~/config_files/bash/aliases ]; then
+    . ~/config_files/bash/aliases
+else
+    echo "~/config_files/bash/aliases : No such file"
+fi
+
+if [ -f ~/config_files/bash/bash_script.sh ]; then
+    . ~/config_files/bash/bash_script.sh
+else
+    echo "~/config_files/bash/bash_script.sh : No such file"
+fi
+
+if [ -f ~/config_files/bash/cmd_wrapper.sh ]; then
+    . ~/config_files/bash/cmd_wrapper.sh
+else
+    echo "~/config_files/bash/cmd_wrapper.sh : No such file"
+fi
+
+if [ -f ~/config_files/bash/bash_script_dupbin.sh ]; then
+    . ~/config_files/bash/bash_script_dupbin.sh
+else
+    echo "~/config_files/bash/bash_script_dupbin.sh : No such file"
+fi
+
+if [ -f ~/config_files/git/git-completion.bash ]; then
+    . ~/config_files/git/git-completion.bash
+else
+    echo "~/config_files/git/git-completion.bash : No such file"
+fi
+
+if [ -f ~/config_files/config_update/config-update.sh ]; then
+    . ~/config_files/config_update/config-update.sh
+elif [ "${SSH_CONNECTION}" = "" ]; then
+    echo "~/config_files/config_update/config-update.sh : No such file"
+fi
+
+
+PS1="\n\$(shell_info)\n\$(-envWriter)\$ "
+
+# command to be executed only the first time
+-blankLinePrinter
+-sshScreenStarter
+-screenStatusPrinter
+-confModePrinter
+-dir_status

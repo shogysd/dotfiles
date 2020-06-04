@@ -1,0 +1,9 @@
+Include ~/.ssh/local_conf/*
+
+ServerAliveInterval 60
+
+Host *
+  controlmaster auto
+  controlpersist 10
+  controlpath  ~/.ssh/controlmaster/%r@%h:%p
+  ForwardAgent yes

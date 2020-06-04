@@ -1,0 +1,103 @@
+{
+  // editor
+  "editor.fontFamily": "'Bitstream Vera Sans Mono', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 14,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.formatOnPaste": true,
+  "editor.cursorBlinking": "solid",
+  "editor.cursorStyle": "block",
+  "editor.renderLineHighlight": "all",
+  "editor.tabSize": 4,
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "boundary",
+  "editor.trimAutoWhitespace": true,
+  "editor.wrappingIndent": "indent",
+  "editor.wordWrap": "on",
+  "editor.wordWrapColumn": 80,
+  "editor.renderControlCharacters": true,
+  "editor.renderIndentGuides": true,
+  "editor.folding": true,
+  // terminal
+  "terminal.integrated.cursorBlinking": false,
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.confirmOnExit": true,
+  "terminal.integrated.scrollback": 9999,
+  "terminal.external.linuxExec": "xterm",
+  "terminal.external.osxExec": "Terminal.app",
+  // workbench
+  "workbench.editor.enablePreview": false,
+  "workbench.startupEditor": "none",
+  "workbench.colorCustomizations": {
+    // ステータスバー背景色
+    "statusBar.background": "#000000",
+    // ステータスバー全面色
+    "statusBar.foreground": "#ffffff",
+    "statusBar.noFolderBackground": "#000000",
+    "statusBar.noFolderForeground": "#ffffff",
+    "statusBar.debuggingBackground": "#000000",
+    "statusBar.debuggingForeground": "#ffffff",
+    // 現在行の背景色
+    "editor.lineHighlightBackground": "#383838",
+    // 選択範囲の背景色
+    "editor.selectionBackground": "#383838"
+  },
+  // git
+  "git.confirmSync": true,
+  "git.enabled": true,
+  // diffEditor
+  "diffEditor.ignoreTrimWhitespace": true,
+  "diffEditor.renderSideBySide": false,
+  // debug
+  "debug.inlineValues": true,
+  // extends
+  "extensions.autoUpdate": true,
+  "extensions.ignoreRecommendations": false,
+  // window
+  "window.openFilesInNewWindow": "off",
+  // files
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true
+  },
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "[markdown]": {
+    "files.trimTrailingWhitespace": false
+  },
+  "files.autoSave": "afterDelay",
+  // Compulim.vscode-clock
+  "clock.dateFormat": "\tmmm dd yyyy\tHH:MM\t",
+  // jsynowiec.vscode-insertdatestring
+  "insertDateString.format": "'Time-stamp: <'YYYY-MM-DD hh:mm:ss ZZZ'>'",
+  // rafaelmaiolla.remote-vscode;
+  "remote.onstartup": true,
+  // ms-vscode.cpptools
+  "C_Cpp.clang_format_fallbackStyle": "Google",
+  // ms-python.python
+  "python.formatting.provider": "autopep8",
+  "workbench.statusBar.feedback.visible": false,
+  // bracket-pair-colorizer-2
+  "bracket-pair-colorizer-2.forceIterationColorCycle": false,
+  "bracket-pair-colorizer-2.forceUniqueOpeningColor": false,
+  "bracket-pair-colorizer-2.colorMode": "Consecutive",
+  "bracket-pair-colorizer-2.showBracketsInGutter": true,
+  // todo-tree
+  "todo-tree.tree.showScanModeButton": true,
+  "todo-tree.general.tags": [
+    "BUG",
+    "HACK",
+    "FIXME",
+    "TODO",
+    "XXX",
+    "CHANGED",
+    "OPTIMIZE",
+    "WARNING",
+    "ERROR"
+  ],
+  //code-spell-checker
+  "cSpell.diagnosticLevel": "Hint"
+}

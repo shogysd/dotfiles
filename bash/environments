@@ -1,0 +1,84 @@
+# OS
+export MY_OS=`uname 2>&1`
+
+if [ ${MY_OS} = "Darwin" ]; then
+    # macOS
+    export MY_ESC_CODE='\033'
+    export MY_DOWNLOAD_COMMAND='curl -s -o'
+    export BASH_SILENCE_DEPRECATION_WARNING=1
+else
+    # Linux
+    export MY_ESC_CODE='\e'
+    export MY_DOWNLOAD_COMMAND='wget -q -O'
+fi
+
+# shell conf
+export HOSTSTRIPSTR=".local"
+export BASICINFO="$(whoami)@$(hostname | sed -e 's/\.local//g')"
+
+# 連続をしたコマンドを1度のみの記録に + スペースから始まるコマンドを無視
+export HISTCONTROL=ignoreboth
+
+# 履歴に保存しないコマンド
+export HISTIGNORE='shis':'pwd':'clear':'ls':'ls -l':'ls -a'
+
+# プロンプトの表示前に実行するコマンド
+PROMPT_COMMAND='history -a'
+
+# 履歴のサイズを変更
+export HISTSIZE=9999
+
+# 履歴のフォーマットを設定 (c言語のstrftimeと同じものが使える)
+export HISTTIMEFORMAT='%m-%d-%Y (%H:%M:%S)   '
+
+# Ctrl-dを1回無視する（2回で反応）
+IGNOREEOF=1
+export IGNOREEOF
+
+# virtualenvでpromptを変更しない
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+# lessの'v'で何も起こらなくする
+export VISUAL=':'
+
+# 標準のエディターをemacsに
+export EDITOR=emacs
+
+# シェル終了時に履歴を追記しない (PROMPT_COMMAND='share_history' による)
+shopt -u histappend
+
+# ! でコマンドの再実行をする際に一度表示する
+shopt -s histverify
+
+# コマンド実行時に LINES と COLUMNS を更新する
+shopt -s checkwinsize
+
+# 拡張パターンマッチングを有効化する
+shopt -s extglob
+
+# ディレクトリ名のみでcd可能にする
+### shopt -s autocd
+
+# cdの細かいミスを修正する
+shopt -s cdspell
+
+# google cloud sdk
+if [ ! "$( echo $PATH | grep "$HOME/google-cloud-sdk/bin" )" ]; then
+    export PATH=$PATH":$HOME/google-cloud-sdk/bin"
+fi
+
+# GOPATH
+export GOPATH=$HOME/gopath_global
+
+# set
+set -o | grep history | grep -q on
+if [ $? != 0 ]; then
+    set -o history
+fi
+
+if [ ${MY_OS} = "Darwin" ] && [ ! "$( echo $PATH | grep "/Library/Frameworks/Python.framework/Versions/" )" ]; then
+    # macOS
+    export PATH=$PATH":$(find /Library/Frameworks/Python.framework/Versions/* -maxdepth 1 -name bin | sort -r | head -n 1)"
+# else
+    # Linux
+fi

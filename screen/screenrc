@@ -1,0 +1,30 @@
+# Encoding
+defutf8 on
+defencodig utf-8
+encoding utf8 utf8
+
+startup_message off
+vbell off
+
+# Prefix Key
+escape ^Jj
+
+# set scrollback
+termcapinfo xterm* ti@:te@
+defscrollback 100000
+
+# 色
+defbce on
+term xterm-256color
+
+# Delete sartt up screen
+startup_message off
+
+# Enable Auto detach
+autodetach on
+
+# 終了時にバッファを消す
+altscreen on
+
+# ステータスバー
+hardstatus alwayslastline "%{= wk} %-w%{= bw} %n %t* %{-}%+w %=[%c:%s] "

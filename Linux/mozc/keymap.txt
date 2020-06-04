@@ -1,0 +1,55 @@
+status	key	command
+Composition	Backspace	Backspace
+Composition	Shift Delete	Backspace
+Composition	Ctrl h	Backspace
+Composition	Shift Backspace	Delete
+Composition	Delete	Delete
+Composition	Ctrl d	Delete
+Composition	Enter	Commit
+Composition	Ctrl m	Commit
+Composition	Shift Enter	Undo
+Composition	Left	MoveCursorLeft
+Composition	Ctrl b	MoveCursorLeft
+Composition	Right	MoveCursorRight
+Composition	Ctrl f	MoveCursorRight
+Composition	Ctrl Left	MoveCursorToBeginning
+Composition	Ctrl a	MoveCursorToBeginning
+Composition	Ctrl Right	MoveCursorToEnd
+Composition	Ctrl e	MoveCursorToEnd
+Composition	Space	Convert
+Composition	Shift Space	ConvertWithoutHistory
+Composition	Tab	PredictAndConvert
+Conversion	Enter	Commit
+Conversion	Ctrl m	Commit
+Conversion	Shift Enter	Cancel
+Conversion	Ctrl Shift m	Cancel
+Conversion	Ctrl z	Cancel
+Conversion	Left	SegmentFocusLeft
+Conversion	Ctrl b	SegmentFocusLeft
+Conversion	Right	SegmentFocusRight
+Conversion	Ctrl f	SegmentFocusRight
+Conversion	Shift Right	SegmentWidthExpand
+Conversion	Ctrl Shift f	SegmentWidthExpand
+Conversion	Shift Left	SegmentWidthShrink
+Conversion	Ctrl Shift b	SegmentWidthShrink
+Conversion	Up	ConvertPrev
+Conversion	Ctrl p	ConvertPrev
+Conversion	Shift Space	ConvertPrev
+Conversion	Down	ConvertNext
+Conversion	Ctrl n	ConvertNext
+Conversion	Space	ConvertNext
+DirectInput	Ctrl Space	IMEOn
+Precomposition	Ctrl Space	IMEOff
+Composition	ASCII	InsertCharacter
+Composition	Kanji	IMEOff
+Composition	OFF	IMEOff
+Composition	ON	IMEOn
+Conversion	Kanji	IMEOff
+Conversion	OFF	IMEOff
+Conversion	ON	IMEOn
+DirectInput	Kanji	IMEOn
+DirectInput	ON	IMEOn
+Precomposition	ASCII	InsertCharacter
+Precomposition	Kanji	IMEOff
+Precomposition	OFF	IMEOff
+Precomposition	ON	IMEOn

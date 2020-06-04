@@ -1,0 +1,451 @@
+(custom-set-variables
+ )
+
+
+;; CUIのみの設定
+(if (not window-system)
+    (progn
+
+      ;; 左側に行番号を表示
+      (global-linum-mode)
+
+      ;; 行数表示のフォーマットを指定
+      (setq linum-format "%4d| ")
+      )
+  )
+
+;; GUIのみの設定
+(if (window-system)
+    (progn
+
+      ;; 起動時のサイズ
+      (setq initial-frame-alist
+            (append
+             '((top . 0);; フレームの Y 位置(ピクセル数)
+               (left . 0);; フレームの X 位置(ピクセル数)
+               (width . 110);; フレーム幅(文字数)
+               (height . 99);; フレーム高(文字数)
+               )
+             initial-frame-alist
+             )
+            )
+
+      ;; 左側に行番号を表示
+      (global-linum-mode)
+
+      ;; 行数表示のフォーマットを指定
+      (setq linum-format "%4d")
+
+      ;; 右側にスクロールバーを表示
+      (set-scroll-bar-mode 'right)
+      )
+  )
+
+
+;; テーマ
+;; (load-theme 'wombat t)
+(load-theme 'tango-dark t)
+(custom-theme-set-faces
+ 'tango-dark
+ `(term-color-black ((t (:foreground "#555753" :background "555753"))))
+ `(term-color-red ((t (:foreground "#EF2929" :background "EF2929"))))
+ `(term-color-green ((t (:foreground "#8AE234" :background "8AE234"))))
+ `(term-color-yellow ((t (:foreground "#FCE94F" :background "FCE94F"))))
+ `(term-color-blue ((t (:foreground "#729FCF" :background "729FCF"))))
+ `(term-color-magenta ((t (:foreground "#AD7FA8" :background "AD7FA8"))))
+ `(term-color-cyan ((t (:foreground "#34E2E2" :background "34E2E2"))))
+ `(term-color-white ((t (:foreground "#EEEEEC" :background "EEEEEC"))))
+ )
+
+;; 色の設定
+(set-face-background 'default "#303030")
+(set-face-foreground 'font-lock-comment-face "#a0a0a0")
+
+
+;; パッケージ管理機能
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+(package-initialize)
+
+
+;; 環境変数"LANG"の設定
+(setenv "LANG" "ja_JP.UTF-8")
+
+;; faceの設定
+(custom-set-faces
+ '(default ((t (:family "Migu 1M" :foundry "unknown" :slant normal :weight normal :height 140 :width normal))))
+ )
+
+;; frame関係の設定
+(setq default-frame-alist
+      (append
+       (list
+        ;; '(background-color . "#000000")
+        '(foreground-color . "#e5e5e5")
+        '(cursor-color . "#a8a8a8");; カーソルの色
+        '(ac-completion-face "gray70");; ライン内補完の背景
+        '(ac-completion-face "black");; ライン内補完の文字
+        '(ac-candidate-face "gray50");; DropDownの非選択部背景
+        '(ac-candidate-face "white");; DropDownの文字色
+        '(ac-selection-face "gray20");; DropDownの選択部背景
+        ;; '(show-paren-match-face "darkgray")
+        ;; '(show-paren-match-face "black")
+        )
+       default-frame-alist)
+      )
+
+
+;; 選択範囲の文字色
+(set-face-foreground 'region "#000000")
+
+;; 選択範囲の背景色
+(set-face-background 'region "#b2d7fe")
+
+;; ウィンドウの透過率
+;; アクティブウィンドウ／非アクティブウィンドウ（alphaの値で透明度を指定）
+;; (add-to-list 'default-frame-alist '(alpha . (0.85 0.85)))
+
+;; 対応する括弧をハイライトする
+(show-paren-mode t)
+
+;; 対応する括弧だけをハイライト
+;; (setq show-paren-style 'parenthesis)
+;; 対応する括弧で囲まれた部分をハイライト
+(setq show-paren-style 'expression)
+;; 普段は括弧だけ, ウィンドウ内に収まらないときだけ囲まれた部分をハイライト
+;; (setq show-paren-style 'mixed)
+
+;; 括弧の選択の背景色
+;; デフォルトの色設定 -> #4f94cd
+;; (set-face-background 'show-paren-match-face "#454565")
+;; (set-face-foreground 'show-paren-match-face "black")
+
+;; 現在行を目立たせる（背景色）
+;; デフォルトの色設定 -> #b6edb6
+(defface hlline-face
+  '((((class color)
+      (background dark))
+     (:background "#4d4d4d"))
+    (((class color)
+      (background light))
+     (:background "#4d4d4d"))
+    (t
+     ()))
+  "*Face used by hl-line.")
+(setq hl-line-face 'hlline-face)
+
+;; 現在行を目立たせる（下線）
+;; (setq hl-line-face 'underline)
+
+;; 現在行を目立たせるのを有効に
+(global-hl-line-mode t)
+
+;; 行末の空白を削除
+;; (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; start-up messageを表示しない
+(setq inhibit-startup-message t)
+
+;; 全角スペースとTABの可視化
+(setq whitespace-style
+      '(tabs tab-mark spaces space-mark))
+(setq whitespace-space-regexp "\\(\x3000+\\)")
+(setq whitespace-display-mappings
+      '((space-mark ?\x3000 [?\□])
+        (tab-mark   ?\t   [?\xBB ?\t])
+        ))
+(require 'whitespace)
+(global-whitespace-mode 1)
+;; (set-face-foreground 'whitespace-space "LightSlateGray")
+;; (set-face-background 'whitespace-space "DarkSlateGray")
+;; (set-face-foreground 'whitespace-tab "LightSlateGray")
+;; (set-face-background 'whitespace-tab "DarkSlateGray")
+
+
+;; 最初のメッセージを表示しない
+;; (setq initial-scratch-message nil)
+
+;; 最初のメッセージを指定
+(setq initial-scratch-message "Time-stamp: <>\n\n")
+;; (setq initial-scratch-message "NF")
+
+;; OSのクリップボードと文字列を共有
+(setq x-select-enable-clipboard t)
+
+;; ハードタブの幅を指定
+(setq default-tab-width 4)
+
+;; タブにスペース4つを使用する
+(setq-default tab-width 4 indent-tabs-mode nil)
+
+;; タブの挙動
+;; (setq c-tab-always-indent nill)
+
+;; 特定文字後に自動改行とインデント
+;; (setq c-auto-newline t)
+
+;; 括弧やクォートの補完
+(electric-pair-mode 1)
+
+;; バックアップファイルを作成しない
+;; (setq make-backup-files nil)
+
+;; バックアップファイルの保存場所を指定
+(setq backup-directory-alist '((".*"."~/.embkup")))
+
+;; 終了時にオートセーブファイルを削除する
+(setq delete-auto-save-files t)
+
+;; オートセーブファイルを作成しない
+;; (setq auto-save-default nil)
+
+;; オートセーブファイルの保存場所を指定
+;; (setq auto-save-file-name-transforms '((".*" "~/.embkup" t)))
+
+;; 現在ポイントがある関数名をモードラインに表示
+;; (which-function-mode 1)
+
+;; 改行コードを表示する
+(setq eol-mnemonic-dos "(CRLF)")
+(setq eol-mnemonic-mac "(CR)")
+(setq eol-mnemonic-unix "(LF)")
+
+;; スクロールする行数
+(setq scroll-conservatively 1)
+
+;; 末尾に改行を挿入
+(setq require-final-newline t)
+
+;; 行末のspaceを表示
+(setq-default show-trailing-whitespace t)
+
+;; カーソルの点滅をさせない
+(blink-cursor-mode 0)
+
+;; モードラインに行番号を表示
+(line-number-mode t)
+
+;; モードラインに列番号を表示
+(column-number-mode t)
+
+;; C-k 1回で行全体を削除する
+(setq kill-whole-line t)
+
+;; "yes or no" の選択を "y or n" にする
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; リージョンを色付きにする
+(transient-mark-mode 1)
+
+;; 予約語を色分けする
+(global-font-lock-mode t)
+
+;; 警告音の代わりに画面フラッシュ
+;; (setq visible-bell t)
+
+;; 警告音もフラッシュも全て無効
+(setq ring-bell-function 'ignore)
+
+;; Emacsを終了時に警告
+(setq confirm-kill-emacs 'y-or-n-p)
+
+;; エラー音をならなくする
+(setq ring-bell-function 'ignore)
+
+;; ewwのデフォルトの検索エンジンをgoogle.co.jpに
+(setq eww-search-prefix "http://www.google.co.jp/search?q=")
+
+
+;; bufferの先頭でカーソルを戻そうとしても音をならなくする
+(defun previous-line (arg)
+  (interactive "p")
+  (condition-case nil
+      (line-move
+       (- arg)
+       )
+    (beginning-of-buffer)
+    )
+  )
+
+;; bufferの最後でカーソルを動かそうとしても音をならなくする
+(defun next-line (arg)
+  (interactive "p")
+  (condition-case nil
+      (line-move arg)
+    (end-of-buffer)
+    )
+  )
+
+
+;; 全行インデント
+(defun all-indent()
+  (interactive)
+  (mark-whole-buffer)
+  (indent-region
+   (region-beginning)
+   (region-end)
+   )
+  )
+
+;; clang-format
+;; (setq clang-format-style-option "google")
+;; (add-hook 'c-mode-common-hook
+;;           (function (lambda ()
+;;                       (add-hook 'after-save-hook
+;;                                 'clang-format-buffer))))
+
+;; 関数の折りたたみ
+(add-hook 'c++-mode-hook
+          '(lambda ()
+             (hs-minor-mode 1)))
+(add-hook 'c-mode-hook
+          '(lambda ()
+             (hs-minor-mode 1)))
+(add-hook 'emacs-lisp-mode-hook
+          '(lambda ()
+             (hs-minor-mode 1)))
+(add-hook 'python-mode-hook
+          '(lambda ()
+             (hs-minor-mode 1)))
+(add-hook 'js2-mode-hook
+          '(lambda ()
+             (hs-minor-mode 1)))
+(add-hook 'php-mode-hook
+          '(lambda ()
+             (hs-minor-mode 1)))
+(add-hook 'go-mode-hook
+          '(lambda ()
+             (hs-minor-mode 1)))
+(add-hook 'my-asm-mode-hook
+          '(lambda ()
+             (hs-minor-mode 1)))
+
+
+;;; Keymap ;;;
+
+;; 行末の空白を削除
+(global-set-key (kbd "M-`") 'delete-trailing-whitespace)
+
+;; カーソルを動かさずにスクロール（上）
+(global-set-key "\M-p" (lambda ()(interactive) (scroll-up 3)))
+
+;; カーソルを動かさずにスクロール（下）
+(global-set-key "\M-n" (lambda ()(interactive) (scroll-down 3)))
+
+;; フレーム単位のスクロール（上）
+;; (global-set-key (kbd "M-p") 'scroll-down-command)
+
+;; フレーム単位のスクロール（下）
+;; (global-set-key (kbd "M-n") 'scroll-up-command)
+
+;; 単語単位で移動（前）
+(global-set-key (kbd "M-f") 'forward-word)
+
+;; 単語単位で移動（後）
+(global-set-key (kbd "M-b") 'backward-word)
+
+;; 選択の開始
+(global-set-key (kbd "M-@") 'set-mark-command)
+
+;; [C-c c]でMakefileを実行
+(define-key mode-specific-map "c" 'compile)
+
+;; [C-c z]でshellを呼び出す
+(define-key mode-specific-map "z" 'shell-command)
+
+;; [C-c l]で指定行へジャンプする
+(define-key mode-specific-map "l" 'goto-line)
+
+;; Ctrl+z で undo
+(global-set-key "\C-z" 'undo)
+
+;; シフトを押しながらホイールするとゆっくりスクロール
+(global-set-key (kbd "<S-wheel-down>") '(lambda () (interactive) (scroll-up 1)))
+(global-set-key (kbd "<S-wheel-up>") '(lambda () (interactive) (scroll-up -1)))
+
+;; マウスの複数行スクロール対応
+(global-set-key (kbd "<S-wheel-right>") '(lambda () (interactive) (scroll-up 1)))
+(global-set-key (kbd "<S-double-wheel-right>") '(lambda () (interactive) (scroll-up 1)))
+(global-set-key (kbd "<S-triple-wheel-right>") '(lambda () (interactive) (scroll-up 1)))
+(global-set-key (kbd "<S-wheel-left>") '(lambda () (interactive) (scroll-up -1)))
+(global-set-key (kbd "<S-double-wheel-left>") '(lambda () (interactive) (scroll-up -1)))
+(global-set-key (kbd "<S-triple-wheel-left>") '(lambda () (interactive) (scroll-up -1)))
+
+;; 全行インデントのキー設定
+(global-set-key (kbd "C-]") 'all-indent)
+
+;; ターミナルの起動
+(global-set-key (kbd "<C-tab>") 'term)
+
+;; 折り返し表示の無効化
+(global-set-key (kbd "C-c t") 'toggle-truncate-lines)
+
+;; タグジャンプ
+(define-key global-map (kbd "M-.") 'find-tag)
+(define-key global-map (kbd "M-/") 'pop-tag-mark)
+
+;; 関数の折りたたみのキー設定
+(define-key global-map (kbd "C-\\") 'hs-toggle-hiding)
+
+;; C-hでbackspace
+(define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
+
+
+;; タイムスタンプを自動で挿入
+;; ファイルの先頭から8行以内に "Time-stamp: <>" もしくは 'Time-stamp: ""'
+(require 'time-stamp)
+;; タイムスタンプを英字に（localeをCにする）
+(defun time-stamp-with-locale-c ()
+  (let ((system-time-locale "C"))
+    (time-stamp)
+    nil))
+(if (not (memq 'time-stamp-with-locale-c write-file-hooks))
+    (add-hook 'write-file-hooks 'time-stamp-with-locale-c))
+(setq time-stamp-format "%3a %3b %02d %02H:%02M:%02S %Z %:y")
+
+
+;; Auto Complete
+(require 'auto-complete-config)
+(ac-config-default)
+;; text-modeでも自動的に有効にする
+(add-to-list 'ac-modes 'text-mode)
+;; fundamental-mode
+(add-to-list 'ac-modes 'fundamental-mode)
+(add-to-list 'ac-modes 'org-mode)
+(add-to-list 'ac-modes 'yatex-mode)
+;; Tabで候補を選択
+(ac-set-trigger-key "TAB")
+;; 候補が出るまでの時間 default:0.8
+(setq ac-auto-show-menu 0.1)
+;; 補完メニュー表示時にC-n/C-pで補完候補選択
+(setq ac-use-menu-map t)
+;; 曖昧マッチ
+(setq ac-use-fuzzy t)
+
+
+;; 色
+;; (set-face-background 'ac-completion-face "gray70");; ライン内補完の背景
+;; (set-face-foreground 'ac-completion-face "black");; ライン内補完の文字
+;; (set-face-background 'ac-candidate-face "gray50");; DropDownの非選択部背景
+;; (set-face-foreground 'ac-candidate-face "white");; DropDownの文字色
+;; (set-face-background 'ac-selection-face "gray20");; DropDownの選択部背景
+
+
+;; インデント表示
+;; (require 'highlight-indentation)
+;; インデントの線の色
+;; (set-face-background 'highlight-indentation-face "gray70")
+;; (set-face-background 'highlight-indentation-current-column-face "DeepPink1")
+;; ハイライトするインデントのカラム数
+;; (setq highlight-indentation-offset 4)
+;; highlight-indentation-modeのhookで、
+;; highlight-indentation-current-column-modeもhook
+;; (add-hook 'highlight-indentation-mode-hook 'highlight-indentation-current-column-mode)
+;; インデントを可視化するモード
+;; (add-hook 'c-mode-hook 'highlight-indentation-mode)
+;; (add-hook 'c++-mode-hook 'highlight-indentation-mode)
+;; (add-hook 'sh-mode-hook 'highlight-indentation-mode)
+;; (add-hook 'python-mode-hook 'highlight-indentation-mode)
+;; (add-hook 'js-mode-hook 'highlight-indentation-mode)

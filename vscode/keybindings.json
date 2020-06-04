@@ -1,0 +1,275 @@
+[
+  // カーソルの移動
+  {
+    "key": "ctrl+p",
+    "command": "cursorUp",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "cursorDown",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+f",
+    "command": "cursorRight",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "PageDown",
+    "command": "cursorRight",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+b",
+    "command": "cursorLeft",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "PageUp",
+    "command": "cursorLeft",
+    "when": "!terminalFocus"
+  },
+  // カーソルの移動 (単語単位)
+  {
+    "key": "ctrl+shift+f",
+    "command": "cursorWordEndRight",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+shift+b",
+    "command": "cursorWordEndLeft",
+    "when": "!terminalFocus"
+  },
+  // カーソルの移動 (行単位)
+  {
+    "key": "ctrl+a",
+    "command": "cursorHome",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "cursorEnd",
+    "when": "!terminalFocus"
+  },
+  // カーソルの移動 (ファイル単位)
+  {
+    "key": "alt+shift+,",
+    "command": "cursorTop",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "alt+shift+.",
+    "command": "cursorBottom",
+    "when": "!terminalFocus"
+  },
+  // 文字の削除
+  {
+    "key": "ctrl+d",
+    "command": "deleteRight",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "deleteLeft",
+    "when": "!terminalFocus"
+  },
+  // 文字の削除 (単語単位)
+  {
+    "key": "ctrl+w",
+    "command": "deleteWordLeft",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+shift+h",
+    "command": "deleteWordLeft",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+shift+d",
+    "command": "deleteWordRight",
+    "when": "!terminalFocus"
+  },
+  // 文字の削除 (行単位)
+  {
+    "key": "ctrl+k",
+    "command": "deleteAllRight",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+shift+k",
+    "command": "deleteAllLeft",
+    "when": "!terminalFocus"
+  },
+  // 選択
+  {
+    "key": "alt+p",
+    "command": "cursorUpSelect",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "alt+n",
+    "command": "cursorDownSelect",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "alt+f",
+    "command": "cursorRightSelect",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "alt+b",
+    "command": "cursorLeftSelect",
+    "when": "!terminalFocus"
+  },
+  // 選択 (行単位)
+  {
+    "key": "alt+a",
+    "command": "cursorHomeSelect",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "alt+e",
+    "command": "cursorEndSelect",
+    "when": "!terminalFocus"
+  },
+  // 選択 (単語単位)
+  {
+    "key": "alt+shift+f",
+    "command": "cursorWordEndRightSelect",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "alt+shift+b",
+    "command": "cursorWordEndLeftSelect",
+    "when": "!terminalFocus"
+  },
+  // 選択 (ファイル単位)
+  {
+    "key": "ctrl+shift+a",
+    "command": "selectAll",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "cmd+a",
+    "command": "selectAll",
+    "when": "!terminalFocus"
+  },
+  // 検索
+  {
+    "key": "ctrl+s",
+    "command": "actions.find",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+r",
+    "command": "actions.find",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "alt+shift+s",
+    "command": "editor.action.startFindReplaceAction",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+shift+r",
+    "command": "editor.action.startFindReplaceAction",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "alt+shift+5",
+    "command": "editor.action.startFindReplaceAction",
+    "when": "!terminalFocus"
+  },
+  // copy, paste, cut
+  {
+    "key": "ctrl+c",
+    "command": "editor.action.clipboardCopyAction",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "cmd+c",
+    "command": "editor.action.clipboardCopyAction",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+v",
+    "command": "editor.action.clipboardPasteAction",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "cmd+v",
+    "command": "editor.action.clipboardPasteAction",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+x",
+    "command": "editor.action.clipboardCutAction",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "cmd+x",
+    "command": "editor.action.clipboardCutAction",
+    "when": "!terminalFocus"
+  },
+  // redo, undo
+  {
+    "key": "ctrl+y",
+    "command": "redo",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+shift+z",
+    "command": "redo",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "cmd+shift+z",
+    "command": "redo",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+z",
+    "command": "undo",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "cmd+z",
+    "command": "undo",
+    "when": "!terminalFocus"
+  },
+  // 整形
+  {
+    "key": "ctrl+]",
+    "command": "editor.action.format",
+    "when": "editorTextFocus"
+  },
+  // 保存
+  {
+    "key": "ctrl+x ctrl+s",
+    "command": "workbench.action.files.save",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+x ctrl+shift+s",
+    "command": "workbench.action.files.saveWithoutFormatting",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+x ctrl+a",
+    "command": "workbench.action.files.saveAll",
+    "when": "!terminalFocus"
+  },
+  // ウィンドウを閉じる
+  {
+    "key": "ctrl+x ctrl+c",
+    "command": "workbench.action.closeWindow",
+    "when": "!editorIsOpen && !multipleEditorGroups"
+  },
+  // plugin
+  {
+    "key": "alt+t",
+    "command": "insertDateString.insertOwnFormatDateTime",
+    "when": "editorTextFocus"
+  }
+]
