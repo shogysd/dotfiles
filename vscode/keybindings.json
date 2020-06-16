@@ -266,6 +266,15 @@
     "command": "workbench.action.closeWindow",
     "when": "!editorIsOpen && !multipleEditorGroups"
   },
+  {
+    "key": "ctrl+x ctrl+c",
+    "command": "workbench.action.closeActiveEditor"
+  },
+  {
+    "key": "ctrl+x ctrl+c",
+    "command": "workbench.action.closeGroup",
+    "when": "activeEditorGroupEmpty && multipleEditorGroups"
+  },
   // plugin
   {
     "key": "alt+t",
