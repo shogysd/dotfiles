@@ -99,5 +99,7 @@
     "ERROR"
   ],
   //code-spell-checker
-  "cSpell.diagnosticLevel": "Hint"
+  "cSpell.diagnosticLevel": "Hint",
+  // macOC
+  "terminal.integrated.macOptionIsMeta": true
 }
