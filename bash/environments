@@ -5,7 +5,7 @@ if [ ${MY_OS} = "Darwin" ]; then
     # macOS
     export MY_ESC_CODE='\033'
     export MY_DOWNLOAD_COMMAND='curl -s -o'
-    export BASH_SILENCE_DEPRECATION_WARNING=1
+    # export BASH_SILENCE_DEPRECATION_WARNING=1
 else
     # Linux
     export MY_ESC_CODE='\e'
