@@ -15,54 +15,6 @@ function screen_status(){
 }
 
 
-function recently-line-delete(){
-    if [ $# != 1 ]; then
-        echo "error: arguments error ( require: delete key string )"
-        return 1
-    fi
-
-    if [ "$( echo ${1} | grep '/' )" ]; then
-        echo "error: can NOT use '/' in key string"
-        return 1
-    fi
-
-    if ! $(git rev-parse --is-inside-work-tree > /dev/null 2>&1); then
-        echo "error: out of git work tree"
-        return 1
-    fi
-
-    for fname in $(git grep -l ${1}); do
-        sed -i "" "/${1}/d" ${fname}
-    done
-
-    return 0
-}
-
-
-function recently-line-replace(){
-    if [ $# != 2 ]; then
-        echo "error: arguments error ( require: \$1 -> before string \$2 -> after string )"
-        return 1
-    fi
-
-    if [ "$( echo ${1}${2} | grep '/' )" ]; then
-        echo "error: can NOT use '/' in key string"
-        return 1
-    fi
-
-    if ! $(git rev-parse --is-inside-work-tree > /dev/null 2>&1); then
-        echo "error: out of git work tree"
-        return 1
-    fi
-
-    for fname in $(git grep -l ${1}); do
-        sed -i "" "s/${1}/${2}/g" ${fname}
-    done
-
-    return 0
-}
-
-
 function strcmp(){
     if [ $# = 0 ]; then
         echo "error: nothing arguments"
