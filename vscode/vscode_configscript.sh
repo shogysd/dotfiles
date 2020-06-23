@@ -102,7 +102,6 @@ else
                     cat ~/config_files/vscode/plugin_list.txt | grep -v "${i}" > ~/config_files/vscode/plugin_list_tmp.txt
                     rm ~/config_files/vscode/plugin_list.txt
                     mv ~/config_files/vscode/plugin_list_tmp.txt ~/config_files/vscode/plugin_list.txt
-                    rm ~/config_files/vscode/plugin_list_tmp.txt
                     # sed -i "" "/${i}/d" ~/config_files/vscode/plugin_list.txt
                 fi
                 echo "--"
