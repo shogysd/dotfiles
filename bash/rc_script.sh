@@ -21,7 +21,7 @@ function -gitRepoPathWriter(){
     # Precondition: in git tree
     if [ -z "$(git status --porcelain)" ]; then
         # branch is clean
-        if [ -f ~/.gitignore_global ]; then
+        if [ -f `git config core.excludesfile` ]; then
             # ~/.gitignore_global is enabled
             echo -n "git: "
         else
@@ -30,7 +30,7 @@ function -gitRepoPathWriter(){
         fi
     else
         # branch is not clean
-        if [ -f ~/.gitignore_global ]; then
+        if [ -f `git config core.excludesfile` ]; then
             # ~/.gitignore_global is enabled
             echo -ne "${MY_ESC_CODE}[1;31mgit:${MY_ESC_CODE}[0;39m "
         else
