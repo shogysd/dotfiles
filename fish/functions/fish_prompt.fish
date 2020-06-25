@@ -26,7 +26,7 @@ function fish_prompt --description 'Write out the prompt'
     echo -n $USER@(prompt_hostname)' '
     if git rev-parse --is-inside-work-tree > /dev/null 2>&1
         # in the git
-        echo -s ' ( ' (my_prompt_git_status) ' ' (my_prompt_git_repopath) ' ) <' ' | ' '>'
+        echo -s ' ( ' (my_prompt_git_status) ' ' (my_prompt_git_repopath) ' ) < ' (my_prompt_git_branch) ' | ' '>'
     else
         # out of the git
         echo -s ' ( ' (my_prompt_pwd) ' )'
