@@ -1,9 +1,9 @@
 function shell_info(){
 
     if ( ! `git rev-parse --is-inside-work-tree > /dev/null 2>&1` ); then
-        echo -e "$$_ ${BASICINFO}  ( $(-pathWriter) )"
+        echo -e "\$_ ${BASICINFO}  ( $(-pathWriter) )"
     else
-        echo -e "$$_ ${BASICINFO}  ( $(-gitRepoPathWriter) ) < $(-gitBranchPrinter) | $(-gitHashPrinter) >"
+        echo -e "\$_ ${BASICINFO}  ( $(-gitRepoPathWriter) ) < $(-gitBranchPrinter) | $(-gitHashPrinter) >"
     fi
 }
 
