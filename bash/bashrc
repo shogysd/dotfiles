@@ -87,7 +87,7 @@ elif [ "${SSH_CONNECTION}" = "" ]; then
 fi
 
 
-PS1="\n\$(shell_info)\n\$(-envWriter)\$ "
+PS1="\n\$(shell_info)\n\$(-shellNameWriter)\$(-envWriter)\$ "
 
 # command to be executed only the first time
 -blankLinePrinter
