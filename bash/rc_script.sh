@@ -122,7 +122,7 @@ function -confModePrinter(){
 
 
 function -bashIconWriter(){
-    echo -n "$_"
+    echo -n '$_ '
 }
 
 
