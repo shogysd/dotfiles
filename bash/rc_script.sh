@@ -121,6 +121,11 @@ function -confModePrinter(){
 }
 
 
+function -bashIconWriter(){
+    echo -n "$_"
+}
+
+
 function -dir_status(){
     if [ `ls | wc -w` = 0 ]; then
         echo -e "Current directory is clean."
