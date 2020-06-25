@@ -13,10 +13,10 @@ function my_prompt_git_repopath --description 'Print the path in git repository 
     or set -l fish_prompt_pwd_dir_length 3
 
     # Replace $HOME with "~"
+    set git_repo_path (git rev-parse --show-toplevel)
     set git_repo_name (git rev-parse --show-toplevel | xargs basename)
-    set realhome ~/$git_repo_name
     set git_repo_relative_path (git rev-parse --show-prefix)
-    set -l tmp (string replace -r '^'"$realhome"'($|/)' '$1' $PWD)
+    set -l tmp (string replace -r '^'"$git_repo_path"'($|/)' '$1' $PWD)
 
     # print
     echo -n $git_repo_name
