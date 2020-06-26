@@ -10,6 +10,7 @@ function my_prompt_git_status
     #   41: red
     # attribute code
     #   7: inversion
+
     set -l style_code "0"
     set -l front_color_code ";39"
     set -l background_color_code ""
@@ -31,5 +32,5 @@ function my_prompt_git_status
         end
     end
 
-    echo -nes "\033[" $style_code $front_color_code $background_color_code $attribute_code "mgit:\033[0;39m"
+    echo -nes $MY_ESC_CODE"[" $style_code $front_color_code $background_color_code $attribute_code "mgit:"$MY_ESC_CODE"[0;39m"
 end
