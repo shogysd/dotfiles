@@ -74,10 +74,7 @@ function -gitHashPrinter(){
 
 function -envWriter(){
     if [ ! -z "$VIRTUAL_ENV" ]; then
-        envpath=`echo -n $VIRTUAL_ENV | xargs basename`
-        if [ -n "${envpath}" ]; then
-            echo -n "[ venv: "${envpath}" ] "
-        fi
+        echo -n "[ venv: "`echo -n $VIRTUAL_ENV | xargs basename`" ] "
     fi
 }
 
