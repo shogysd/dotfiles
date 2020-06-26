@@ -19,17 +19,18 @@ function fish_prompt --description 'Write out the prompt'
     end
 
     # prompt_status
-    set -l prompt_status (__fish_print_pipestatus "[" "]" "|" (set_color $fish_color_status) (set_color --bold $fish_color_status) $last_pipestatus)
+    set -l prompt_status (__fish_print_pipestatus '[' '] ' '|' (set_color $fish_color_status) (set_color --bold $fish_color_status) $last_pipestatus)
 
     ###
     echo ""
     echo -n $USER@(prompt_hostname)' '
     if git rev-parse --is-inside-work-tree > /dev/null 2>&1
         # in the git
-        echo -s ' ( ' (my_prompt_git_status) ' ' (my_prompt_git_repopath) ' ) < ' (my_prompt_git_branch) ' | ' '>'
+        echo -s ' ( ' (my_prompt_git_status) ' ' (my_prompt_git_repopath) ' ) < ' (my_prompt_git_branch) ' | ' (my_prompt_git_hash)' >'
     else
         # out of the git
         echo -s ' ( ' (my_prompt_pwd) ' )'
     end
-    echo -s '(° )< ' $prompt_status ' ' $suffix ' ' $color_normal
+    # '(° )< '
+    echo -s '🐟 ' (my_virtualenv_envwriter) $prompt_status $suffix ' ' $color_normal
 end
