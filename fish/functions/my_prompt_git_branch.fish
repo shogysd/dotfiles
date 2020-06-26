@@ -6,11 +6,11 @@ function my_prompt_git_branch
         #     set -l default_branch master
         # end
         if [ "$git_branch" = "$default_branch" ]
-            echo -ne "\033[0;33m$git_branch\033[0;39m"
+            echo -ne $MY_ESC_CODE"[0;33m"$git_branch$MY_ESC_CODE"[0;39m"
         else
             echo -ne "$git_branch"
         end
     else
-        echo -ne "\033[0;36mdetached\033[0;39m"
+        echo -ne $MY_ESC_CODE"[0;36mdetached"$MY_ESC_CODE"[0;39m"
     end
 end
