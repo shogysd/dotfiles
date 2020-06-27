@@ -44,6 +44,7 @@ alias flush='rm -f *~ .*~ \#*\# \**\*'
 alias cp='cp -i'
 alias pd-clear='dirs -c'
 alias py='python3'
+alias gd='git gd'
 
 
 # PATH
