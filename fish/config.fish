@@ -44,8 +44,7 @@ alias flush='rm -f *~ .*~ \#*\# \**\*'
 alias cp='cp -i'
 alias pd-clear='dirs -c'
 alias py='python3'
-alias gd='git gd'
-
+alias gd='cd (git rev-parse --show-toplevel)'
 
 # PATH
 if [ $MY_OS = "Darwin" ] && [ ! (echo $PATH | grep "/Library/Frameworks/Python.framework/Versions/") ]
