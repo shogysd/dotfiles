@@ -33,7 +33,7 @@ alias cp='cp -i'
 alias pd-clear='dirs -c'
 
 # git
-alias gd='cd $(git rev-parse --show-toplevel)'
+alias gd='git gd'
 
 # python
 alias py='python3'
