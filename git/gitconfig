@@ -23,6 +23,7 @@
 	diffword = diff --word-diff
 	din = diff --name-only
 	diw = diff --word-diff
+	gd = !cd $(git rev-parse --show-toplevel)
 	gr = grep -n
 	grepn = grep -n
 	hash = rev-parse --short HEAD
