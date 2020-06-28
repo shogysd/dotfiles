@@ -32,5 +32,5 @@ function fish_prompt --description 'Write out the prompt'
         echo -s ' ( ' (my_prompt_pwd) ' )'
     end
     # '(° )< '
-    echo -s '🐟 ' (my_virtualenv_envwriter) $prompt_status $suffix ' ' $color_normal
+    echo -s '🐟 ' (my_virtualenv_envwriter) $prompt_status $suffix ' '
 end
