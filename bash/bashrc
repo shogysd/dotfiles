@@ -44,34 +44,34 @@ else
     echo "~/config_files/bash/environments : No such file"
 fi
 
-if [ -f ~/config_files/bash/rc_script.sh ]; then
-    . ~/config_files/bash/rc_script.sh
+if [ -f ~/config_files/bash_zsh_common/prompt_script.sh ]; then
+    . ~/config_files/bash_zsh_common/prompt_script.sh
 else
-    echo "~/config_files/bash/rc_script.sh : No such file"
+    echo "~/config_files/bash_zsh_common/prompt_script.sh : No such file"
 fi
 
-if [ -f ~/config_files/bash/aliases ]; then
-    . ~/config_files/bash/aliases
+if [ -f ~/config_files/bash_zsh_common/aliases ]; then
+    . ~/config_files/bash_zsh_common/aliases
 else
-    echo "~/config_files/bash/aliases : No such file"
+    echo "~/config_files/bash_zsh_common/aliases : No such file"
 fi
 
-if [ -f ~/config_files/bash/bash_script.sh ]; then
-    . ~/config_files/bash/bash_script.sh
+if [ -f ~/config_files/bash_zsh_common/sh_script.sh ]; then
+    . ~/config_files/bash_zsh_common/sh_script.sh
 else
-    echo "~/config_files/bash/bash_script.sh : No such file"
+    echo "~/config_files/bash_zsh_common/sh_script.sh : No such file"
 fi
 
-if [ -f ~/config_files/bash/cmd_wrapper.sh ]; then
-    . ~/config_files/bash/cmd_wrapper.sh
+if [ -f ~/config_files/bash_zsh_common/cmd_wrapper.sh ]; then
+    . ~/config_files/bash_zsh_common/cmd_wrapper.sh
 else
-    echo "~/config_files/bash/cmd_wrapper.sh : No such file"
+    echo "~/config_files/bash_zsh_common/cmd_wrapper.sh : No such file"
 fi
 
-if [ -f ~/config_files/bash/bash_script_dupbin.sh ]; then
-    . ~/config_files/bash/bash_script_dupbin.sh
+if [ -f ~/config_files/bash_zsh_common/sh_script_dupbin.sh ]; then
+    . ~/config_files/bash_zsh_common/sh_script_dupbin.sh
 else
-    echo "~/config_files/bash/bash_script_dupbin.sh : No such file"
+    echo "~/config_files/bash_zsh_common/sh_script_dupbin.sh : No such file"
 fi
 
 if [ -f ~/config_files/git/git-completion.bash ]; then
