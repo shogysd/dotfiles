@@ -17,7 +17,7 @@ function my_prompt_git_status
     set -l attribute_code ""
 
     # gitrepo clean or not check
-    if test ! -z (git status --porcelain) > /dev/null 2>&1
+    if test (git status --porcelain | wc -l | xargs echo) != 0
         # branch is not clean
         set style_code "1"
         set front_color_code ";31"
