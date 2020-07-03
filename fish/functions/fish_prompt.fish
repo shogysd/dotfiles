@@ -31,6 +31,5 @@ function fish_prompt --description 'Write out the prompt'
         # out of the git
         echo -s ' ( ' (my_prompt_pwd) ' )'
     end
-    # '(° )< '
-    echo -s '🐟 ' (my_virtualenv_envwriter) $prompt_status $suffix ' '
+    echo -s '(° )< ' (my_virtualenv_envwriter) $prompt_status $suffix ' '
 end
