@@ -12,10 +12,5 @@ else
     export MY_DOWNLOAD_COMMAND='wget -q -O'
 end
 
-if [ -f ~/.config/fish/imports/environments.fissh ]
-    source ~/.config/fish/imports/environments.fish
-end
-
-if [ -f ~/.config/fish/imports/aliases.fissh ]
-    source ~/.config/fish/imports/aliases.fish
-end
+source ~/.config/fish/imports/environments.fish
+source ~/.config/fish/imports/aliases.fish
