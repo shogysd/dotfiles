@@ -235,9 +235,9 @@ function config-update(){
     echo    "    emacs"             ; rm -f ~/.emacs                    ; ln -s ~/config_files/emacs/emacs          ~/.emacs
     echo    "    gitconfig"                                             ; ln -s ~/config_files/git/gitconfig        ~/.gitconfig
     echo    "    gitignore_global"  ; rm -f ~/.gitignore_global         ; ln -s ~/config_files/git/gitignore_global ~/.gitignore_global
-    echo    "    fish/functions"    ; rm -rf ~/.config/fish/functions   ; ln -s ~/config_files/fish/functions/      ~/.config/fish/
-    echo    "    fish/functions"    ; rm -rf ~/.config/fish/imports     ; ln -s ~/config_files/fish/imports/        ~/.config/imports/
-    echo    "    fish/functions"    ; rm -rf ~/.config/fish/config.fish ; ln -s ~/config_files/fish/config.fish     ~/.config/config.fish
+    echo    "    fish/functions"    ; rm -rf ~/.config/fish/functions   ; ln -s ~/config_files/fish/functions       ~/.config/fish/functions
+    echo    "    fish/functions"    ; rm -rf ~/.config/fish/imports     ; ln -s ~/config_files/fish/imports         ~/.config/fish/imports
+    echo    "    fish/functions"    ; rm -rf ~/.config/fish/config.fish ; ln -s ~/config_files/fish/config.fish     ~/.config/fish/config.fish
 
 
     ### make symbolic link (bin file)
