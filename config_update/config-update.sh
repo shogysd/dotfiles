@@ -226,18 +226,19 @@ function config-update(){
 
 
     ### make symbolic link (config file)
-    ln -s ~/config_files/git/$(echo ${MY_OS} | tr [A-Z] [a-z])/gitconfig_envdep ~/config_files/git/gitconfig_envdep_ln
-    echo    ""
-    echo -e "${MY_ESC_CODE}[1;39mupdate symbolic link${MY_ESC_CODE}[0;39m"
-    echo    "    bash_profile"      ; rm -f ~/.bash_profile             ; ln -s ~/config_files/bash/bash_profile    ~/.bash_profile
-    echo    "    bashrc"            ; rm -f ~/.bashrc                   ; ln -s ~/config_files/bash/bashrc          ~/.bashrc
-    echo    "    screenrc"          ; rm -f ~/.screenrc                 ; ln -s ~/config_files/screen/screenrc      ~/.screenrc
-    echo    "    emacs"             ; rm -f ~/.emacs                    ; ln -s ~/config_files/emacs/emacs          ~/.emacs
-    echo    "    gitconfig"                                             ; ln -s ~/config_files/git/gitconfig        ~/.gitconfig
-    echo    "    gitignore_global"  ; rm -f ~/.gitignore_global         ; ln -s ~/config_files/git/gitignore_global ~/.gitignore_global
-    echo    "    fish/functions"    ; rm -rf ~/.config/fish/functions   ; ln -s ~/config_files/fish/functions       ~/.config/fish/functions
-    echo    "    fish/functions"    ; rm -rf ~/.config/fish/imports     ; ln -s ~/config_files/fish/imports         ~/.config/fish/imports
-    echo    "    fish/functions"    ; rm -rf ~/.config/fish/config.fish ; ln -s ~/config_files/fish/config.fish     ~/.config/fish/config.fish
+    ~/config_files/config_update/config-symboliclink-update
+    # ln -s ~/config_files/git/$(echo ${MY_OS} | tr [A-Z] [a-z])/gitconfig_envdep ~/config_files/git/gitconfig_envdep_ln
+    # echo    ""
+    # echo -e "${MY_ESC_CODE}[1;39mupdate symbolic link${MY_ESC_CODE}[0;39m"
+    # echo    "    bash_profile"      ; rm -f ~/.bash_profile             ; ln -s ~/config_files/bash/bash_profile    ~/.bash_profile
+    # echo    "    bashrc"            ; rm -f ~/.bashrc                   ; ln -s ~/config_files/bash/bashrc          ~/.bashrc
+    # echo    "    screenrc"          ; rm -f ~/.screenrc                 ; ln -s ~/config_files/screen/screenrc      ~/.screenrc
+    # echo    "    emacs"             ; rm -f ~/.emacs                    ; ln -s ~/config_files/emacs/emacs          ~/.emacs
+    # echo    "    gitconfig"                                             ; ln -s ~/config_files/git/gitconfig        ~/.gitconfig
+    # echo    "    gitignore_global"  ; rm -f ~/.gitignore_global         ; ln -s ~/config_files/git/gitignore_global ~/.gitignore_global
+    # echo    "    fish/functions"    ; rm -rf ~/.config/fish/functions   ; ln -s ~/config_files/fish/functions       ~/.config/fish/functions
+    # echo    "    fish/functions"    ; rm -rf ~/.config/fish/imports     ; ln -s ~/config_files/fish/imports         ~/.config/fish/imports
+    # echo    "    fish/functions"    ; rm -rf ~/.config/fish/config.fish ; ln -s ~/config_files/fish/config.fish     ~/.config/fish/config.fish
 
 
     ### make symbolic link (bin file)
