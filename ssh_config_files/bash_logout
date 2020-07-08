@@ -1,4 +1,0 @@
-if [ $(w | grep ${USER} | grep 'pts/' | wc -l) = 1 ]; then
-    ls -la ~ | grep '^l' | grep ~/config_files | awk -F '->' '{print $1}' | awk -F ' ' '{print $NF}' | xargs rm -f
-    rm -rf ~/config_files ~/ssh_config_files.zip
-fi
