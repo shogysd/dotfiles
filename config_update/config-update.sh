@@ -283,31 +283,6 @@ function config-update(){
     fi
     echo "-----"
 
-    ###
-    ### zip pack
-    ###
-    echo ""
-    echo "----------------------------------------"
-    echo -n "packing ssh_config_files.zip ... "
-    mkdir ~/config_files/ssh_config_files/config_files/
-    cp -r ~/config_files/bash                               ~/config_files/ssh_config_files/config_files/
-    echo -e "\ntrap \"ls -la ~ | grep '^l' | grep ~/config_files | awk -F '->' '{print $1}' | awk -F ' ' '{print $NF}' | xargs rm -f; rm -rf ~/config_files ~/ssh_config_files.zip\" SIGHUP\n" >> ~/config_files/ssh_config_files/config_files/bash/bashrc
-    cp -r ~/config_files/emacs                              ~/config_files/ssh_config_files/config_files/
-    mkdir ~/config_files/ssh_config_files/config_files/git/
-    cp -r ~/config_files/git/gitignore_global               ~/config_files/ssh_config_files/config_files/git/
-    cp -r ~/config_files/git/git-completion.bash            ~/config_files/ssh_config_files/config_files/git/
-    cp    ~/config_files/git/gitconfig                      ~/config_files/ssh_config_files/config_files/git/gitconfig
-    cp    ~/config_files/git/linux/gitconfig_envdep         ~/config_files/ssh_config_files/config_files/git/gitconfig_envdep_ln
-    cp -r ~/config_files/screen                             ~/config_files/ssh_config_files/config_files/
-    cp    ~/config_files/ssh_config_files/bash_logout       ~/config_files/ssh_config_files/config_files/bash/
-    cp    ~/config_files/ssh_config_files/setup.sh          ~/config_files/ssh_config_files/config_files/
-    pushd ~/config_files/ssh_config_files/ > /dev/null
-    zip -qr ssh_config_files.zip config_files
-    popd > /dev/null
-    rm -rf ~/config_files/ssh_config_files/config_files
-    echo "complete!!"
-    echo "----------------------------------------"
-
     if [ "${tmp_cd}" = "True" ]; then
         popd > /dev/null
     fi

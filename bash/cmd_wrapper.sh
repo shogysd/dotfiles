@@ -18,25 +18,6 @@ else
     }
 fi
 
-
-function ssh(){
-    if [ $# != 1 ]; then
-        echo -ne "${MY_ESC_CODE}[1;33mWARNING: ${MY_ESC_CODE}[0;39m"
-        echo "\$# is $# ( not 1 )"
-        exec "$(which ssh) ${@}"
-        sleep 1
-        $(which ssh) ${@}
-    else
-        $(which ssh) ${1} test -f .bash_local
-        if [ ! $? = 0 ]; then
-            $(which scp) -q ~/config_files/ssh_config_files/ssh_config_files.zip ${USER}@${1}: && \
-            $(which ssh) ${USER}@${1} "unzip -o -qq ~/ssh_config_files.zip && ~/config_files/setup.sh"
-        fi
-        $(which ssh) ${USER}@${1}
-    fi
-}
-
-
 function pip(){
     if [ -z ${VIRTUAL_ENV} ]; then
         echo -ne "${MY_ESC_CODE}[1;33mWARNING: ${MY_ESC_CODE}[0;39m"
