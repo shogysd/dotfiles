@@ -101,5 +101,8 @@
   //code-spell-checker
   "cSpell.diagnosticLevel": "Hint",
   // macOC
-  "terminal.integrated.macOptionIsMeta": true
+  "terminal.integrated.macOptionIsMeta": true,
+  "files.associations": {
+    "*.rmd": "markdown"
+  }
 }

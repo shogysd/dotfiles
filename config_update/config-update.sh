@@ -257,7 +257,7 @@ function config-update(){
     if [ ${MY_OS} = "Linux" ]; then
         # Linux
         dconf reset -f /org/gnome/terminal/legacy/profiles:/; \
-            dconf load /org/gnome/terminal/legacy/profiles:/ < ~/config_files/Linux/gnome_terminal/gnome-terminal.profile
+            dconf load /org/gnome/terminal/legacy/profiles:/ < ~/config_files/gnome_terminal/gnome-terminal.profile
     fi
 
     ### vs-code
