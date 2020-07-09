@@ -22,9 +22,9 @@ else
     unset update
 fi
 if [ "${reset_flag}" = "True" ]; then
-    echo "    git user.name ?"
+    echo "git user.name ?"
     read git_user_name_read
-    echo "    git user.email ?"
+    echo "git user.email ?"
     read git_user_email_read
     if [ ! -z "${git_user_name_read}" ] && [ ! -z "${git_user_email_read}" ]; then
         git_user_name=${git_user_name_read}
