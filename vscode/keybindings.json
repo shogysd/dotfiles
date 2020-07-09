@@ -244,6 +244,28 @@
     "command": "editor.action.format",
     "when": "editorTextFocus"
   },
+  // 保存
+  {
+    "key": "ctrl+x ctrl+s",
+    "command": "workbench.action.files.save",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+x ctrl+shift+s",
+    "command": "workbench.action.files.saveWithoutFormatting",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+x ctrl+a",
+    "command": "workbench.action.files.saveAll",
+    "when": "!terminalFocus"
+  },
+  // ウィンドウを閉じる
+  {
+    "key": "ctrl+x ctrl+c",
+    "command": "workbench.action.closeWindow",
+    "when": "!editorIsOpen && !multipleEditorGroups && !terminalFocus"
+  },
   // plugin
   {
     "key": "alt+t",
