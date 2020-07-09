@@ -263,7 +263,7 @@ function config-update(){
     ### vs-code
     which code > /dev/null 2>&1
     if [ $? = "0" ]; then
-        ~/config_files/vscode/vscode_configscript.sh
+        ~/config_files/vscode/activate.sh
     else
         echo -ne "${MY_ESC_CODE}[1;33mWARNING: ${MY_ESC_CODE}[0;39m"
         echo "'code' command not found"
