@@ -126,7 +126,7 @@ function -bashIconWriter(){
 function -dir_status(){
     if [ `ls | wc -w` = 0 ]; then
         echo -e "Current directory is clean."
-    elif [ ${MY_OS} = "Darwin" ]; then
+    elif [ $(uname 2>&1) = "Darwin" ]; then
         ls -G
     else
         # Linux

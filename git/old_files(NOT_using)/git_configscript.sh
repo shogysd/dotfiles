@@ -5,7 +5,7 @@ if [ ${EUID:-${UID}} = 0 ]; then
     exit 1
 fi
 
-if [ "${MY_OS}" = "" ]; then
+if [ "$(uname 2>&1)" = "" ]; then
     MY_OS=`uname 2>&1`
 fi
 
@@ -33,7 +33,7 @@ else
         fi
     fi
 
-    if [ ${MY_OS} = "Darwin" ]; then
+    if [ $(uname 2>&1) = "Darwin" ]; then
         git config --global core.editor '/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
     else
         git config --global core.editor 'emacs -nw'
@@ -67,7 +67,7 @@ else
     git config --global alias.st          'status'
     git config --global alias.sub         'submodule update --init --recursive'
 
-    if [ ${MY_OS} = "Darwin" ]; then
+    if [ $(uname 2>&1) = "Darwin" ]; then
         # macOS
         git config --global alias.ad '!git rev-parse --is-inside-work-tree > /dev/null && cd $(git rev-parse --show-toplevel) && xattr -cr && find . -name .DS_Store | xargs rm -rf && git add .'
     else

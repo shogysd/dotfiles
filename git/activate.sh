@@ -39,6 +39,6 @@ mv    ~/.gitconfig ~/.gitconfig_userinfo
 unset git_user_name git_user_email git_user_name_read git_user_email_read update reset_flag
 echo    ""
 echo    "update symbolic link"
-echo    "    gitconfig_envdep_ln" ; rm -f ~/config_files/git/gitconfig_envdep_ln ; ln -s ~/config_files/git/$(echo ${MY_OS} | tr [A-Z] [a-z])/gitconfig_envdep ~/config_files/git/gitconfig_envdep_ln
+echo    "    gitconfig_envdep_ln" ; rm -f ~/config_files/git/gitconfig_envdep_ln ; ln -s ~/config_files/git/$(echo $(uname 2>&1) | tr [A-Z] [a-z])/gitconfig_envdep ~/config_files/git/gitconfig_envdep_ln
 echo    "    gitconfig"           ; rm -f ~/.gitconfig                           ; ln -s ~/config_files/git/gitconfig        ~/.gitconfig
 echo    "    gitignore_global"    ; rm -f ~/.gitignore_global                    ; ln -s ~/config_files/git/gitignore_global ~/.gitignore_global

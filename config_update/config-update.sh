@@ -184,7 +184,7 @@ function config-update(){
     ### generate ssh/config
     cat  ~/config_files/ssh/common                            >  ~/config_files/ssh/config && \
     echo ""                                                   >> ~/config_files/ssh/config && \
-    cat  ~/config_files/ssh/$(echo ${MY_OS} | tr [A-Z] [a-z]) >> ~/config_files/ssh/config
+    cat  ~/config_files/ssh/$(echo $(uname 2>&1) | tr [A-Z] [a-z]) >> ~/config_files/ssh/config
 
     ### update ~/.gitconfig_userinfo
     unset git_user_name git_user_email
@@ -227,7 +227,7 @@ function config-update(){
 
     ### make symbolic link (config file)
     ~/config_files/config_update/config-symboliclink-update
-    # ln -s ~/config_files/git/$(echo ${MY_OS} | tr [A-Z] [a-z])/gitconfig_envdep ~/config_files/git/gitconfig_envdep_ln
+    # ln -s ~/config_files/git/$(echo $(uname 2>&1) | tr [A-Z] [a-z])/gitconfig_envdep ~/config_files/git/gitconfig_envdep_ln
     # echo    ""
     # echo -e "${MY_ESC_CODE}[1;39mupdate symbolic link${MY_ESC_CODE}[0;39m"
     # echo    "    bash_profile"      ; rm -f ~/.bash_profile             ; ln -s ~/config_files/bash/bash_profile    ~/.bash_profile
@@ -254,7 +254,7 @@ function config-update(){
     ${MY_DOWNLOAD_COMMAND} ~/config_files/git/git-completion.bash https://raw.githubusercontent.com/git/git/d9f6f3b6195a0ca35642561e530798ad1469bd41/contrib/completion/git-completion.bash
 
 
-    if [ ${MY_OS} = "Linux" ]; then
+    if [ $(uname 2>&1) = "Linux" ]; then
         # Linux
         dconf reset -f /org/gnome/terminal/legacy/profiles:/; \
             dconf load /org/gnome/terminal/legacy/profiles:/ < ~/config_files/gnome_terminal/gnome-terminal.profile

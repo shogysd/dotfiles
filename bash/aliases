@@ -1,4 +1,4 @@
-if [ ${MY_OS} = "Darwin" ]; then
+if [ $(uname 2>&1) = "Darwin" ]; then
     # macOS
     alias ls='ls -G'
     alias md5sum='md5'
@@ -6,7 +6,7 @@ if [ ${MY_OS} = "Darwin" ]; then
     alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
     alias open='open ./'
 else
-    # Linux ${MY_OS} = "Linux"
+    # Linux $(uname 2>&1) = "Linux"
     alias ls='ls --color=auto'
     alias ema='emacs -nw'
     alias emacs='emacs -nw'

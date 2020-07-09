@@ -7,11 +7,11 @@ if [ ${EUID:-${UID}} = 0 ]; then
     exit 1
 fi
 
-if [ "${MY_OS}" = "" ]; then
+if [ "$(uname 2>&1)" = "" ]; then
     MY_OS=`uname 2>&1`
 fi
 
-if [ ${MY_OS} = "Darwin" ]; then
+if [ $(uname 2>&1) = "Darwin" ]; then
     # macOS
     config_file_path="${HOME}/Library/Application Support/Code/User"
 else

@@ -1,7 +1,7 @@
 # OS
 export MY_OS=`uname 2>&1`
 
-if [ ${MY_OS} = "Darwin" ]; then
+if [ $(uname 2>&1) = "Darwin" ]; then
     # macOS
     export MY_ESC_CODE='\033'
     export MY_DOWNLOAD_COMMAND='curl -s -o'
@@ -76,7 +76,7 @@ if [ $? != 0 ]; then
     set -o history
 fi
 
-if [ ${MY_OS} = "Darwin" ] && [ ! "$( echo $PATH | grep "/Library/Frameworks/Python.framework/Versions/" )" ]; then
+if [ $(uname 2>&1) = "Darwin" ] && [ ! "$( echo $PATH | grep "/Library/Frameworks/Python.framework/Versions/" )" ]; then
     # macOS
     export PATH=$PATH":$(find /Library/Frameworks/Python.framework/Versions/* -maxdepth 1 -name bin | sort -r | head -n 1)"
 # else

@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 echo "update config_files symbolic linkes"
 echo "    config-symboliclink-update" ; rm -f ~/bin/config-symboliclink-update       ; ln -s ~/config_files/config_update/config-symboliclink-update               ~/bin/config-symboliclink-update
-echo "    gitconfig_envdep_ln"        ; rm -f ~/config_files/git/gitconfig_envdep_ln ; ln -s ~/config_files/git/$(echo ${MY_OS} | tr [A-Z] [a-z])/gitconfig_envdep ~/config_files/git/gitconfig_envdep_ln
+echo "    gitconfig_envdep_ln"        ; rm -f ~/config_files/git/gitconfig_envdep_ln ; ln -s ~/config_files/git/$(echo $(uname 2>&1) | tr [A-Z] [a-z])/gitconfig_envdep ~/config_files/git/gitconfig_envdep_ln
 echo "    bash_profile"               ; rm -f ~/.bash_profile                        ; ln -s ~/config_files/bash/bash_profile                                      ~/.bash_profile
 echo "    bashrc"                     ; rm -f ~/.bashrc                              ; ln -s ~/config_files/bash/bashrc                                            ~/.bashrc
 echo "    screenrc"                   ; rm -f ~/.screenrc                            ; ln -s ~/config_files/screen/screenrc                                        ~/.screenrc
