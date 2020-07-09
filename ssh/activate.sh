@@ -1,4 +1,4 @@
-#! /bin/sh
+#! env bash
 echo "update ssh_conf configs symbolic links"
 
 if [ ! -d "$HOME/.ssh" ]; then
