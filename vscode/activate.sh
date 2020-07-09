@@ -1,4 +1,4 @@
-#! env bash
+#! /usr/bin/env bash
 
 unset start config_file_path add_to_list remove_list
 
