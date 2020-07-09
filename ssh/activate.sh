@@ -13,4 +13,3 @@ cat  ~/config_files/ssh/common                                >  ~/config_files/
 echo ""                                                       >> ~/config_files/ssh/config && \
 cat  ~/config_files/ssh/$(echo `uname 2>&1` | tr [A-Z] [a-z]) >> ~/config_files/ssh/config
 echo "    conf" ; rm   -f ~/.ssh/config ; cp ~/config_files/ssh/config ~/.ssh/config
-yg
