@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/sh
 echo "update git configs symbolic links"
 
 unset git_user_name git_user_email
@@ -10,10 +10,11 @@ if [ ! -f ~/.gitconfig_userinfo ] || [ -z "${git_user_name}" ] || [ -z "${git_us
     echo -e "${MY_ESC_CODE}[1;39msetup git user global info${MY_ESC_CODE}[0;39m"
     reset_flag="True"
 else
-    echo -e  "${MY_ESC_CODE}[1;39mgit global user info${MY_ESC_CODE}[0;39m"
-    echo     "  - user.name  : ${git_user_name}"
-    echo     "  - user.email : ${git_user_email}"
-    echo -n  "update git user info?: y-or-other: "
+    echo "${MY_ESC_CODE}[1;39mgit global user info${MY_ESC_CODE}[0;39m"
+    echo "  - user.name  : ${git_user_name}"
+    echo "  - user.email : ${git_user_email}"
+    echo ""
+    echo "update git user info?: (y-or-other)"
     read update
     if [ ! -z ${update} ] && [ "${update}" = "y" ]; then
         reset_flag="True"
