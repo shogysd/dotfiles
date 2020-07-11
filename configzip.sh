@@ -6,7 +6,7 @@ fi
 pushd ~/config_files
 rm -rf zips; mkdir zips
 
-for i in $(ls -d ~/config_files/*/ -I zips | xargs basename)
+for i in $(ls -d ~/config_files/*/ | grep -v 'zips' | xargs basename)
 do
     zip -r ~/config_files/zips/${i}.zip ${i}
 done
