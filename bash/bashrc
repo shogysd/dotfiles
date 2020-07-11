@@ -80,12 +80,6 @@ else
     echo "~/config_files/git/git-completion.bash : No such file"
 fi
 
-if [ -f ~/config_files/config_update/config-update.sh ]; then
-    . ~/config_files/config_update/config-update.sh
-elif [ "${SSH_CONNECTION}" = "" ]; then
-    echo "~/config_files/config_update/config-update.sh : No such file"
-fi
-
 
 PS1="\n\$(shell_info)\n\$(-bashIconWriter)\$(-envWriter)\$ "
 
