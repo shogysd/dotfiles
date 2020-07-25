@@ -13,7 +13,7 @@ formulahendry.auto-close-tag
 formulahendry.auto-rename-tag
 garaemon.vscode-emacs-tab
 github.vscode-pull-request-github
-golang.Go
+golang.go
 jsynowiec.vscode-insertdatestring
 lextudio.restructuredtext
 mechatroner.rainbow-csv
