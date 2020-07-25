@@ -1,6 +1,6 @@
 [include]
 	path = ~/.gitconfig_userinfo
-	path = ~/config_files/git/gitconfig_envdep_ln
+	path = ~/dotfiles/git/gitconfig_envdep_ln
 [core]
 	excludesfile = ~/.gitignore_global
 	pager = less

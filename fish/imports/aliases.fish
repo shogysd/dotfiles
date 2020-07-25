@@ -8,10 +8,10 @@ if [ $MY_OS = "Darwin" ]
 else
     alias ema='emacs -nw'
     alias term-profile-export='dconf dump /org/gnome/terminal/legacy/profiles:/ \
-                               > ~/config_files/Linux/gnome_terminal/gnome-terminal.profile'
+                               > ~/dotfiles/Linux/gnome_terminal/gnome-terminal.profile'
     alias term-profile-import='dconf reset -f /org/gnome/terminal/legacy/profiles:/; \
                                dconf load /org/gnome/terminal/legacy/profiles:/ \
-                               < ~/config_files/Linux/gnome_terminal/gnome-terminal.profile'
+                               < ~/dotfiles/Linux/gnome_terminal/gnome-terminal.profile'
     alias open='nautilus ./'
 end
 alias sudo='sudo '

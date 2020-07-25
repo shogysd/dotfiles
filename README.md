@@ -1,4 +1,4 @@
-# config_files
+# dotfiles
 
 ## how to use it
 
@@ -9,7 +9,7 @@ please set environment variable 'MY_REMOTE_GITHUB_ACCOUNT' and 'MY_CONF_MODE'
 - MY_CONF_MODE
   - config run mode ( OWNER or GUEST )
 
-( repository name is 'config_files' )
+( repository name is 'dotfiles' )
 
 example...
 ```
@@ -31,13 +31,13 @@ $ source ~/.bash_local
 - if: OWNER mode
 ```
 $ \
-rm -rf ~/config_files; \
-git -C ~/ clone git@github.com:${MY_REMOTE_GITHUB_ACCOUNT}/config_files.git
+rm -rf ~/dotfiles; \
+git -C ~/ clone git@github.com:${MY_REMOTE_GITHUB_ACCOUNT}/dotfiles.git
 ```
 
 ### step3: load repository's config-update command
 ```
-$ source ~/config_files/bash/config-update.sh
+$ source ~/dotfiles/bash/config-update.sh
 ```
 
 ### step4: execute config-update command

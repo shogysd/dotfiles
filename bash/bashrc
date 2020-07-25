@@ -34,50 +34,50 @@ done
 
 
 ### load config files
-if [ ! -d ~/config_files ]; then
-    echo "~/config_files : No such directory"
+if [ ! -d ~/dotfiles ]; then
+    echo "~/dotfiles : No such directory"
 fi
 
-if [ -f ~/config_files/bash/environments ]; then
-    . ~/config_files/bash/environments
+if [ -f ~/dotfiles/bash/environments ]; then
+    . ~/dotfiles/bash/environments
 else
-    echo "~/config_files/bash/environments : No such file"
+    echo "~/dotfiles/bash/environments : No such file"
 fi
 
-if [ -f ~/config_files/bash/prompt_script.sh ]; then
-    . ~/config_files/bash/prompt_script.sh
+if [ -f ~/dotfiles/bash/prompt_script.sh ]; then
+    . ~/dotfiles/bash/prompt_script.sh
 else
-    echo "~/config_files/bash/prompt_script.sh : No such file"
+    echo "~/dotfiles/bash/prompt_script.sh : No such file"
 fi
 
-if [ -f ~/config_files/bash/aliases ]; then
-    . ~/config_files/bash/aliases
+if [ -f ~/dotfiles/bash/aliases ]; then
+    . ~/dotfiles/bash/aliases
 else
-    echo "~/config_files/bash/aliases : No such file"
+    echo "~/dotfiles/bash/aliases : No such file"
 fi
 
-if [ -f ~/config_files/bash/bash_script.sh ]; then
-    . ~/config_files/bash/bash_script.sh
+if [ -f ~/dotfiles/bash/bash_script.sh ]; then
+    . ~/dotfiles/bash/bash_script.sh
 else
-    echo "~/config_files/bash/bash_script.sh : No such file"
+    echo "~/dotfiles/bash/bash_script.sh : No such file"
 fi
 
-if [ -f ~/config_files/bash/cmd_wrapper.sh ]; then
-    . ~/config_files/bash/cmd_wrapper.sh
+if [ -f ~/dotfiles/bash/cmd_wrapper.sh ]; then
+    . ~/dotfiles/bash/cmd_wrapper.sh
 else
-    echo "~/config_files/bash/cmd_wrapper.sh : No such file"
+    echo "~/dotfiles/bash/cmd_wrapper.sh : No such file"
 fi
 
-if [ -f ~/config_files/bash/bash_script_dupbin.sh ]; then
-    . ~/config_files/bash/bash_script_dupbin.sh
+if [ -f ~/dotfiles/bash/bash_script_dupbin.sh ]; then
+    . ~/dotfiles/bash/bash_script_dupbin.sh
 else
-    echo "~/config_files/bash/bash_script_dupbin.sh : No such file"
+    echo "~/dotfiles/bash/bash_script_dupbin.sh : No such file"
 fi
 
-if [ -f ~/config_files/git/git-completion.bash ]; then
-    . ~/config_files/git/git-completion.bash
+if [ -f ~/dotfiles/git/git-completion.bash ]; then
+    . ~/dotfiles/git/git-completion.bash
 else
-    echo "~/config_files/git/git-completion.bash : No such file"
+    echo "~/dotfiles/git/git-completion.bash : No such file"
 fi
 
 

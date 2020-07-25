@@ -4,7 +4,7 @@
 
 ```
 git config --global include.path          '~/.gitconfig_userinfo'
-git config --global include.path          '~/config_files/git/gitconfig_envdep_ln'
+git config --global include.path          '~/dotfiles/git/gitconfig_envdep_ln'
 
 git config --global core.excludesfile     '~/.gitignore_global'
 git config --global core.pager            less

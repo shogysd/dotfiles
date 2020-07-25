@@ -9,7 +9,7 @@ if [ ! -d "$HOME/.ssh/local_conf" ]; then
     mkdir ${HOME}/.ssh/local_conf && echo "$HOME/.ssh/local_conf was created."
 fi
 
-cat  ~/config_files/ssh/common                                >  ~/config_files/ssh/config && \
-echo ""                                                       >> ~/config_files/ssh/config && \
-cat  ~/config_files/ssh/$(echo `uname 2>&1` | tr [A-Z] [a-z]) >> ~/config_files/ssh/config
-echo "    conf" ; rm   -f ~/.ssh/config ; cp ~/config_files/ssh/config ~/.ssh/config
+cat  ~/dotfiles/ssh/common                                >  ~/dotfiles/ssh/config && \
+echo ""                                                       >> ~/dotfiles/ssh/config && \
+cat  ~/dotfiles/ssh/$(echo `uname 2>&1` | tr [A-Z] [a-z]) >> ~/dotfiles/ssh/config
+echo "    conf" ; rm   -f ~/.ssh/config ; cp ~/dotfiles/ssh/config ~/.ssh/config
