@@ -101,23 +101,6 @@ function -sshScreenStarter(){
 }
 
 
-function -confModePrinter(){
-    echo -ne "${MY_ESC_CODE}[0;32mInformation${MY_ESC_CODE}[0;39m: conf mode is "
-
-    if [ "${MY_CONF_MODE}" = "OWNER" ] || [ "${MY_CONF_MODE}" = "GUEST" ]; then
-        echo ${MY_CONF_MODE}
-    elif [ "${SSH_CONNECTION}" != "" ] && [ -z ${MY_CONF_MODE} ]; then
-        echo "SSH"
-    elif [ -z ${MY_CONF_MODE} ] ; then
-        echo -e "${MY_ESC_CODE}[1;39mN/A${MY_ESC_CODE}[0;39m"
-    else
-        echo -ne "${MY_ESC_CODE}[1;31mERROR: ${MY_ESC_CODE}[0;39m"
-        echo "MY_ESC_CODE is : ${MY_ESC_CODE}"
-    fi
-    echo ""
-}
-
-
 function -bashIconWriter(){
     echo -n '[$_] '
 }
