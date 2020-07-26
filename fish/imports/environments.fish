@@ -4,7 +4,7 @@ set -x VISUAL ':'
 set -x EDITOR 'emacs'
 
 # PATH
-if [ $MY_OS = "Darwin" ] && [ ! (echo $PATH | grep "/Library/Frameworks/Python.framework/Versions/") ]
+if [ (uname 2>&1) = "Darwin" ] && [ ! (echo $PATH | grep "/Library/Frameworks/Python.framework/Versions/") ]
     # macOS
     set -x PATH (find /Library/Frameworks/Python.framework/Versions/* -maxdepth 1 -name bin | sort -r | head -n 1) $PATH
 # else

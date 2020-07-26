@@ -1,5 +1,4 @@
 # OS
-export MY_OS=`uname 2>&1`
 
 if [ $(uname 2>&1) = "Darwin" ]; then
     # macOS
