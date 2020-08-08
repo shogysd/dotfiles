@@ -1,4 +1,4 @@
-function my_prompt_git_status
+function git_status
     # style code
     #   0: default
     #   1: bold

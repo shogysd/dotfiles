@@ -1,4 +1,4 @@
-function my_prompt_git_repopath --description 'Print the path in git repository (customised), shortened to fit the prompt'
+function git_repopath --description 'Print the path in git repository (customised), shortened to fit the prompt'
     set -l options 'h/help'
     argparse -n prompt_pwd --max-args=0 $options -- $argv
     or return
