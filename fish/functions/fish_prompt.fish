@@ -35,6 +35,8 @@ function fish_prompt --description 'Write out the prompt'
     # echo -s 'fish ' (my_virtualenv_envwriter) $prompt_status $suffix ' '
     # major only
     # echo -s (fish --version | tr -d ',' | tr '.' ' ' | awk -F ' ' '{printf "%s-%s", $1, $3}') ' ' (my_virtualenv_envwriter) $prompt_status $suffix ' '
+    # major and '.x'
+    echo -s (fish --version | tr -d ',' | tr '.' ' ' | awk -F ' ' '{printf "%s-%s.x", $1, $3}') ' ' (my_virtualenv_envwriter) $prompt_status $suffix ' '
     # full-print
-    echo -s (fish --version | tr -d ',' | awk -F ' ' '{printf "%s-%s", $1, $3}') ' ' (my_virtualenv_envwriter) $prompt_status $suffix ' '
+    # echo -s (fish --version | tr -d ',' | awk -F ' ' '{printf "%s-%s", $1, $3}') ' ' (my_virtualenv_envwriter) $prompt_status $suffix ' '
 end

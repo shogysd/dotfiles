@@ -7,6 +7,7 @@ if [ (uname 2>&1) = "Darwin" ]
     alias open='open ./'
 else
     alias ema='emacs -nw'
+    alias emacs='emacs -nw'
     alias term-profile-export='dconf dump /org/gnome/terminal/legacy/profiles:/ \
                                > ~/dotfiles/Linux/gnome_terminal/gnome-terminal.profile'
     alias term-profile-import='dconf reset -f /org/gnome/terminal/legacy/profiles:/; \
