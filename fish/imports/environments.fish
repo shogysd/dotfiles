@@ -6,7 +6,7 @@ set -x EDITOR 'emacs'
 # PATH
 if [ (uname 2>&1) = "Darwin" ] && [ ! (echo $PATH | grep "/Library/Frameworks/Python.framework/Versions/") ]
     # macOS
-    set -x PATH (find /Library/Frameworks/Python.framework/Versions/* -maxdepth 1 -name bin | sort -r | head -n 1) $PATH
+    set -x PATH (python_latest_stable_binpath) $PATH
 # else
     # Linux
 end
