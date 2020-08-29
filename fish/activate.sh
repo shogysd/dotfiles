@@ -1,4 +1,10 @@
 #! /usr/bin/env bash
+
+if [ ! -d ~/.config ]; then
+    mkdir ~/.config
+    echo "~/.config created"
+fi
+
 echo "update fish configs symbolic links"
 echo    "    fish/functions"   ; rm -rf ~/.config/fish/functions   ; ln -s ~/dotfiles/fish/functions       ~/.config/fish/functions
 echo    "    fish/imports"     ; rm -rf ~/.config/fish/imports     ; ln -s ~/dotfiles/fish/imports         ~/.config/fish/imports
