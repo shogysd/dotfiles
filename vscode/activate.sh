@@ -32,6 +32,8 @@ echo -ne "${MY_ESC_CODE}[1;35myes${MY_ESC_CODE}[0;39m-or-other ( NOT 'y' ): "
 read start
 if [ -z ${start} ] || [ $start != "yes" ]; then
     :
+elif ! $(which code); then
+    echo "error: (code) command not found"
 else
     echo ""
     echo "----------------- update plugins -----------------"
