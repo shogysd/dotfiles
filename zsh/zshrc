@@ -1,5 +1,8 @@
-if $(which fish); then
-    exec fish
-else
-    exec bash
+if [ $(echo $SHELL | xargs basename) = 'zsh' ]; then
+    $(which fish >/dev/null 2>&1)
+    if [ $? = 0 ]; then
+        exec fish
+    else
+        exec bash
+    fi
 fi
