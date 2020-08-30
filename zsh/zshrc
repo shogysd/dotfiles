@@ -1,0 +1,5 @@
+if $(which fish); then
+    exec fish
+else
+    exec bash
+fi
