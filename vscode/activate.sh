@@ -2,10 +2,10 @@
 
 if [ $(uname 2>&1) = "Darwin" ]; then
     # macOS
-    export MY_ESC_CODE='\033'
+    export OSDEP_ESC_CODE='\033'
 else
     # Linux
-    export MY_ESC_CODE='\e'
+    export OSDEP_ESC_CODE='\e'
 fi
 
 unset start config_file_path add_to_list remove_list
@@ -31,12 +31,12 @@ if [ -d "${config_file_path}" ]; then
     rm -f "${config_file_path}/keybindings.json"; ln -s ~/dotfiles/vscode/keybindings.json  "${config_file_path}/keybindings.json"
     echo "complete !!"
 else
-    echo -e "${MY_ESC_CODE}[1;39mconfig dir ( ${config_file_path} ) not found!! ${MY_ESC_CODE}[0;39m"
+    echo -e "${OSDEP_ESC_CODE}[1;39mconfig dir ( ${config_file_path} ) not found!! ${OSDEP_ESC_CODE}[0;39m"
 fi
 
 echo ""
-echo -ne "${MY_ESC_CODE}[1;39mstart update vscode plugins?: ${MY_ESC_CODE}[0;39m"
-echo -ne "${MY_ESC_CODE}[1;35myes${MY_ESC_CODE}[0;39m-or-other ( NOT 'y' ): "
+echo -ne "${OSDEP_ESC_CODE}[1;39mstart update vscode plugins?: ${OSDEP_ESC_CODE}[0;39m"
+echo -ne "${OSDEP_ESC_CODE}[1;35myes${OSDEP_ESC_CODE}[0;39m-or-other ( NOT 'y' ): "
 read start
 if [ -z ${start} ] || [ $start != "yes" ]; then
     :
@@ -54,9 +54,9 @@ else
     do
         cat ~/dotfiles/vscode/plugin_list.txt | grep -q ${i}
         if [ $? != 0 ]; then
-            echo -ne "${MY_ESC_CODE}[1;33mWARNING: ${MY_ESC_CODE}[0;39m"
+            echo -ne "${OSDEP_ESC_CODE}[1;33mWARNING: ${OSDEP_ESC_CODE}[0;39m"
             echo -n "current only plugin : "
-            echo -e "${MY_ESC_CODE}[1;39m${i}${MY_ESC_CODE}[0;39m"
+            echo -e "${OSDEP_ESC_CODE}[1;39m${i}${OSDEP_ESC_CODE}[0;39m"
             echo -n "    add to plugin_list?: y-or-other: "
             read add_to_list
             if [ -z ${add_to_list} ] || [ ${add_to_list} != "y" ]; then
@@ -90,9 +90,9 @@ else
         code --install-extension ${i} > /dev/null 2>&1
         if [ 1 = ${?} ]; then
             echo "--"
-            echo -ne "${MY_ESC_CODE}[1;33mWARNING: ${MY_ESC_CODE}[0;39m"
+            echo -ne "${OSDEP_ESC_CODE}[1;33mWARNING: ${OSDEP_ESC_CODE}[0;39m"
             echo "command exec error: \$code --install-extension ${i}"
-            echo -ne "${MY_ESC_CODE}[1;39mremove ${i} in plugin_list.txt?${MY_ESC_CODE}[0;39m"
+            echo -ne "${OSDEP_ESC_CODE}[1;39mremove ${i} in plugin_list.txt?${OSDEP_ESC_CODE}[0;39m"
             echo -n " : y-or-other: "
             read remove_list
             if [ -z ${remove_list} ] || [ ${remove_list} != "y" ]; then

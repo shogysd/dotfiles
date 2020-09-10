@@ -26,16 +26,16 @@ function -gitRepoPathWriter(){
             echo -n "git: "
         else
             # ~/.gitignore_global is disabled
-            echo -ne "${MY_ESC_CODE}[0;39;7mgit:${MY_ESC_CODE}[0;39m "
+            echo -ne "${OSDEP_ESC_CODE}[0;39;7mgit:${OSDEP_ESC_CODE}[0;39m "
         fi
     else
         # branch is not clean
         if [ -f ~/.gitignore_global ]; then
             # ~/.gitignore_global is enabled
-            echo -ne "${MY_ESC_CODE}[1;31mgit:${MY_ESC_CODE}[0;39m "
+            echo -ne "${OSDEP_ESC_CODE}[1;31mgit:${OSDEP_ESC_CODE}[0;39m "
         else
             # ~/.gitignore_global is disabled
-            echo -ne "${MY_ESC_CODE}[1;31;7mgit:${MY_ESC_CODE}[0;39m "
+            echo -ne "${OSDEP_ESC_CODE}[1;31;7mgit:${OSDEP_ESC_CODE}[0;39m "
         fi
     fi
     echo `git rev-parse --show-toplevel | xargs basename`/`git rev-parse --show-prefix`
@@ -51,12 +51,12 @@ function -gitBranchPrinter(){
             defaultBranch="master"
         fi
         if [ ${gitBranch} = ${defaultBranch} ]; then
-            echo -n "${MY_ESC_CODE}[0;33m${defaultBranch}${MY_ESC_CODE}[0;39m"
+            echo -n "${OSDEP_ESC_CODE}[0;33m${defaultBranch}${OSDEP_ESC_CODE}[0;39m"
         else
             echo -n "${gitBranch}"
         fi
     else
-        echo -n "${MY_ESC_CODE}[0;36mdetached${MY_ESC_CODE}[0;39m"
+        echo -n "${OSDEP_ESC_CODE}[0;36mdetached${OSDEP_ESC_CODE}[0;39m"
     fi
 }
 
@@ -83,10 +83,10 @@ function -screenStatusPrinter(){
     which screen > /dev/null 2>&1
     if [ $? = "0" ]; then
         # found screen command
-        echo -ne "screen ${MY_ESC_CODE}[0;35mattached${MY_ESC_CODE}[0;39m:"
+        echo -ne "screen ${OSDEP_ESC_CODE}[0;35mattached${OSDEP_ESC_CODE}[0;39m:"
         screen -ls | grep Attached | tr '.' ' ' | awk -F ' ' '{printf " %5s", $1}'
         echo ""
-        echo -ne "sereen ${MY_ESC_CODE}[0;36mdetached${MY_ESC_CODE}[0;39m:"
+        echo -ne "sereen ${OSDEP_ESC_CODE}[0;36mdetached${OSDEP_ESC_CODE}[0;39m:"
         screen -ls | grep Detached | tr '.' ' ' | awk -F ' ' '{printf " %5s", $1}'
         echo -e "\n"
     fi

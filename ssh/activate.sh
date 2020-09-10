@@ -2,10 +2,10 @@
 
 if [ $(uname 2>&1) = "Darwin" ]; then
     # macOS
-    export MY_ESC_CODE='\033'
+    export OSDEP_ESC_CODE='\033'
 else
     # Linux
-    export MY_ESC_CODE='\e'
+    export OSDEP_ESC_CODE='\e'
 fi
 
 echo "update ssh_conf configs symbolic links"

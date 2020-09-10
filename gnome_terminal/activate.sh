@@ -5,7 +5,7 @@ if [ $(uname 2>&1) = "Darwin" ]; then
     exit
 else
     # Linux
-    export MY_ESC_CODE='\e'
+    export OSDEP_ESC_CODE='\e'
 fi
 
 echo "update gnome-terminal configs"

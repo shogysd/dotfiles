@@ -32,5 +32,5 @@ function git_status
         end
     end
 
-    echo -nes $MY_ESC_CODE"[" $style_code $front_color_code $background_color_code $attribute_code "mgit:"$MY_ESC_CODE"[0;39m"
+    echo -nes $OSDEP_ESC_CODE"[" $style_code $front_color_code $background_color_code $attribute_code "mgit:"$OSDEP_ESC_CODE"[0;39m"
 end

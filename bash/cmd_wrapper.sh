@@ -20,9 +20,9 @@ fi
 
 function pip(){
     if [ -z ${VIRTUAL_ENV} ]; then
-        echo -ne "${MY_ESC_CODE}[1;33mWARNING: ${MY_ESC_CODE}[0;39m"
+        echo -ne "${OSDEP_ESC_CODE}[1;33mWARNING: ${OSDEP_ESC_CODE}[0;39m"
         echo "virtualenv is not activated!!"
-        echo -ne "${MY_ESC_CODE}[1;39mcontinue ?: ${MY_ESC_CODE}[0;39m"
+        echo -ne "${OSDEP_ESC_CODE}[1;39mcontinue ?: ${OSDEP_ESC_CODE}[0;39m"
         echo -n "y-or-other: "
         read start
         if [ -z ${start} ] || [ "${start}" != "y" ]; then

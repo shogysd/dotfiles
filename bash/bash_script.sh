@@ -10,7 +10,7 @@ function venv(){
 
 
 function screen_status(){
-    screen -ls | grep Attached | tr '.' ' ' | echo -e "${MY_ESC_CODE}[1;32m`awk '{printf "%s %s\t(Attached)\n", $1, $2}'`${MY_ESC_CODE}[0;39m"
+    screen -ls | grep Attached | tr '.' ' ' | echo -e "${OSDEP_ESC_CODE}[1;32m`awk '{printf "%s %s\t(Attached)\n", $1, $2}'`${OSDEP_ESC_CODE}[0;39m"
     screen -ls | grep Detached | tr '.' ' ' | awk '{printf "%s %s\t(Detached)\n", $1, $2}'
 }
 

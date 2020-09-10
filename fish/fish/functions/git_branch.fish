@@ -6,11 +6,11 @@ function git_branch
         #     set -l default_branch master
         # end
         if [ "$git_branch" = "$default_branch" ]
-            echo -ne $MY_ESC_CODE"[0;33m"$git_branch$MY_ESC_CODE"[0;39m"
+            echo -ne $OSDEP_ESC_CODE"[0;33m"$git_branch$OSDEP_ESC_CODE"[0;39m"
         else
             echo -ne "$git_branch"
         end
     else
-        echo -ne $MY_ESC_CODE"[0;36mdetached"$MY_ESC_CODE"[0;39m"
+        echo -ne $OSDEP_ESC_CODE"[0;36mdetached"$OSDEP_ESC_CODE"[0;39m"
     end
 end
