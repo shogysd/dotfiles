@@ -1,4 +1,13 @@
 #! /bin/bash
+
+if [ $(uname 2>&1) = "Darwin" ]; then
+    # macOS
+    export MY_ESC_CODE='\033'
+else
+    # Linux
+    export MY_ESC_CODE='\e'
+fi
+
 echo "update git configs symbolic links"
 
 unset git_user_name git_user_email

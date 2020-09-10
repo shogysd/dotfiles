@@ -1,5 +1,13 @@
 #! /usr/bin/env bash
 
+if [ $(uname 2>&1) = "Darwin" ]; then
+    # macOS
+    export MY_ESC_CODE='\033'
+else
+    # Linux
+    export MY_ESC_CODE='\e'
+fi
+
 unset start config_file_path add_to_list remove_list
 
 if [ ${EUID:-${UID}} = 0 ]; then

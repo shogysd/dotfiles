@@ -1,8 +1,11 @@
 #! /usr/bin/env bash
 
-if [ `uname 2>&1` = "Darwin" ]; then
+if [ $(uname 2>&1) = "Darwin" ]; then
     # macOS
     exit
+else
+    # Linux
+    export MY_ESC_CODE='\e'
 fi
 
 echo "update gnome-terminal configs"
