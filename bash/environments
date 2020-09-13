@@ -62,7 +62,7 @@ shopt -s extglob
 shopt -s cdspell
 
 # google cloud sdk
-if [ ! "$( echo $PATH | grep "$HOME/google-cloud-sdk/bin" )" ]; then
+if [ ! "$( echo $PATH | grep "$HOME/google-cloud-sdk/bin" )" ] && [ -d "$HOME/google-cloud-sdk/bin" ]; then
     export PATH=$PATH":$HOME/google-cloud-sdk/bin"
 fi
 
