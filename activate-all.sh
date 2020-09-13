@@ -13,8 +13,12 @@ if [ ! -d ~/.config ]; then
     echo "~/.config created"
 fi
 
+echo ""
 for i in $(find ~/dotfiles -name activate.sh)
 do
+    echo "=============================="
+    echo ""
     ${i}
+    echo ""
 done
-
+echo "=============================="

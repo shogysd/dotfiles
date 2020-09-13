@@ -2,6 +2,7 @@
 
 if [ $(uname 2>&1) = "Darwin" ]; then
     # macOS
+    echo "gnome terminal config update: skipped"
     exit
 else
     # Linux
