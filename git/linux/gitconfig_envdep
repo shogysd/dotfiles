@@ -1,4 +1,2 @@
-[core]
-	editor = emacs -nw
 [alias]
 	ad = !git rev-parse --is-inside-work-tree > /dev/null && cd $(git rev-parse --show-toplevel) && git add .

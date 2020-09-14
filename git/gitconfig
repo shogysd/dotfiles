@@ -2,6 +2,7 @@
 	path = ~/.gitconfig_userinfo
 	path = ~/dotfiles/git/gitconfig_envdep_ln
 [core]
+	editor = emacs -nw
 	excludesfile = ~/.gitignore_global
 	pager = less
 	autocrlf = input

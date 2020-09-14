@@ -2,8 +2,7 @@
 if [ (uname 2>&1) = "Darwin" ]
     alias ls='ls -G'
     alias md5sum='md5'
-    alias ema='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
-    alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+    alias ema='emacs'
     alias open='open ./'
 else
     alias ema='emacs -nw'
