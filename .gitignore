@@ -4,3 +4,4 @@ git-completion.bash
 /ssh_config_files/config_files
 /ssh/config
 gitconfig_envdep_ln
+/docker/docker.*
