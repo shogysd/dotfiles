@@ -12,3 +12,4 @@ end
 
 source ~/.config/fish/imports/environments.fish
 source ~/.config/fish/imports/aliases.fish
+source ~/dotfiles/docker/docker.fish
