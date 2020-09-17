@@ -30,6 +30,7 @@ alias hn='hostname'
 alias flush='rm -f *~ .*~ \#*\# \**\*'
 alias cp='cp -i'
 alias pd-clear='dirs -c'
+alias dok='docker'
 
 # git
 alias gd='cd $(git rev-parse --show-toplevel)'
