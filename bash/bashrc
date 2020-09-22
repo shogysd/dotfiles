@@ -86,15 +86,14 @@ else
     echo "~/dotfiles/docker/docker.bash : No such file"
 fi
 
-
-# The next line updates PATH for the Google Cloud SDK.
+# gcloud
 if [ -f '~/google-cloud-sdk/path.bash.inc' ]; then
     . '~/google-cloud-sdk/path.bash.inc'
 else
     echo "~/google-cloud-sdk/path.bash.inc : No such file"
 fi
 
-# The next line enables shell command completion for gcloud.
+# gcloud
 if [ -f '~/google-cloud-sdk/completion.bash.inc' ]; then
     . '~/google-cloud-sdk/completion.bash.inc';
 else

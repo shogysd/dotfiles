@@ -29,6 +29,7 @@ else
     echo "~/dotfiles/docker/docker.fish : No such file"
 end
 
+# gcloud
 if [ -f '~/google-cloud-sdk/path.fish.inc' ];
     . '~/google-cloud-sdk/path.fish.inc'
 else
