@@ -32,6 +32,6 @@ end
 # gcloud
 if [ -f ~/google-cloud-sdk/path.fish.inc ];
     . ~/google-cloud-sdk/path.fish.inc
-else
-    echo "~/google-cloud-sdk/path.fish.inc : No such file"
+# else
+#     echo "~/google-cloud-sdk/path.fish.inc : No such file"
 end

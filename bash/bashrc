@@ -89,15 +89,15 @@ fi
 # gcloud
 if [ -f ~/google-cloud-sdk/path.bash.inc ]; then
     . ~/google-cloud-sdk/path.bash.inc
-else
-    echo "~/google-cloud-sdk/path.bash.inc : No such file"
+# else
+#     echo "~/google-cloud-sdk/path.bash.inc : No such file"
 fi
 
 # gcloud
 if [ -f ~/google-cloud-sdk/completion.bash.inc ]; then
     . ~/google-cloud-sdk/completion.bash.inc
-else
-    echo "~/google-cloud-sdk/completion.bash.inc : No such file"
+# else
+#     echo "~/google-cloud-sdk/completion.bash.inc : No such file"
 fi
 
 PS1="\n\$(shell_info)\n\$(-bashIconWriter)\$(-envWriter)\$ "
