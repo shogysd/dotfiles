@@ -10,6 +10,27 @@ else
     export OSDEP_DOWNLOAD_COMMAND='wget -q -O'
 end
 
-source ~/.config/fish/imports/environments.fish
-source ~/.config/fish/imports/aliases.fish
-source ~/dotfiles/docker/docker.fish
+
+if [ -f '~/.config/fish/imports/environments.fish' ];
+    . '~/.config/fish/imports/environments.fish'
+else
+    echo "~/.config/fish/imports/environments.fish : No such file"
+end
+
+if [ -f '~/.config/fish/imports/aliases.fish' ];
+    . '~/.config/fish/imports/aliases.fish'
+else
+    echo "~/.config/fish/imports/aliases.fish : No such file"
+end
+
+if [ -f '~/dotfiles/docker/docker.fish' ];
+    . '~/dotfiles/docker/docker.fish'
+else
+    echo "~/dotfiles/docker/docker.fish : No such file"
+end
+
+if [ -f '~/google-cloud-sdk/path.fish.inc' ];
+    . '~/google-cloud-sdk/path.fish.inc'
+else
+    echo "~/google-cloud-sdk/path.fish.inc : No such file"
+end
