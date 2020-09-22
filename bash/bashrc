@@ -87,15 +87,15 @@ else
 fi
 
 # gcloud
-if [ -f '~/google-cloud-sdk/path.bash.inc' ]; then
-    . '~/google-cloud-sdk/path.bash.inc'
+if [ -f ~/google-cloud-sdk/path.bash.inc ]; then
+    . ~/google-cloud-sdk/path.bash.inc
 else
     echo "~/google-cloud-sdk/path.bash.inc : No such file"
 fi
 
 # gcloud
-if [ -f '~/google-cloud-sdk/completion.bash.inc' ]; then
-    . '~/google-cloud-sdk/completion.bash.inc';
+if [ -f ~/google-cloud-sdk/completion.bash.inc ]; then
+    . ~/google-cloud-sdk/completion.bash.inc
 else
     echo "~/google-cloud-sdk/completion.bash.inc : No such file"
 fi
