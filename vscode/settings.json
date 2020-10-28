@@ -69,6 +69,7 @@
     "files.trimTrailingWhitespace": false
   },
   "files.autoSave": "afterDelay",
+  "files.trimFinalNewlines": true,
   // Compulim.vscode-clock
   "clock.dateFormat": "\tmmm dd yyyy\tHH:MM\t",
   // jsynowiec.vscode-insertdatestring
@@ -85,6 +86,8 @@
   "bracket-pair-colorizer-2.forceUniqueOpeningColor": false,
   "bracket-pair-colorizer-2.colorMode": "Consecutive",
   "bracket-pair-colorizer-2.showBracketsInGutter": true,
+  // trailing-spaces
+  "trailing-spaces.trimOnSave": true,
   // todo-tree
   "todo-tree.tree.showScanModeButton": true,
   "todo-tree.general.tags": [
