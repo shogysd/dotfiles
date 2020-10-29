@@ -11,7 +11,7 @@ else
 fi
 
 unset bash_url fish_url
-bash_url='https://raw.githubusercontent.com/docker/docker-ce/master/components/cli/contrib/completion/fish/docker.fish'
+bash_url='https://raw.githubusercontent.com/docker/docker-ce/master/components/cli/contrib/completion/bash/docker'
 fish_url='https://raw.githubusercontent.com/docker/docker-ce/master/components/cli/contrib/completion/fish/docker.fish'
 
 echo "download fish completion files"
