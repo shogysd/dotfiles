@@ -93,7 +93,8 @@ if [ $(uname 2>&1) = "Darwin" ]; then
     for path in $(find /Library/Frameworks/Python.framework/Versions/* -maxdepth 1 -name bin | sort -r); do
         ${path}/python3 --version | awk -F ' ' '{print $NF}' | grep -e a -e b > /dev/null
         if [ ! $? -eq 0 ]; then
-            PATH="${path}:$PATH"
+            # PATH="${path}:$PATH"
+            PATH="$PATH:${path}"
             break
         fi
         version=$(echo ${path} | awk -F '/' '{print $(NF - 1)}')
