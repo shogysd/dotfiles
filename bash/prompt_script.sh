@@ -1,5 +1,4 @@
 function shell_info(){
-
     if ( ! `git rev-parse --is-inside-work-tree > /dev/null 2>&1` ); then
         echo -e "${BASICINFO}  ( $(-pathWriter) )"
     else
@@ -102,7 +101,13 @@ function -sshScreenStarter(){
 
 
 function -bashIconWriter(){
-    echo -n '[$_] '
+    if [ "${SHELL_NAME}" = "bash" ]; then
+        echo -n 'bash '
+    elif [ "${SHELL_NAME}" = "zsh" ]; then
+        echo -n 'zsh '
+    else
+        echo "SHELL_NAME is '${SHELL_NAME}'"
+    fi
 }
 
 
