@@ -108,7 +108,7 @@ elif [ "${SHELL_NAME}" = "zsh" ]; then
         echo "~/dotfiles/git/git-completion.zsh : No such file"
     fi
 
-    if [ -f ~/dotfiles/docker/docker.zsh ]; then
+    if [ ! -f ~/dotfiles/docker/docker.zsh ]; then
         echo "~/dotfiles/docker/docker.zsh : No such file"
     fi
 
