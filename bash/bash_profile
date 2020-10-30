@@ -1,10 +1,3 @@
-if [ $(echo $SHELL | xargs basename) = 'bash' ]; then
-    $(which fish >/dev/null 2>&1)
-    if [ $? = 0 ]; then
-        exec fish
-    fi
-fi
-
 if [ -f ~/.bashrc ]; then
     . ~/.bashrc
 else

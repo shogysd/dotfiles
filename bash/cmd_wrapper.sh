@@ -1,4 +1,4 @@
-if [ $(uname 2>&1) = "Darwin" ]; then
+if [ "$(uname 2>&1)" = "Darwin" ]; then
     # macOS
     function open(){
         if [ $# = 0 ]; then

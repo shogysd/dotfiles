@@ -88,7 +88,7 @@ fi
 
 
 # OS dependent
-if [ $(uname 2>&1) = "Darwin" ]; then
+if [ "$(uname 2>&1)" = "Darwin" ]; then
     # macOS
     for path in $(find /Library/Frameworks/Python.framework/Versions/* -maxdepth 1 -name bin | sort -r); do
         ${path}/python3 --version | awk -F ' ' '{print $NF}' | grep -e a -e b > /dev/null
@@ -118,6 +118,9 @@ if [ -f ~/google-cloud-sdk/completion.bash.inc ]; then
 fi
 
 PS1="\n\$(shell_info)\n\$(-bashIconWriter)\$(-envWriter)\$ "
+PROMPT="
+$(shell_info)
+$(-bashIconWriter)$(-envWriter)\$ "
 
 # command to be executed only the first time
 -blankLinePrinter
