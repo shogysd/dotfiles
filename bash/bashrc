@@ -93,7 +93,6 @@ if [ "${SHELL_NAME}" = "bash" ]; then
 elif [ "${SHELL_NAME}" = "zsh" ]; then
 
     zstyle ':completion:*:*:git:*'      option-stacking yes
-        ###  script ~/dotfiles/zsh/completion/git-completion.zsh
     zstyle ':completion:*:*:docker:*'   option-stacking yes
     zstyle ':completion:*:*:docker-*:*' option-stacking yes
     fpath=(~/dotfiles/zsh/completion $fpath)
@@ -106,12 +105,10 @@ elif [ "${SHELL_NAME}" = "zsh" ]; then
     # fi
 
     if [ ! -f ~/dotfiles/git/git-completion.zsh ]; then
-        . ~/dotfiles/git/git-completion.zsh
+        echo "~/dotfiles/git/git-completion.zsh : No such file"
     fi
 
     if [ -f ~/dotfiles/docker/docker.zsh ]; then
-        . ~/dotfiles/docker/docker.zsh
-    else
         echo "~/dotfiles/docker/docker.zsh : No such file"
     fi
 
