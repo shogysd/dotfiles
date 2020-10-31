@@ -1,0 +1,29 @@
+SHELL_NAME='zsh'
+
+PROMPT='
+$(shell_info)
+$(-bashIconWriter)$(-envWriter)\$ '
+
+setopt prompt_subst
+autoload -Uz compinit && compinit
+
+if [ -f ~/dotfiles/posix_shell_common/commonrc ]; then
+    . ~/dotfiles/posix_shell_common/commonrc
+else
+    echo "~/dotfiles/posix_shell_common/commonrc : No such file"
+fi
+
+if [ ! -f ~/dotfiles/git/git-completion.zsh ]; then
+    echo "~/dotfiles/git/git-completion.zsh : No such file"
+fi
+
+if [ ! -f ~/dotfiles/docker/docker.zsh ]; then
+    echo "~/dotfiles/docker/docker.zsh : No such file"
+fi
+
+
+# command to be executed only the first time
+-blankLinePrinter
+-sshScreenStarter
+-screenStatusPrinter
+-dir_status

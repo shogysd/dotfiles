@@ -1,14 +1,14 @@
-SHELL_NAME="bash"
+SHELL_NAME='bash'
 
-# if [ -f ~/.bashrc ]; then
-#     . ~/.bashrc
-# else
-#     echo "~/.bashrc : No such file"
-# fi
-
-if [ $(echo $SHELL | xargs basename) = 'zsh' ]; then
-    $(which fish >/dev/null 2>&1)
+if [ $(echo $SHELL | xargs basename) = 'bash' ]; then
+    $(which zsh >/dev/null 2>&1)
     if [ $? = 0 ]; then
         exec zsh
     fi
+fi
+
+if [ -f ~/dotfiles/bash/bashrc ]; then
+    . ~/dotfiles/bash/bashrc
+else
+    echo "~/dotfiles/bash/bashrc : No such file"
 fi
