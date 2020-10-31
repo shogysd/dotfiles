@@ -10,7 +10,7 @@ fi
 zstyle ':completion:*:*:git:*'      option-stacking yes
 zstyle ':completion:*:*:docker:*'   option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
-fpath=(~/dotfiles/zsh/completion $fpath)
+fpath=(~/dotfiles/posix_shell/zsh/completion $fpath)
 
 
 # if [ $(echo $SHELL | xargs basename) = 'zsh' ]; then
