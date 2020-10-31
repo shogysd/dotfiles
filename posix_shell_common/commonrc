@@ -29,10 +29,10 @@ if [ ! -d ~/dotfiles ]; then
     echo "~/dotfiles : No such directory"
 fi
 
-if [ -f ~/dotfiles/bash/environments ]; then
-    . ~/dotfiles/bash/environments
+if [ -f ~/dotfiles/posix_shell_common/bash/environments ]; then
+    . ~/dotfiles/posix_shell_common/bash/environments
 else
-    echo "~/dotfiles/bash/environments : No such file"
+    echo "~/dotfiles/posix_shell_common/bash/environments : No such file"
 fi
 
 if [ -f ~/dotfiles/posix_shell_common/prompt_script.sh ]; then
