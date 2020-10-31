@@ -43,10 +43,10 @@ else
     echo "~/dotfiles/posix_shell/common/aliases : No such file"
 fi
 
-if [ -f ~/dotfiles/posix_shell/common/bash_script.sh ]; then
-    . ~/dotfiles/posix_shell/common/bash_script.sh
+if [ -f ~/dotfiles/posix_shell/common/script.sh ]; then
+    . ~/dotfiles/posix_shell/common/script.sh
 else
-    echo "~/dotfiles/posix_shell/common/bash_script.sh : No such file"
+    echo "~/dotfiles/posix_shell/common/script.sh : No such file"
 fi
 
 if [ -f ~/dotfiles/posix_shell/common/cmd_wrapper.sh ]; then
@@ -55,10 +55,10 @@ else
     echo "~/dotfiles/posix_shell/common/cmd_wrapper.sh : No such file"
 fi
 
-if [ -f ~/dotfiles/posix_shell/common/bash_script_dupbin.sh ]; then
-    . ~/dotfiles/posix_shell/common/bash_script_dupbin.sh
+if [ -f ~/dotfiles/posix_shell/common/script_dupbin.sh ]; then
+    . ~/dotfiles/posix_shell/common/script_dupbin.sh
 else
-    echo "~/dotfiles/posix_shell/common/bash_script_dupbin.sh : No such file"
+    echo "~/dotfiles/posix_shell/common/script_dupbin.sh : No such file"
 fi
 
 
