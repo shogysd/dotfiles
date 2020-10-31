@@ -4,6 +4,11 @@ PROMPT='
 $(shell_info)
 $(-bashIconWriter)$(-envWriter)\$ '
 
+# RPROMPT='%D{%Y/%m/%d} %*'
+RPROMPT='%*'
+TRAPALRM () { zle reset-prompt }
+TMOUT=1
+
 setopt prompt_subst
 autoload -Uz compinit && compinit
 

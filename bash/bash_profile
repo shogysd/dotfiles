@@ -7,8 +7,8 @@ if [ $(echo $SHELL | xargs basename) = 'bash' ]; then
     fi
 fi
 
-if [ -f ~/dotfiles/bash/bashrc ]; then
-    . ~/dotfiles/bash/bashrc
+if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
 else
-    echo "~/dotfiles/bash/bashrc : No such file"
+    echo "~/.bashrc : No such file"
 fi

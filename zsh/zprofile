@@ -1,8 +1,8 @@
 SHELL_NAME='zsh'
 
-if [ -f ~/dotfiles/zsh/zshrc ]; then
+if [ -f ~/.zshrc ]; then
     :
-    # . ~/dotfiles/zsh/zshrc
+    # . ~/.zshrc
 else
     echo "~/dotfiles/posix_shell_common/commonrc : No such file"
 fi
