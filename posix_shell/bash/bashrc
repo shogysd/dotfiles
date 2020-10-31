@@ -10,10 +10,10 @@ if [ -f ~/.bash_local ]; then
 fi
 
 
-if [ -f ~/dotfiles/posix_shell_common/commonrc ]; then
-    . ~/dotfiles/posix_shell_common/commonrc
+if [ -f ~/dotfiles/posix_shell/commonrc ]; then
+    . ~/dotfiles/posix_shell/commonrc
 else
-    echo "~/dotfiles/posix_shell_common/commonrc : No such file"
+    echo "~/dotfiles/posix_shell/commonrc : No such file"
 fi
 
 

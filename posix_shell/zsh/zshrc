@@ -12,10 +12,10 @@ TMOUT=1
 setopt prompt_subst
 autoload -Uz compinit && compinit
 
-if [ -f ~/dotfiles/posix_shell_common/commonrc ]; then
-    . ~/dotfiles/posix_shell_common/commonrc
+if [ -f ~/dotfiles/posix_shell/commonrc ]; then
+    . ~/dotfiles/posix_shell/commonrc
 else
-    echo "~/dotfiles/posix_shell_common/commonrc : No such file"
+    echo "~/dotfiles/posix_shell/commonrc : No such file"
 fi
 
 if [ ! -f ~/dotfiles/git/git-completion.zsh ]; then

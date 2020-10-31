@@ -29,40 +29,40 @@ if [ ! -d ~/dotfiles ]; then
     echo "~/dotfiles : No such directory"
 fi
 
-if [ -f ~/dotfiles/posix_shell_common/bash/environments ]; then
-    . ~/dotfiles/posix_shell_common/bash/environments
+if [ -f ~/dotfiles/posix_shell/bash/environments ]; then
+    . ~/dotfiles/posix_shell/bash/environments
 else
-    echo "~/dotfiles/posix_shell_common/bash/environments : No such file"
+    echo "~/dotfiles/posix_shell/bash/environments : No such file"
 fi
 
-if [ -f ~/dotfiles/posix_shell_common/prompt_script.sh ]; then
-    . ~/dotfiles/posix_shell_common/prompt_script.sh
+if [ -f ~/dotfiles/posix_shell/prompt_script.sh ]; then
+    . ~/dotfiles/posix_shell/prompt_script.sh
 else
-    echo "~/dotfiles/posix_shell_common/prompt_script.sh : No such file"
+    echo "~/dotfiles/posix_shell/prompt_script.sh : No such file"
 fi
 
-if [ -f ~/dotfiles/posix_shell_common/aliases ]; then
-    . ~/dotfiles/posix_shell_common/aliases
+if [ -f ~/dotfiles/posix_shell/aliases ]; then
+    . ~/dotfiles/posix_shell/aliases
 else
-    echo "~/dotfiles/posix_shell_common/aliases : No such file"
+    echo "~/dotfiles/posix_shell/aliases : No such file"
 fi
 
-if [ -f ~/dotfiles/posix_shell_common/bash_script.sh ]; then
-    . ~/dotfiles/posix_shell_common/bash_script.sh
+if [ -f ~/dotfiles/posix_shell/bash_script.sh ]; then
+    . ~/dotfiles/posix_shell/bash_script.sh
 else
-    echo "~/dotfiles/posix_shell_common/bash_script.sh : No such file"
+    echo "~/dotfiles/posix_shell/bash_script.sh : No such file"
 fi
 
-if [ -f ~/dotfiles/posix_shell_common/cmd_wrapper.sh ]; then
-    . ~/dotfiles/posix_shell_common/cmd_wrapper.sh
+if [ -f ~/dotfiles/posix_shell/cmd_wrapper.sh ]; then
+    . ~/dotfiles/posix_shell/cmd_wrapper.sh
 else
-    echo "~/dotfiles/posix_shell_common/cmd_wrapper.sh : No such file"
+    echo "~/dotfiles/posix_shell/cmd_wrapper.sh : No such file"
 fi
 
-if [ -f ~/dotfiles/posix_shell_common/bash_script_dupbin.sh ]; then
-    . ~/dotfiles/posix_shell_common/bash_script_dupbin.sh
+if [ -f ~/dotfiles/posix_shell/bash_script_dupbin.sh ]; then
+    . ~/dotfiles/posix_shell/bash_script_dupbin.sh
 else
-    echo "~/dotfiles/posix_shell_common/bash_script_dupbin.sh : No such file"
+    echo "~/dotfiles/posix_shell/bash_script_dupbin.sh : No such file"
 fi
 
 

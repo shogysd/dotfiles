@@ -4,7 +4,7 @@ if [ -f ~/.zshrc ]; then
     :
     # . ~/.zshrc
 else
-    echo "~/dotfiles/posix_shell_common/commonrc : No such file"
+    echo "~/dotfiles/posix_shell/commonrc : No such file"
 fi
 
 zstyle ':completion:*:*:git:*'      option-stacking yes

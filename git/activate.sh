@@ -53,6 +53,6 @@ echo "    gitconfig"                  ; rm -f ~/.gitconfig                      
 echo "    gitignore_global"           ; rm -f ~/.gitignore_global                    ; ln -s ~/dotfiles/git/gitignore_global ~/.gitignore_global
 echo "download git completion (bash)" ; rm -f ~/dotfiles/git/git-completion.bash ; ${OSDEP_DOWNLOAD_COMMAND} ~/dotfiles/git/git-completion.bash https://raw.githubusercontent.com/git/git/d9f6f3b6195a0ca35642561e530798ad1469bd41/contrib/completion/git-completion.bash
 
-mkdir -p ~/dotfiles/posix_shell_common/zsh/completion
+mkdir -p ~/dotfiles/posix_shell/zsh/completion
 
 echo "download git completion (zsh)"  ; rm -f ~/dotfiles/git/git-completion.zsh ~/dotfiles/zsh/completion/git-completion.zsh ; ${OSDEP_DOWNLOAD_COMMAND} ~/dotfiles/git/git-completion.zsh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh ; ln -s ~/dotfiles/git/git-completion.zsh ~/dotfiles/zsh/completion/git-completion.zsh
