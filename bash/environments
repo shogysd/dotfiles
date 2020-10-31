@@ -1,6 +1,6 @@
 # OS
 
-if [ $(uname 2>&1) = "Darwin" ]; then
+if [ "$(uname 2>&1)" = "Darwin" ]; then
     # macOS
     export OSDEP_ESC_CODE='\033'
     export OSDEP_DOWNLOAD_COMMAND='curl -s -o'
@@ -43,34 +43,40 @@ export VISUAL=':'
 # 標準のエディターをemacsに
 export EDITOR=emacs
 
-# シェル終了時に履歴を追記しない (PROMPT_COMMAND='share_history' による)
-shopt -u histappend
 
-# ! でコマンドの再実行をする際に一度表示する
-shopt -s histverify
+if [ "${SHELL_NAME}" = "bash" ]; then
 
-# コマンド実行時に LINES と COLUMNS を更新する
-shopt -s checkwinsize
+    # シェル終了時に履歴を追記しない (PROMPT_COMMAND='share_history' による)
+    shopt -u histappend
 
-# 拡張パターンマッチングを有効化する
-shopt -s extglob
+    # ! でコマンドの再実行をする際に一度表示する
+    shopt -s histverify
 
-# ディレクトリ名のみでcd可能にする
-### shopt -s autocd
+    # コマンド実行時に LINES と COLUMNS を更新する
+    shopt -s checkwinsize
 
-# cdの細かいミスを修正する
-shopt -s cdspell
+    # 拡張パターンマッチングを有効化する
+    shopt -s extglob
+
+    # ディレクトリ名のみでcd可能にする
+    ### shopt -s autocd
+
+    # cdの細かいミスを修正する
+    shopt -s cdspell
+
+    # set
+    set -o | grep history | grep -q on
+    if [ $? != 0 ]; then
+        set -o history
+    fi
+
+fi
+
 
 # google cloud sdk
-if [ ! "$( echo $PATH | grep "$HOME/google-cloud-sdk/bin" )" ] && [ -d "$HOME/google-cloud-sdk/bin" ]; then
-    export PATH=$PATH":$HOME/google-cloud-sdk/bin"
-fi
+#if [ ! "$( echo $PATH | grep "$HOME/google-cloud-sdk/bin" )" ] && [ -d "$HOME/google-cloud-sdk/bin" ]; then
+#    export PATH="${PATH}:~/google-cloud-sdk/bin"
+#fi
 
 # GOPATH
 export GOPATH=$HOME/gopath_global
-
-# set
-set -o | grep history | grep -q on
-if [ $? != 0 ]; then
-    set -o history
-fi

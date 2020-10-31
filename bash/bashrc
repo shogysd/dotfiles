@@ -1,3 +1,5 @@
+SHELL_NAME='bash'
+
 if [ -z "$PS1" ]; then
     return
 fi
@@ -8,78 +10,18 @@ if [ -f ~/.bash_local ]; then
 fi
 
 
-### directory check
-if [ ! -d "$HOME/.ssh" ]; then
-    mkdir ${HOME}/.ssh && echo "$HOME/.ssh was created."
-fi
-
-if [ ! -d "$HOME/.ssh/local_conf" ]; then
-    mkdir ${HOME}/.ssh/local_conf && echo "$HOME/.ssh/local_conf was created."
-fi
-
-if [ ! -d "$HOME/.ssh/controlmaster" ] && [ "${SSH_CONNECTION}" = "" ]; then
-    mkdir ${HOME}/.ssh/controlmaster && echo "$HOME/.ssh/controlmaster was created."
-fi
-
-if [ ! -d "$HOME/bin" ] ; then
-    mkdir ${HOME}/bin && \
-    echo "$HOME/bin was created."
-fi
-for path_name in $( find ~/bin -maxdepth 1 -type d -or -type l -not -name '.*' ); do
-    if [ ! "$( echo $PATH | grep ${path_name} )" ]; then
-        PATH="${path_name}:$PATH"
-    fi
-    export PATH
-done
-
-
-### load config files
-if [ ! -d ~/dotfiles ]; then
-    echo "~/dotfiles : No such directory"
-fi
-
-if [ -f ~/dotfiles/bash/environments ]; then
-    . ~/dotfiles/bash/environments
+if [ -f ~/dotfiles/posix_shell_common/commonrc ]; then
+    . ~/dotfiles/posix_shell_common/commonrc
 else
-    echo "~/dotfiles/bash/environments : No such file"
+    echo "~/dotfiles/posix_shell_common/commonrc : No such file"
 fi
 
-if [ -f ~/dotfiles/bash/prompt_script.sh ]; then
-    . ~/dotfiles/bash/prompt_script.sh
-else
-    echo "~/dotfiles/bash/prompt_script.sh : No such file"
-fi
-
-if [ -f ~/dotfiles/bash/aliases ]; then
-    . ~/dotfiles/bash/aliases
-else
-    echo "~/dotfiles/bash/aliases : No such file"
-fi
-
-if [ -f ~/dotfiles/bash/bash_script.sh ]; then
-    . ~/dotfiles/bash/bash_script.sh
-else
-    echo "~/dotfiles/bash/bash_script.sh : No such file"
-fi
-
-if [ -f ~/dotfiles/bash/cmd_wrapper.sh ]; then
-    . ~/dotfiles/bash/cmd_wrapper.sh
-else
-    echo "~/dotfiles/bash/cmd_wrapper.sh : No such file"
-fi
-
-if [ -f ~/dotfiles/bash/bash_script_dupbin.sh ]; then
-    . ~/dotfiles/bash/bash_script_dupbin.sh
-else
-    echo "~/dotfiles/bash/bash_script_dupbin.sh : No such file"
-fi
 
 if [ -f ~/dotfiles/git/git-completion.bash ]; then
     . ~/dotfiles/git/git-completion.bash
 else
     echo "~/dotfiles/git/git-completion.bash : No such file"
 fi
-
 if [ -f ~/dotfiles/docker/docker.bash ]; then
     . ~/dotfiles/docker/docker.bash
 else
@@ -87,40 +29,18 @@ else
 fi
 
 
-# OS dependent
-if [ $(uname 2>&1) = "Darwin" ]; then
-    # macOS
-    for path in $(find /Library/Frameworks/Python.framework/Versions/* -maxdepth 1 -name bin | sort -r); do
-        ${path}/python3 --version | awk -F ' ' '{print $NF}' | grep -e a -e b > /dev/null
-        if [ ! $? -eq 0 ]; then
-            # PATH="${path}:$PATH"
-            PATH="$PATH:${path}"
-            break
-        fi
-        version=$(echo ${path} | awk -F '/' '{print $(NF - 1)}')
-        echo "    python${version} bin PATH added"
-    done
-fi
-
-
 # gcloud
 if [ -f ~/google-cloud-sdk/path.bash.inc ]; then
     . ~/google-cloud-sdk/path.bash.inc
-# else
-#     echo "~/google-cloud-sdk/path.bash.inc : No such file"
+else
+    echo "~/google-cloud-sdk/path.bash.inc : No such file"
 fi
 
 # gcloud
 if [ -f ~/google-cloud-sdk/completion.bash.inc ]; then
     . ~/google-cloud-sdk/completion.bash.inc
-# else
-#     echo "~/google-cloud-sdk/completion.bash.inc : No such file"
+else
+    echo "~/google-cloud-sdk/completion.bash.inc : No such file"
 fi
 
 PS1="\n\$(shell_info)\n\$(-bashIconWriter)\$(-envWriter)\$ "
-
-# command to be executed only the first time
--blankLinePrinter
--sshScreenStarter
--screenStatusPrinter
--dir_status

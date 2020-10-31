@@ -1,5 +1,4 @@
 function shell_info(){
-
     if ( ! `git rev-parse --is-inside-work-tree > /dev/null 2>&1` ); then
         echo -e "${BASICINFO}  ( $(-pathWriter) )"
     else
@@ -102,14 +101,20 @@ function -sshScreenStarter(){
 
 
 function -bashIconWriter(){
-    echo -n '[$_] '
+    if [ "${SHELL_NAME}" = "bash" ]; then
+        echo -n 'bash '
+    elif [ "${SHELL_NAME}" = "zsh" ]; then
+        echo -n 'zsh '
+    else
+        echo "SHELL_NAME is '${SHELL_NAME}'"
+    fi
 }
 
 
 function -dir_status(){
     if [ `ls | wc -w` = 0 ]; then
         echo -e "Current directory is clean."
-    elif [ $(uname 2>&1) = "Darwin" ]; then
+    elif [ "$(uname 2>&1)" = "Darwin" ]; then
         ls -G
     else
         # Linux

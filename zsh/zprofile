@@ -1,8 +1,21 @@
-if [ $(echo $SHELL | xargs basename) = 'zsh' ]; then
-    $(which fish >/dev/null 2>&1)
-    if [ $? = 0 ]; then
-        exec fish
-    else
-        exec bash
-    fi
+SHELL_NAME='zsh'
+
+if [ -f ~/.zshrc ]; then
+    :
+    # . ~/.zshrc
+else
+    echo "~/dotfiles/posix_shell_common/commonrc : No such file"
 fi
+
+zstyle ':completion:*:*:git:*'      option-stacking yes
+zstyle ':completion:*:*:docker:*'   option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
+fpath=(~/dotfiles/zsh/completion $fpath)
+
+
+# if [ $(echo $SHELL | xargs basename) = 'zsh' ]; then
+#     $(which bash >/dev/null 2>&1)
+#     if [ $? = 0 ]; then
+#         exec bash
+#     fi
+# fi

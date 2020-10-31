@@ -54,7 +54,7 @@ function addpath(){
             return 1
         fi
     done
-    export PATH=${target}":"$PATH
+    export PATH=${target}":"${PATH}
     echo ${target}" is added"
     return 0
 }
