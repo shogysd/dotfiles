@@ -1,21 +1,9 @@
 if [ "$(uname 2>&1)" = "Darwin" ]; then
     # macOS
-    function open(){
-        if [ $# = 0 ]; then
-            $(which open) ./
-        else
-            $(which open) ${@}
-        fi
-    }
+    :
 else
     # Linux
-    function open(){
-        if [ $# = 0 ]; then
-            $(which nautilus) ./
-        else
-            $(which nautilus) ${@}
-        fi
-    }
+    :
 fi
 
 function pip(){
