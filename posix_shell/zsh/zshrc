@@ -26,6 +26,17 @@ if [ ! -f ~/dotfiles/docker/docker.zsh ]; then
     echo "~/dotfiles/docker/docker.zsh : No such file"
 fi
 
+if [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    . ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+else
+    echo "~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh : No such file"
+fi
+
+if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    . ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+else
+    echo "~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh : No such file"
+fi
 
 # command to be executed only the first time
 -blankLinePrinter
