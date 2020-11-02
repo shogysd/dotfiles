@@ -5,8 +5,12 @@ $(shell_info)
 $(-bashIconWriter)$(-envWriter)\$ '
 
 # RPROMPT='%D{%Y/%m/%d} %*'
-RPROMPT='%*'
-TRAPALRM () { zle reset-prompt }
+# RPROMPT='%*'
+RPROMPT='$(date)'
+
+TRAPALRM () {
+    zle reset-prompt
+}
 TMOUT=1
 
 setopt prompt_subst
