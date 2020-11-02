@@ -4,9 +4,9 @@ PROMPT='
 $(shell_info)
 $(-bashIconWriter)$(-envWriter)\$ '
 
-# RPROMPT='%D{%Y/%m/%d} %*'
-# RPROMPT='%*'
-RPROMPT='$(date)'
+# RPROMPT='        %D{%Y/%m/%d} %*'
+# RPROMPT='        %*'
+RPROMPT='        $(date)'
 
 TRAPALRM () {
     zle reset-prompt
