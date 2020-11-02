@@ -18,7 +18,7 @@ preexec(){
 }
 
 precmd() {
-    if [ "${PREEXEC_UNIX_TIME}" != "" ] && [ "$(expr $(date +%s) - ${PREEXEC_UNIX_TIME})" -gt 10 ]; then
+    if [ "${PREEXEC_UNIX_TIME}" != "" ] && [ "$(expr $(date +%s) - ${PREEXEC_UNIX_TIME})" -gt 3 ]; then
         echo "\n--"
         echo "$(expr $(date +%s) - ${PREEXEC_UNIX_TIME}) sec"
         echo "--"
