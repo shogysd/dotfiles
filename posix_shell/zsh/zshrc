@@ -13,6 +13,18 @@ TRAPALRM () {
 }
 TMOUT=1
 
+preexec(){
+    PREEXEC_UNIX_TIME=$(date +%s)
+}
+
+precmd() {
+    if [ "${PREEXEC_UNIX_TIME}" != "" ] && [ "$(expr $(date +%s) - ${PREEXEC_UNIX_TIME})" -gt 10 ]; then
+        echo "\n--"
+        echo "$(expr $(date +%s) - ${PREEXEC_UNIX_TIME}) sec"
+        echo "--"
+    fi
+}
+
 setopt prompt_subst
 autoload -Uz compinit && compinit
 
