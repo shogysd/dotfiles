@@ -34,12 +34,3 @@ function pip(){
         return $?
     fi
 }
-
-
-function code(){
-    if [ $# = 0 ]; then
-        $(which code) ./
-    else
-        $(which code) ${@}
-    fi
-}
