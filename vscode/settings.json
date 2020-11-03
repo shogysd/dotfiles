@@ -68,7 +68,7 @@
   "[markdown]": {
     "files.trimTrailingWhitespace": false
   },
-  "files.autoSave": "afterDelay",
+  "files.autoSave": "onWindowChange",
   "files.trimFinalNewlines": true,
   // Compulim.vscode-clock
   "clock.dateFormat": "\tmmm dd yyyy\tHH:MM\t",

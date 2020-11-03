@@ -4,13 +4,13 @@ if [ -f ~/.zshrc ]; then
     :
     # . ~/.zshrc
 else
-    echo "~/dotfiles/posix_shell_common/commonrc : No such file"
+    echo "~/dotfiles/posix_shell/commonrc : No such file"
 fi
 
 zstyle ':completion:*:*:git:*'      option-stacking yes
 zstyle ':completion:*:*:docker:*'   option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
-fpath=(~/dotfiles/zsh/completion $fpath)
+fpath=(~/dotfiles/posix_shell/zsh/completion $fpath)
 
 
 # if [ $(echo $SHELL | xargs basename) = 'zsh' ]; then

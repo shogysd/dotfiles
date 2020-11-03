@@ -1,5 +1,5 @@
 function shell_info(){
-    if ( ! `git rev-parse --is-inside-work-tree > /dev/null 2>&1` ); then
+    if ( ! $(git rev-parse --is-inside-work-tree > /dev/null 2>&1) ); then
         echo -e "${BASICINFO}  ( $(-pathWriter) )"
     else
         echo -e "${BASICINFO}  ( $(-gitRepoPathWriter) ) < $(-gitBranchPrinter) | $(-gitHashPrinter) >"
@@ -37,7 +37,8 @@ function -gitRepoPathWriter(){
             echo -ne "${OSDEP_ESC_CODE}[1;31;7mgit:${OSDEP_ESC_CODE}[0;39m "
         fi
     fi
-    echo `git rev-parse --show-toplevel | xargs basename`/`git rev-parse --show-prefix`
+    # echo $(git rev-parse --show-toplevel | xargs basename)/$(git rev-parse --show-prefix)
+    echo $(git rev-parse --show-toplevel | awk -F '/' '{print $NF}')/$(git rev-parse --show-prefix)
 }
 
 
@@ -45,7 +46,8 @@ function -gitBranchPrinter(){
     # Precondition: in git tree
     gitBranch=$(git symbolic-ref --short HEAD 2> /dev/null)
     if [ $? = 0 ]; then
-        defaultBranch=`git symbolic-ref --short refs/remotes/origin/HEAD 2> /dev/null | xargs basename`
+        # defaultBranch=$(git symbolic-ref --short refs/remotes/origin/HEAD 2> /dev/null | xargs basename)
+        defaultBranch=$(git symbolic-ref --short refs/remotes/origin/HEAD 2> /dev/null | awk -F '/' '{print $NF}')
         if [ $? = 0 ]; then
             defaultBranch="master"
         fi

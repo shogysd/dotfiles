@@ -1,0 +1,61 @@
+SHELL_NAME='zsh'
+
+PROMPT='
+$(shell_info)
+$(-bashIconWriter)$(-envWriter)\$ '
+
+# RPROMPT='        %D{%Y/%m/%d} %*'
+# RPROMPT='        %*'
+RPROMPT='        $(date)'
+
+TRAPALRM () {
+    zle reset-prompt
+}
+TMOUT=1
+
+preexec(){
+    PREEXEC_UNIX_TIME=$(date +%s)
+}
+
+precmd() {
+    if [ "${PREEXEC_UNIX_TIME}" != "" ] && [ "$(expr $(date +%s) - ${PREEXEC_UNIX_TIME})" -gt 3 ]; then
+        echo "\n--"
+        echo "$(expr $(date +%s) - ${PREEXEC_UNIX_TIME}) sec"
+        echo "--"
+    fi
+}
+
+setopt prompt_subst
+autoload -Uz compinit && compinit
+
+if [ -f ~/dotfiles/posix_shell/common/commonrc ]; then
+    . ~/dotfiles/posix_shell/common/commonrc
+else
+    echo "~/dotfiles/posix_shell/common/commonrc : No such file"
+fi
+
+if [ ! -f ~/dotfiles/git/git-completion.zsh ]; then
+    echo "~/dotfiles/git/git-completion.zsh : No such file"
+fi
+
+if [ ! -f ~/dotfiles/docker/docker.zsh ]; then
+    echo "~/dotfiles/docker/docker.zsh : No such file"
+fi
+
+if [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    . ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+else
+    echo "~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh : No such file"
+fi
+
+if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    . ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+else
+    echo "~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh : No such file"
+fi
+
+# command to be executed only the first time
+-blankLinePrinter
+-sshScreenStarter
+-screenStatusPrinter
+-dir_status
