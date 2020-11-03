@@ -8,14 +8,8 @@ else
     export OSDEP_ESC_CODE='\e'
 fi
 
-if [ ! -d ~/.config ]; then
-    mkdir ~/.config
-    echo "~/.config created"
-fi
-
 echo ""
-# for i in $(find ~/dotfiles -name activate.sh)
-for i in $(ls -f ~/dotfiles/*/activate*.sh)
+for i in $(ls -f ~/dotfiles/posix_shell/*/activate.sh)
 do
     echo "=============================="
     echo ""
