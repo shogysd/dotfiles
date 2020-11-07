@@ -1,0 +1,21 @@
+HISTFILE=~/.zsh_history
+HISTSIZE=99999
+SAVEHIST=99999
+
+# 連続をしたコマンドを1度のみの記録に
+setopt hist_ignore_dups
+
+# スペースから始まるコマンドは履歴に追記しない
+setopt hist_ignore_space
+
+# 履歴から再実行する際に編集する機会を入れる
+setopt hist_verify
+
+# 履歴保存時に余分な空白を削除する
+setopt hist_reduce_blanks
+
+# history コマンドは履歴に保存しない
+setopt hist_no_store
+
+# プロセス間で履歴を共有する
+setopt share_history
