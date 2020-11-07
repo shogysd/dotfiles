@@ -1,3 +1,15 @@
+# OS
+if [ "$(uname 2>&1)" = "Darwin" ]; then
+    # macOS
+    export OSDEP_ESC_CODE='\033'
+    export OSDEP_DOWNLOAD_COMMAND='curl -s -o'
+    # export BASH_SILENCE_DEPRECATION_WARNING=1
+else
+    # Linux
+    export OSDEP_ESC_CODE='\e'
+    export OSDEP_DOWNLOAD_COMMAND='wget -q -O'
+fi
+
 ### directory check
 if [ ! -d "$HOME/.ssh" ]; then
     mkdir ${HOME}/.ssh && echo "$HOME/.ssh was created."

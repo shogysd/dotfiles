@@ -1,19 +1,5 @@
-# OS
-
-if [ "$(uname 2>&1)" = "Darwin" ]; then
-    # macOS
-    export OSDEP_ESC_CODE='\033'
-    export OSDEP_DOWNLOAD_COMMAND='curl -s -o'
-    # export BASH_SILENCE_DEPRECATION_WARNING=1
-else
-    # Linux
-    export OSDEP_ESC_CODE='\e'
-    export OSDEP_DOWNLOAD_COMMAND='wget -q -O'
-fi
-
 # shell conf
 export HOSTSTRIPSTR=".local"
-export BASICINFO="$(whoami)@$(hostname | sed -e 's/\.local//g')"
 
 # 連続をしたコマンドを1度のみの記録に + スペースから始まるコマンドを無視
 export HISTCONTROL=ignoreboth
@@ -43,40 +29,29 @@ export VISUAL=':'
 # 標準のエディターをemacsに
 export EDITOR=emacs
 
+# シェル終了時に履歴を追記しない (PROMPT_COMMAND='share_history' による)
+shopt -u histappend
 
-if [ "${SHELL_NAME}" = "bash" ]; then
+# ! でコマンドの再実行をする際に一度表示する
+shopt -s histverify
 
-    # シェル終了時に履歴を追記しない (PROMPT_COMMAND='share_history' による)
-    shopt -u histappend
+# コマンド実行時に LINES と COLUMNS を更新する
+shopt -s checkwinsize
 
-    # ! でコマンドの再実行をする際に一度表示する
-    shopt -s histverify
+# 拡張パターンマッチングを有効化する
+shopt -s extglob
 
-    # コマンド実行時に LINES と COLUMNS を更新する
-    shopt -s checkwinsize
+# ディレクトリ名のみでcd可能にする
+### shopt -s autocd
 
-    # 拡張パターンマッチングを有効化する
-    shopt -s extglob
+# cdの細かいミスを修正する
+shopt -s cdspell
 
-    # ディレクトリ名のみでcd可能にする
-    ### shopt -s autocd
-
-    # cdの細かいミスを修正する
-    shopt -s cdspell
-
-    # set
-    set -o | grep history | grep -q on
-    if [ $? != 0 ]; then
-        set -o history
-    fi
-
+# set
+set -o | grep history | grep -q on
+if [ $? != 0 ]; then
+    set -o history
 fi
-
-
-# google cloud sdk
-#if [ ! "$( echo $PATH | grep "$HOME/google-cloud-sdk/bin" )" ] && [ -d "$HOME/google-cloud-sdk/bin" ]; then
-#    export PATH="${PATH}:~/google-cloud-sdk/bin"
-#fi
 
 # GOPATH
 export GOPATH=$HOME/gopath_global

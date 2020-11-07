@@ -1,3 +1,6 @@
+export BASICINFO="$(whoami)@$(hostname | sed -e 's/\.local//g')"
+
+
 function shell_info(){
     if ( ! $(git rev-parse --is-inside-work-tree > /dev/null 2>&1) ); then
         echo -e "${BASICINFO}  ( $(-pathWriter) )"
