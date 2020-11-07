@@ -25,6 +25,6 @@ mkdir -p ~/dotfiles/zsh/completion
 #     mkdir ${HOME}/dotfiles/zsh/completion && \
 #     echo "$HOME/dotfiles/zsh/completion was created."
 # fi
-rm -rf ~/dotfiles/zsh/completion/_docker ; ln -s ~/dotfiles/docker/docker.zsh ~/dotfiles/zsh/completion/_docker
+rm -rf ~/dotfiles/zsh/completion/_docker ; ln -s ~/dotfiles/docker/docker.zsh ~/dotfiles/posix_shell/zsh/completion/_docker
 
 unset bash_url fish_url
