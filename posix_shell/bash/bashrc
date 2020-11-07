@@ -16,6 +16,11 @@ else
     echo "~/dotfiles/posix_shell/common/commonrc : No such file"
 fi
 
+if [ -f ~/dotfiles/posix_shell/bash/environments ]; then
+    . ~/dotfiles/posix_shell/bash/environments
+else
+    echo "~/dotfiles/posix_shell/bash/environments : No such file"
+fi
 
 if [ -f ~/dotfiles/git/git-completion.bash ]; then
     . ~/dotfiles/git/git-completion.bash

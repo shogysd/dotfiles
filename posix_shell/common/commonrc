@@ -19,16 +19,9 @@ for path_name in $( find ~/bin -maxdepth 1 -type d -or -type l -not -name '.*' )
     export PATH
 done
 
-
 ### load config files
 if [ ! -d ~/dotfiles ]; then
     echo "~/dotfiles : No such directory"
-fi
-
-if [ -f ~/dotfiles/posix_shell/bash/environments ]; then
-    . ~/dotfiles/posix_shell/bash/environments
-else
-    echo "~/dotfiles/posix_shell/bash/environments : No such file"
 fi
 
 if [ -f ~/dotfiles/posix_shell/common/prompt_script.sh ]; then
