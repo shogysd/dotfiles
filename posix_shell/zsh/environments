@@ -1,5 +1,12 @@
 HISTFILE=~/.zsh_history
+
+# 単語に含める文字 ( 区切り文字にしない記号 )  デフォルト : '*?_-.[]~=/&;!#$%^(){}<>'
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
+# プロセス内で保存する履歴の件数
 HISTSIZE=99999
+
+# ファイルに保存する履歴の件数
 SAVEHIST=99999
 
 # 連続をしたコマンドを1度のみの記録に
@@ -19,3 +26,20 @@ setopt hist_no_store
 
 # プロセス間で履歴を共有する
 setopt share_history
+
+# cdがなくてもディレクトリの移動を可能にする
+setopt auto_cd
+
+# cdのtab補完で過去の移動履歴を参照する
+setopt auto_pushd
+
+# ビープを鳴らさない
+setopt no_beep
+setopt nolistbeep
+
+# typoの修正
+setopt correct
+
+# emacsライクにする
+bindkey -d
+bindkey -e
