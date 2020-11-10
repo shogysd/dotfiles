@@ -94,12 +94,14 @@ fi
 if [ -f ~/google-cloud-sdk/path.${SHELL_NAME}.inc ]; then
     . ~/google-cloud-sdk/path.${SHELL_NAME}.inc
 else
-    echo "~/google-cloud-sdk/path.${SHELL_NAME}.inc : No such file"
+    :
+    # echo "~/google-cloud-sdk/path.${SHELL_NAME}.inc : No such file"
 fi
 
 # gcloud
 if [ -f ~/google-cloud-sdk/completion.${SHELL_NAME}.inc ]; then
     . ~/google-cloud-sdk/completion.${SHELL_NAME}.inc
 else
-    echo "~/google-cloud-sdk/completion.${SHELL_NAME}.inc : No such file"
+    :
+    # echo "~/google-cloud-sdk/completion.${SHELL_NAME}.inc : No such file"
 fi
