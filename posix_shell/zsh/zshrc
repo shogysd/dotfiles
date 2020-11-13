@@ -6,6 +6,7 @@ $(-bashIconWriter)$(-envWriter)\$ '
 
 # RPROMPT='        %D{%Y/%m/%d} %*'
 # RPROMPT='        %*'
+# RPROMPT='        $(date)'
 RPROMPT='        $(date -R)'
 
 TRAPALRM () {

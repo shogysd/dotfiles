@@ -33,5 +33,4 @@ else
     echo "~/dotfiles/docker/docker.bash : No such file"
 fi
 
-
 PS1="\n\$(shell_info)\n\$(-bashIconWriter)\$(-envWriter)\$ "
