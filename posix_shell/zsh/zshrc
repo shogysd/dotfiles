@@ -6,7 +6,8 @@ $(-bashIconWriter)$(-envWriter)\$ '
 
 # RPROMPT='        %D{%Y/%m/%d} %*'
 # RPROMPT='        %*'
-RPROMPT='        $(date)'
+# RPROMPT='        $(date)'
+RPROMPT='        $(date -R)'
 
 TRAPALRM () {
     zle reset-prompt
@@ -32,6 +33,12 @@ if [ -f ~/dotfiles/posix_shell/common/commonrc ]; then
     . ~/dotfiles/posix_shell/common/commonrc
 else
     echo "~/dotfiles/posix_shell/common/commonrc : No such file"
+fi
+
+if [ -f ~/dotfiles/posix_shell/zsh/environments ]; then
+    . ~/dotfiles/posix_shell/zsh/environments
+else
+    echo "~/dotfiles/posix_shell/zsh/environments : No such file"
 fi
 
 if [ ! -f ~/dotfiles/git/git-completion.zsh ]; then

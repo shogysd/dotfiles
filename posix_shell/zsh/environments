@@ -1,0 +1,45 @@
+HISTFILE=~/.zsh_history
+
+# 単語に含める文字 ( 区切り文字にしない記号 )  デフォルト : '*?_-.[]~=/&;!#$%^(){}<>'
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
+# プロセス内で保存する履歴の件数
+HISTSIZE=99999
+
+# ファイルに保存する履歴の件数
+SAVEHIST=99999
+
+# 連続をしたコマンドを1度のみの記録に
+setopt hist_ignore_dups
+
+# スペースから始まるコマンドは履歴に追記しない
+setopt hist_ignore_space
+
+# 履歴から再実行する際に編集する機会を入れる
+setopt hist_verify
+
+# 履歴保存時に余分な空白を削除する
+setopt hist_reduce_blanks
+
+# history コマンドは履歴に保存しない
+setopt hist_no_store
+
+# プロセス間で履歴を共有する
+setopt share_history
+
+# cdがなくてもディレクトリの移動を可能にする
+setopt auto_cd
+
+# cdのtab補完で過去の移動履歴を参照する
+setopt auto_pushd
+
+# ビープを鳴らさない
+setopt no_beep
+setopt nolistbeep
+
+# typoの修正
+setopt correct
+
+# emacsライクにする
+bindkey -d
+bindkey -e
