@@ -9,11 +9,11 @@ $(-bashIconWriter)$(-envWriter)\$ '
 # RPROMPT='        $(date)'
 # RPROMPT='        $(date -R)'
 
-TMOUT=5
+TMOUT=10
 
-# TRAPALRM () {
-#     zle reset-prompt
-# }
+TRAPALRM () {
+    zle reset-prompt
+}
 
 
 preexec(){
