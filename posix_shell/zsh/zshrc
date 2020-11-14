@@ -7,12 +7,14 @@ $(-bashIconWriter)$(-envWriter)\$ '
 # RPROMPT='        %D{%Y/%m/%d} %*'
 # RPROMPT='        %*'
 # RPROMPT='        $(date)'
-RPROMPT='        $(date -R)'
+# RPROMPT='        $(date -R)'
 
-TRAPALRM () {
-    zle reset-prompt
-}
-TMOUT=1
+# TMOUT=1
+
+#TRAPALRM () {
+#    zle reset-prompt
+#}
+
 
 preexec(){
     PREEXEC_UNIX_TIME=$(date +%s)
