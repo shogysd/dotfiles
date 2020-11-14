@@ -9,7 +9,7 @@ $(-bashIconWriter)$(-envWriter)\$ '
 # RPROMPT='        $(date)'
 # RPROMPT='        $(date -R)'
 
-# TMOUT=1
+TMOUT=5
 
 # TRAPALRM () {
 #     zle reset-prompt

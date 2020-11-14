@@ -20,7 +20,7 @@ function -pathWriter(){
 
 function -gitRepoPathWriter(){
     # Precondition: in git tree
-    if [ -z "$(git status --porcelain)" ]; then
+    if [ -z "$(git status --porcelain 2> /dev/null)" ]; then
         # branch is clean
         if [ -f ~/.gitignore_global ]; then
             # ~/.gitignore_global is enabled
