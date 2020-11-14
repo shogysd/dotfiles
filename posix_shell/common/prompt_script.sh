@@ -20,7 +20,7 @@ function -pathWriter(){
 
 function -gitRepoPathWriter(){
     # Precondition: in git tree
-    if [ -z "$(git status --porcelain)" ]; then
+    if [ -z "$(git status --porcelain 2> /dev/null)" ]; then
         # branch is clean
         if [ -f ~/.gitignore_global ]; then
             # ~/.gitignore_global is enabled
@@ -39,8 +39,9 @@ function -gitRepoPathWriter(){
             echo -ne "${OSDEP_ESC_CODE}[1;31;7mgit:${OSDEP_ESC_CODE}[0;39m "
         fi
     fi
-    # echo $(git rev-parse --show-toplevel | xargs basename)/$(git rev-parse --show-prefix)
-    echo $(git rev-parse --show-toplevel | awk -F '/' '{print $NF}')/$(git rev-parse --show-prefix)
+    git_path_info=($(git rev-parse --show-toplevel --show-prefix  2> /dev/null))
+    echo ${git_path_info[1]} | xargs basename | xargs echo -n
+    echo -n "/"${git_path_info[2]}
 }
 
 
