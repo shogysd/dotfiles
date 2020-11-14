@@ -11,9 +11,9 @@ $(-bashIconWriter)$(-envWriter)\$ '
 
 # TMOUT=1
 
-#TRAPALRM () {
-#    zle reset-prompt
-#}
+# TRAPALRM () {
+#     zle reset-prompt
+# }
 
 
 preexec(){
