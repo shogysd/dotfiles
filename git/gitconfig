@@ -2,7 +2,7 @@
 	path = ~/.gitconfig_userinfo
 	path = ~/dotfiles/git/gitconfig_envdep_ln
 [core]
-	editor = emacs -nw
+	editor = "$(which code >/dev/null 2>&1; if [ $? = 0 ]; then echo 'code --wait'; else echo 'emacs -nw'; fi)"
 	excludesfile = ~/.gitignore_global
 	pager = less
 	autocrlf = input
