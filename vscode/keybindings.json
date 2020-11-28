@@ -147,12 +147,12 @@
   // 選択 (ファイル単位)
   {
     "key": "ctrl+shift+a",
-    "command": "selectAll",
+    "command": "editor.action.selectAll",
     "when": "!terminalFocus"
   },
   {
     "key": "cmd+a",
-    "command": "selectAll",
+    "command": "editor.action.selectAll",
     "when": "!terminalFocus"
   },
   // 検索
@@ -271,5 +271,17 @@
     "key": "alt+t",
     "command": "insertDateString.insertOwnFormatDateTime",
     "when": "editorTextFocus"
+  },
+  {
+    "key": "cmd+t",
+    "command": "workbench.action.terminal.new"
+  },
+  {
+    "key": "ctrl+`",
+    "command": "workbench.action.terminal.new"
+  },
+  {
+    "key": "ctrl+shift+`",
+    "command": "workbench.action.terminal.new"
   }
 ]
