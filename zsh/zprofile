@@ -1,0 +1,6 @@
+SHELL_NAME='zsh'
+
+zstyle ':completion:*:*:git:*'      option-stacking yes
+zstyle ':completion:*:*:docker:*'   option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
+fpath=(~/.zsh/completion $fpath)
