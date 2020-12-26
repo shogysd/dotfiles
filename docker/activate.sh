@@ -20,7 +20,7 @@ echo "    for bash" ; rm -f ~/dotfiles/docker/docker.bash ; ${OSDEP_DOWNLOAD_COM
 echo "    for zsh"  ; rm -f ~/dotfiles/docker/docker.zsh  ; ${OSDEP_DOWNLOAD_COMMAND} ~/dotfiles/docker/docker.zsh  ${zsh_url}
 echo "    for fish" ; rm -f ~/dotfiles/docker/docker.fish ; ${OSDEP_DOWNLOAD_COMMAND} ~/dotfiles/docker/docker.fish ${fish_url}
 
-mkdir -p ~/dotfiles/zsh/completion
-rm -rf ~/dotfiles/zsh/completion/_docker ; ln -s ~/dotfiles/docker/docker.zsh ~/dotfiles/posix_shell/zsh/completion/_docker
+mkdir -p ~/dotfiles/posix_shell/zsh/completion
+rm -rf ~/dotfiles/posix_shell/zsh/completion/_docker ; ln -s ~/dotfiles/docker/docker.zsh ~/dotfiles/posix_shell/zsh/completion/_docker
 
 unset bash_url fish_url
