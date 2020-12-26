@@ -44,3 +44,6 @@ setopt correct
 # emacsライクにする
 bindkey -d
 bindkey -e
+
+# virtualenvでpromptを変更しない
+export VIRTUAL_ENV_DISABLE_PROMPT=1
