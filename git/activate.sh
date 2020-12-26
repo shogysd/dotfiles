@@ -55,4 +55,4 @@ echo "download git completion (bash)" ; rm -f ~/dotfiles/git/git-completion.bash
 
 mkdir -p ~/dotfiles/posix_shell/zsh/completion
 
-echo "download git completion (zsh)"  ; rm -f ~/dotfiles/git/git-completion.zsh ~/dotfiles/zsh/completion/git-completion.zsh ; ${OSDEP_DOWNLOAD_COMMAND} ~/dotfiles/git/git-completion.zsh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh ; ln -s ~/dotfiles/git/git-completion.zsh ~/dotfiles/zsh/completion/git-completion.zsh
+echo "download git completion (zsh)"  ; rm -f ~/dotfiles/git/git-completion.zsh ~/dotfiles/posix_shell/zsh/completion/git-completion.zsh ; ${OSDEP_DOWNLOAD_COMMAND} ~/dotfiles/git/git-completion.zsh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh ; ln -s ~/dotfiles/git/git-completion.zsh ~/dotfiles/posix_shell/zsh/completion/git-completion.zsh
