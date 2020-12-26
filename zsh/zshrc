@@ -1,0 +1,500 @@
+### ------------------ ###
+### shell environments ###
+### ------------------ ###
+
+SHELL_NAME='zsh'
+
+if [ "$(uname 2>&1)" = "Darwin" ]; then
+    # macOS
+    export OSDEP_ESC_CODE='\033'
+    export OSDEP_DOWNLOAD_COMMAND='curl -s -o'
+    # export BASH_SILENCE_DEPRECATION_WARNING=1
+else
+    # Linux
+    export OSDEP_ESC_CODE='\e'
+    export OSDEP_DOWNLOAD_COMMAND='wget -q -O'
+fi
+
+
+
+### ---------------- ###
+### dir environments ###
+### ---------------- ###
+
+mkdir -p ${HOME}/.ssh
+mkdir -p ${HOME}/.ssh/local_conf
+mkdir -p ${HOME}/.ssh/controlmaster
+mkdir -p ${HOME}/bin
+mkdir -p ${HOME}/.zsh
+
+
+
+### ----------------- ###
+### PATH environments ###
+### ----------------- ###
+for path_name in $( find ~/bin -maxdepth 1 -type d -or -type l -not -name '.*' ); do
+    if [ ! "$( echo ${PATH} | grep ${path_name} )" ]; then
+        PATH="${path_name}:${PATH}"
+    fi
+    export PATH
+done
+
+
+
+### ---------------- ###
+### zsh environments ###
+### ---------------- ###
+
+PROMPT='
+$(shell_info)
+$(-bashIconWriter)$(-envWriter)\$ '
+
+TMOUT=3
+
+TRAPALRM () {zle reset-prompt
+}
+
+preexec(){
+    PREEXEC_UNIX_TIME=$(date +%s)
+}
+
+precmd() {
+    if [ "${PREEXEC_UNIX_TIME}" != "" ] && [ "$(expr $(date +%s) - ${PREEXEC_UNIX_TIME})" -gt 3 ]; then
+        echo "\n--"
+        echo "$(expr $(date +%s) - ${PREEXEC_UNIX_TIME}) sec"
+        echo "--"
+    fi
+}
+
+# プロンプト表示時に変数を展開
+setopt prompt_subst
+
+# 補完
+autoload -Uz compinit && compinit
+
+# 履歴を保存するファイル
+HISTFILE=~/.zsh_history
+
+# 単語に含める文字 ( 区切り文字にしない記号 )  デフォルト : '*?_-.[]~=/&;!#$%^(){}<>'
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
+# プロセス内で保存する履歴の件数
+HISTSIZE=99999
+
+# ファイルに保存する履歴の件数
+SAVEHIST=99999
+
+# 連続をしたコマンドを1度のみの記録に
+setopt hist_ignore_dups
+
+# スペースから始まるコマンドは履歴に追記しない
+setopt hist_ignore_space
+
+# 履歴から再実行する際に編集する機会を入れる
+setopt hist_verify
+
+# 履歴保存時に余分な空白を削除する
+setopt hist_reduce_blanks
+
+# history コマンドは履歴に保存しない
+setopt hist_no_store
+
+# プロセス間で履歴を共有する
+setopt share_history
+
+# cdがなくてもディレクトリの移動を可能にする
+setopt auto_cd
+
+# cdのtab補完で過去の移動履歴を参照する
+setopt auto_pushd
+
+# ビープを鳴らさない
+setopt no_beep
+setopt nolistbeep
+
+# typoの修正
+setopt correct
+
+# emacsライクにする
+bindkey -d
+bindkey -e
+
+
+
+### ---------------- ###
+### zsh import files ###
+### ---------------- ###
+
+if [ ! -f ~/.zsh/completion/git-completion.zsh ]; then
+    echo "~/.zsh/completion/git-completion.zsh : No such file"
+fi
+
+if [ ! -f ~/.zsh/completion/docker.zsh ]; then
+    echo "~/.zsh/completion/docker.zsh : No such file"
+fi
+
+if [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    . ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    . ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+
+
+### ------- ###
+### aliases ###
+### ------- ###
+
+if [ "$(uname 2>&1)" = "Darwin" ]; then
+    # macOS
+    alias ls='ls -G'
+    alias md5sum='md5'
+    alias ema='emacs'
+    alias open='open ./'
+else
+    # Linux "$(uname 2>&1)" = "Linux"
+    alias ls='ls --color=auto'
+    alias ema='emacs -nw'
+    alias emacs='emacs -nw'
+    alias term-profile-export='dconf dump /org/gnome/terminal/legacy/profiles:/ \
+                               > ~/dotfiles/Linux/gnome_terminal/gnome-terminal.profile'
+    alias term-profile-import='dconf reset -f /org/gnome/terminal/legacy/profiles:/; \
+                               dconf load /org/gnome/terminal/legacy/profiles:/ \
+                               < ~/dotfiles/Linux/gnome_terminal/gnome-terminal.profile'
+    alias open='nautilus ./'
+fi
+
+# command
+alias sudo='sudo '
+alias grep='grep --color=auto'
+alias grepn='grep -i --color=auto'
+alias rm='rm -i'
+alias rm-y='\rm'
+alias dir='dir --color=auto'
+alias history='history -iD 1'
+alias ll='ls -l'
+alias la='ls -A'
+alias hn='hostname'
+alias flush='rm -f *~ .*~ \#*\# \**\*'
+alias cp='cp -i'
+alias pd-clear='dirs -c'
+alias doc='docker'
+
+# git
+alias gd='cd $(git rev-parse --show-toplevel)'
+
+# python
+alias py='python3'
+alias activate='source ./bin/activate'
+
+
+
+### ------------------- ###
+### python environments ###
+### ------------------- ###
+
+# macOSのPATH
+if [ "$(uname 2>&1)" = "Darwin" ]; then
+    # macOS
+    for p in $(find /Library/Frameworks/Python.framework/Versions/* -maxdepth 1 -name bin | sort -r); do
+        ${p}/python3 --version | awk -F ' ' '{print $NF}' | grep -e a -e b > /dev/null
+        if [ ! $? -eq 0 ]; then
+            # PATH="${p}:$PATH"
+            PATH="$PATH:${p}"
+            break
+        fi
+        version=$(echo ${path} | awk -F '/' '{print $(NF - 1)}')
+        echo "    python${version} bin PATH added"
+    done
+fi
+
+# virtualenvでpromptを変更しない
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+
+
+### ---------- ###
+### functiuons ###
+### ---------- ###
+
+function venv(){
+    if [ -z ${VIRTUAL_ENV} ] && [ $# = 1 ] && [ -f ${1}/bin/activate ]; then
+        source ${1}/bin/activate
+    elif [ ! -z ${VIRTUAL_ENV} ] && [ $# = 0 ]; then
+        deactivate
+    else
+        echo "error: please check argument and virtualenv root path."
+    fi
+}
+
+
+function screen_status(){
+    screen -ls | grep Attached | tr '.' ' ' | echo -e "${OSDEP_ESC_CODE}[1;32m`awk '{printf "%s %s\t(Attached)\n", $1, $2}'`${OSDEP_ESC_CODE}[0;39m"
+    screen -ls | grep Detached | tr '.' ' ' | awk '{printf "%s %s\t(Detached)\n", $1, $2}'
+}
+
+
+function strcmp(){
+    if [ $# = 0 ]; then
+        echo "error: nothing arguments"
+        return 1
+    elif [ $# = 1 ]; then
+        echo "error: inadequate arguments"
+        return 1
+    elif [ $# -gt 2 ]; then
+        echo "error: many arguments"
+        return 1
+    else
+        if [ "$1" = "$2" ]; then
+            echo "True"
+        else
+            echo "False"
+        fi
+    fi
+    return 0
+}
+
+
+function addpath(){
+    if [ $# = 0 ]; then
+        target=$(pwd)
+    elif [ $# -gt 1 ]; then
+        echo "error: many arguments"
+    else
+        target=$(cd ${1} && pwd)
+    fi
+    declare -a path_list=();
+    path_list=${PATH//:/ };
+
+    for path in ${path_list[@]};
+    do
+        if [ "${target}" = "$path" ]; then
+            echo "${target} is already exist in \$PATH"
+            return 1
+        fi
+    done
+    export PATH=${target}":"${PATH}
+    echo ${target}" is added"
+    return 0
+}
+
+
+function screen-clean(){
+    echo -n "cleanup detached screen?: y-or-other: "
+    read start
+    if [ -z ${start} ] || [ ${start} != "y" ]; then
+        echo "EXIT"
+    else
+        for id in `screen -ls | grep -e '(' -e ')' | tr '.' ' ' | grep 'Detached' | awk '{print $1}'`; do
+            screen -S ${id} -X quit
+        done
+    fi
+    unset start
+}
+
+
+function pd(){
+    if [ $# = 0 ]; then
+        popd
+    elif [ $# = 1 ]; then
+        pushd ${1}
+    else
+        echo "error: arg error"
+    fi
+}
+
+
+function hosts-switch(){
+    if [ -f /etc/hosts ] && [ -f /etc/hosts_BAK ] && [ "$( cat /etc/hosts | grep '# disable mode' )" ]; then
+        echo "currently disabled"
+        echo -n "change to enable?: y-or-other: "
+        read start
+        if [ -z ${start} ] || [ ${start} != "y" ]; then
+            return 1
+        fi
+        # disable to enable
+        sudo rm -f /etc/hosts && \
+        sudo mv /etc/hosts_BAK /etc/hosts
+        echo "/etc/hosts enabled"
+    elif [ -f /etc/hosts ] && [ ! -f /etc/hosts_BAK ] && [ "$( cat /etc/hosts | grep -v '# disable mode' )" ]; then
+        echo "currently enabled"
+        echo -n "change to disable?: y-or-other: "
+        read start
+        if [ -z ${start} ] || [ ${start} != "y" ]; then
+            return 1
+        fi
+        # enable to disable
+        sudo mv /etc/hosts /etc/hosts_BAK && \
+        sudo sh -c "echo '# disable mode' > /etc/hosts" && \
+        sudo sh -c "echo '127.0.0.1       localhost'     >> /etc/hosts" && \
+        sudo sh -c "echo '255.255.255.255 broadcasthost' >> /etc/hosts" && \
+        sudo sh -c "echo '::1             localhost'     >> /etc/hosts"
+        echo "/etc/hosts disabled"
+    else
+        echo error
+    fi
+    unset start
+}
+
+
+function gitignore_global-switch(){
+    if [ ! -f ~/.gitignore_global ] && [ -f ~/.gitignore_global_BAK ]; then
+        # disable to enable
+        mv ~/.gitignore_global_BAK ~/.gitignore_global
+    elif [ -f ~/.gitignore_global ] && [ ! -f ~/.gitignore_global_BAK ]; then
+        # enable to disable
+        mv ~/.gitignore_global ~/.gitignore_global_BAK
+    else
+        echo error
+    fi
+}
+
+
+
+### ----------------- ###
+### prompt functiuons ###
+### ----------------- ###
+
+export BASICINFO="$(whoami)@$(hostname | sed -e 's/\.local//g')"
+
+function shell_info(){
+    if ( ! $(git rev-parse --is-inside-work-tree > /dev/null 2>&1) ); then
+        echo -e "${BASICINFO}  ( $(-pathWriter) )"
+    else
+        echo -e "${BASICINFO}  ( $(-gitRepoPathWriter) ) < $(-gitBranchPrinter) | $(-gitHashPrinter) >"
+    fi
+}
+
+
+function -pathWriter(){
+    if [ "$( pwd | grep ${HOME} )" ]; then
+        pwd | sed "s\`${HOME}\`~\`g"
+    else
+        pwd
+    fi
+}
+
+
+function -gitRepoPathWriter(){
+    # Precondition: in git tree
+    if [ -z "$(git status --porcelain 2> /dev/null)" ]; then
+        # branch is clean
+        if [ -f ~/.gitignore_global ]; then
+            # ~/.gitignore_global is enabled
+            echo -n "git: "
+        else
+            # ~/.gitignore_global is disabled
+            echo -ne "${OSDEP_ESC_CODE}[0;39;7mgit:${OSDEP_ESC_CODE}[0;39m "
+        fi
+    else
+        # branch is not clean
+        if [ -f ~/.gitignore_global ]; then
+            # ~/.gitignore_global is enabled
+            echo -ne "${OSDEP_ESC_CODE}[1;31mgit:${OSDEP_ESC_CODE}[0;39m "
+        else
+            # ~/.gitignore_global is disabled
+            echo -ne "${OSDEP_ESC_CODE}[1;31;7mgit:${OSDEP_ESC_CODE}[0;39m "
+        fi
+    fi
+    git_path_info=($(git rev-parse --show-toplevel --show-prefix  2> /dev/null))
+    echo ${git_path_info[1]} | xargs basename | xargs echo -n
+    echo -n "/"${git_path_info[2]}
+}
+
+
+function -gitBranchPrinter(){
+    # Precondition: in git tree
+    gitBranch=$(git symbolic-ref --short HEAD 2> /dev/null)
+    if [ $? = 0 ]; then
+        # defaultBranch=$(git symbolic-ref --short refs/remotes/origin/HEAD 2> /dev/null | xargs basename)
+        defaultBranch=$(git symbolic-ref --short refs/remotes/origin/HEAD 2> /dev/null | awk -F '/' '{print $NF}')
+        if [ $? = 0 ]; then
+            defaultBranch="master"
+        fi
+        if [ ${gitBranch} = ${defaultBranch} ]; then
+            echo -n "${OSDEP_ESC_CODE}[0;33m${defaultBranch}${OSDEP_ESC_CODE}[0;39m"
+        else
+            echo -n "${gitBranch}"
+        fi
+    else
+        echo -n "${OSDEP_ESC_CODE}[0;36mdetached${OSDEP_ESC_CODE}[0;39m"
+    fi
+}
+
+
+function -gitHashPrinter(){
+    # Precondition: in git tree
+    gitHash=$(git rev-parse --short HEAD 2> /dev/null)
+    if [ $? = 0 ]; then
+        echo -n "${gitHash}"
+    else
+        echo -n "Not committed"
+    fi
+}
+
+
+function -envWriter(){
+    if [ ! -z "$VIRTUAL_ENV" ]; then
+        echo -n "[ venv: "`echo -n $VIRTUAL_ENV | xargs basename`" ] "
+    fi
+}
+
+
+function -screenStatusPrinter(){
+    which screen > /dev/null 2>&1
+    if [ $? = "0" ]; then
+        # found screen command
+        echo -ne "screen ${OSDEP_ESC_CODE}[0;35mattached${OSDEP_ESC_CODE}[0;39m:"
+        screen -ls | grep Attached | tr '.' ' ' | awk -F ' ' '{printf " %5s", $1}'
+        echo ""
+        echo -ne "sereen ${OSDEP_ESC_CODE}[0;36mdetached${OSDEP_ESC_CODE}[0;39m:"
+        screen -ls | grep Detached | tr '.' ' ' | awk -F ' ' '{printf " %5s", $1}'
+        echo -e "\n"
+    fi
+}
+
+function -sshScreenStarter(){
+    which screen > /dev/null 2>&1
+    # シェルの深さが1でSSHされている場合に起動
+    if [ $SHLVL = 1 ] && [ "$TERM" != 'dumb' ] && [ "${SSH_CONNECTION}" != "" ] && [ $? = "0" ] && [ -f ~/.screenrc ]; then
+        $(which screen)
+    fi
+}
+
+
+function -bashIconWriter(){
+    if [ "${SHELL_NAME}" = "bash" ]; then
+        echo -n 'bash '
+    elif [ "${SHELL_NAME}" = "zsh" ]; then
+        echo -n 'zsh '
+    else
+        echo "SHELL_NAME is '${SHELL_NAME}'"
+    fi
+}
+
+
+function -dir_status(){
+    if [ `ls | wc -w` = 0 ]; then
+        echo -e "Current directory is clean."
+    elif [ "$(uname 2>&1)" = "Darwin" ]; then
+        ls -G
+    else
+        # Linux
+        ls --color=auto
+    fi
+}
+
+function -blankLinePrinter(){
+    echo ''
+}
+
+
+###
+### 初回のみ表示する内容
+###
+-blankLinePrinter
+-sshScreenStarter
+-screenStatusPrinter
+-dir_status

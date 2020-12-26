@@ -9,8 +9,8 @@ else
 fi
 
 echo "update zsh configs symbolic links"
-echo "    zprofile" ; rm -f ~/.zprofile ; ln -s ~/dotfiles/posix_shell/zsh/zprofile ~/.zprofile
-echo "    zshrc"    ; rm -f ~/.zshrc    ; ln -s ~/dotfiles/posix_shell/zsh/zshrc    ~/.zshrc
+echo "    zprofile" ; rm -f ~/.zprofile ; ln -s ~/dotfiles/zsh/zprofile ~/.zprofile
+echo "    zshrc"    ; rm -f ~/.zshrc    ; ln -s ~/dotfiles/zsh/zshrc    ~/.zshrc
 
 echo "plugin repository clone"
 echo "    zsh-autosuggestions"     ; rm -rf ~/.zsh/zsh-autosuggestions     ; git clone https://github.com/zsh-users/zsh-autosuggestions     ~/.zsh/zsh-autosuggestions
