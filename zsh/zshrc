@@ -173,7 +173,7 @@ alias grepn='grep -i --color=auto'
 alias rm='rm -i'
 alias rm-y='\rm'
 alias dir='dir --color=auto'
-alias history='history -i 1'
+alias history='history -iD 1'
 alias ll='ls -l'
 alias la='ls -A'
 alias hn='hostname'
@@ -350,34 +350,6 @@ function gitignore_global-switch(){
         echo error
     fi
 }
-
-
-
-### ----------------- ###
-### dupbin functiuons ###
-### ----------------- ###
-if [ ! -f ~/bin/shis ]; then
-    function shis(){
-        if [ $# = 1 ]; then
-            history -i 1 | \
-                # sed '$d' | \
-                awk -F '   ' '{ \
-            if ( $2 ~ /.*'${1}'.*/ ) { \
-                gsub("'${1}'", "\033[1;31m'${1}'\033[0;39m", $2); \
-                printf "%s   %s\n", $1, $2; \
-            } \
-        }'
-            # | tail -n 100 2>/dev/null
-            return 0
-        elif [ $# = 0 ]; then
-            echo "error: nothing arguments"
-            return 1
-        else
-            echo "error: many arguments"
-            return 1
-        fi
-    }
-fi
 
 
 
