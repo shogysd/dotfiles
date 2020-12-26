@@ -16,7 +16,7 @@ ln -s ~/dotfiles/zsh/zshrc    ~/.zshrc
 
 
 rm -rf ~/.zsh/zsh-autosuggestions ~/.zsh/zsh-syntax-highlighting ~/.zsh/completion
-mkdir -p ~/.zsh
+mkdir -p ~/.zsh/completion
 
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh/zsh-syntax-highlighting
