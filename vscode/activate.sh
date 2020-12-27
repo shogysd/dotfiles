@@ -62,7 +62,9 @@ else
             if [ -z ${add_to_list} ] || [ ${add_to_list} != "y" ]; then
                 echo -n "    remove plugin?: y-or-other: "
                 read remove_plugin
-                if [ ${remove_plugin} = "y" ]; then
+                if [ -z ${add_to_list} ] || [ ${add_to_list} != "y" ]; then
+                    :
+                else
                     code --uninstall-extension ${i}
                 fi
             else
