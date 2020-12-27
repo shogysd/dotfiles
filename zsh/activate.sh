@@ -24,5 +24,5 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh/zsh-syntax
 ${OSDEP_DOWNLOAD_COMMAND} ~/.zsh/completion/git-completion.zsh \
 https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
 
-${OSDEP_DOWNLOAD_COMMAND} ~/.zsh/completion/docker.zsh \
+${OSDEP_DOWNLOAD_COMMAND} ~/.zsh/completion/_docker \
 https://raw.githubusercontent.com/docker/docker-ce/master/components/cli/contrib/completion/zsh/_docker

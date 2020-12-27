@@ -2,6 +2,13 @@
 ### shell environments ###
 ### ------------------ ###
 
+
+zstyle ':completion:*:*:git:*'      option-stacking yes
+zstyle ':completion:*:*:docker:*'   option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
+fpath=(~/.zsh/completion $fpath)
+
+
 SHELL_NAME='zsh'
 
 if [ "$(uname 2>&1)" = "Darwin" ]; then
@@ -126,19 +133,23 @@ bindkey -e
 ### ---------------- ###
 
 if [ ! -f ~/.zsh/completion/git-completion.zsh ]; then
-    echo "~/.zsh/completion/git-completion.zsh : No such file"
+    echo "~/.zsh/completion/git-completion.zsh : No such file" > ${HOME}/.zsh/zshrc_errlog
 fi
 
-if [ ! -f ~/.zsh/completion/docker.zsh ]; then
-    echo "~/.zsh/completion/docker.zsh : No such file"
+if [ ! -f ~/.zsh/completion/_docker ]; then
+    echo "~/.zsh/completion/_docker : No such file" > ${HOME}/.zsh/zshrc_errlog
 fi
 
 if [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     . ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+else
+    echo "~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh : No such file" > ${HOME}/.zsh/zshrc_errlog
 fi
 
 if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     . ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+else
+    echo "~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh : No such file" > ${HOME}/.zsh/zshrc_errlog
 fi
 
 
