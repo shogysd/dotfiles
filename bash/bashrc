@@ -194,6 +194,15 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 
 
+### ------------------- ###
+### golang environments ###
+### ------------------- ###
+
+mkdir -p ${HOME}/.gopath_global
+export GOPATH=${HOME}/.gopath_global
+
+
+
 ### ---------- ###
 ### functiuons ###
 ### ---------- ###

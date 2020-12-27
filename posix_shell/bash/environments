@@ -68,4 +68,4 @@ if [ $? != 0 ]; then
 fi
 
 # GOPATH
-export GOPATH=$HOME/gopath_global
+export GOPATH=${HOME}/gopath_global
