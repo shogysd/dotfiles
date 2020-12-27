@@ -166,6 +166,7 @@ alias gd='cd $(git rev-parse --show-toplevel)'
 
 # python
 alias py='python3'
+alias python-disable_environment_variable='python3 -E'
 alias activate='source ./bin/activate'
 
 
@@ -191,6 +192,12 @@ fi
 
 # virtualenvでpromptを変更しない
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+# 開発モードを有効に
+export PYTHONDEVMODE=1
+
+# 文字コードをUTF-8に
+export PYTHONUTF8=1
 
 
 
