@@ -2,13 +2,6 @@
 ### shell environments ###
 ### ------------------ ###
 
-
-zstyle ':completion:*:*:git:*'      option-stacking yes
-zstyle ':completion:*:*:docker:*'   option-stacking yes
-zstyle ':completion:*:*:docker-*:*' option-stacking yes
-fpath=(~/.zsh/completion $fpath)
-
-
 SHELL_NAME='zsh'
 
 if [ "$(uname 2>&1)" = "Darwin" ]; then
@@ -21,6 +14,11 @@ else
     export OSDEP_ESC_CODE='\e'
     export OSDEP_DOWNLOAD_COMMAND='wget -q -O'
 fi
+
+zstyle ':completion:*:*:git:*'      option-stacking yes
+zstyle ':completion:*:*:docker:*'   option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
+fpath=(~/.zsh/completion $fpath)
 
 
 
