@@ -2,25 +2,18 @@
 ### shell environments ###
 ### ------------------ ###
 
-SHELL_NAME='zsh'
+SHELL_NAME='bash'
 
 if [ "$(uname 2>&1)" = "Darwin" ]; then
     # macOS
     export OSDEP_ESC_CODE='\033'
     export OSDEP_DOWNLOAD_COMMAND='curl -s -o'
-    # export BASH_SILENCE_DEPRECATION_WARNING=1
+    export BASH_SILENCE_DEPRECATION_WARNING=1
 else
     # Linux
     export OSDEP_ESC_CODE='\e'
     export OSDEP_DOWNLOAD_COMMAND='wget -q -O'
 fi
-
-zstyle ':completion:*:*:git:*'      option-stacking yes
-zstyle ':completion:*:*:docker:*'   option-stacking yes
-zstyle ':completion:*:*:docker-*:*' option-stacking yes
-fpath=(~/.zsh/completion $fpath)
-
-
 
 ### ---------------- ###
 ### dir environments ###
@@ -30,7 +23,7 @@ mkdir -p ${HOME}/.ssh
 mkdir -p ${HOME}/.ssh/local_conf
 mkdir -p ${HOME}/.ssh/controlmaster
 mkdir -p ${HOME}/bin
-mkdir -p ${HOME}/.zsh
+mkdir -p ${HOME}/.bash
 
 
 
@@ -47,112 +40,85 @@ done
 
 
 
-### ---------------- ###
-### zsh environments ###
-### ---------------- ###
+### ----------------- ###
+### bash environments ###
+### ----------------- ###
 
-PROMPT='
-$(shell_info)
-$(-bashIconWriter)$(-envWriter)\$ '
+PS1="\n\$(shell_info)\n\$(-bashIconWriter)\$(-envWriter)\$ "
 
-TMOUT=3
+# shell conf
+export HOSTSTRIPSTR=".local"
+export BASICINFO="$(whoami)@$(hostname | sed -e 's/\.local//g')"
 
-TRAPALRM () {zle reset-prompt
-}
+# 連続をしたコマンドを1度のみの記録に + スペースから始まるコマンドを無視
+export HISTCONTROL=ignoreboth
 
-preexec(){
-    PREEXEC_UNIX_TIME=$(date +%s)
-}
+# 履歴に保存しないコマンド
+export HISTIGNORE='shis':'pwd':'clear':'ls':'ls -l':'ls -a'
 
-precmd() {
-    if [ "${PREEXEC_UNIX_TIME}" != "" ] && [ "$(expr $(date +%s) - ${PREEXEC_UNIX_TIME})" -gt 3 ]; then
-        echo "\n--"
-        echo "$(expr $(date +%s) - ${PREEXEC_UNIX_TIME}) sec"
-        echo "--"
-    fi
-}
+# プロンプトの表示前に実行するコマンド
+PROMPT_COMMAND='history -a'
 
-# プロンプト表示時に変数を展開
-setopt prompt_subst
+# 履歴のサイズを変更
+export HISTSIZE=9999
 
-# 補完
-autoload -Uz compinit && compinit
+# 履歴のフォーマットを設定 (c言語のstrftimeと同じものが使える)
+export HISTTIMEFORMAT='%m-%d-%Y (%H:%M:%S)   '
 
-# 履歴を保存するファイル
-HISTFILE=~/.zsh_history
+# Ctrl-dを1回無視する（2回で反応）
+IGNOREEOF=1
+export IGNOREEOF
 
-# 単語に含める文字 ( 区切り文字にしない記号 )  デフォルト : '*?_-.[]~=/&;!#$%^(){}<>'
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+# virtualenvでpromptを変更しない
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-# プロセス内で保存する履歴の件数
-HISTSIZE=99999
+# lessの'v'で何も起こらなくする
+export VISUAL=':'
 
-# ファイルに保存する履歴の件数
-SAVEHIST=99999
+# 標準のエディターをemacsに
+export EDITOR=emacs
 
-# 連続をしたコマンドを1度のみの記録に
-setopt hist_ignore_dups
+# シェル終了時に履歴を追記しない (PROMPT_COMMAND='share_history' による)
+shopt -u histappend
 
-# スペースから始まるコマンドは履歴に追記しない
-setopt hist_ignore_space
+# ! でコマンドの再実行をする際に一度表示する
+shopt -s histverify
 
-# 履歴から再実行する際に編集する機会を入れる
-setopt hist_verify
+# コマンド実行時に LINES と COLUMNS を更新する
+shopt -s checkwinsize
 
-# 履歴保存時に余分な空白を削除する
-setopt hist_reduce_blanks
+# 拡張パターンマッチングを有効化する
+shopt -s extglob
 
-# history コマンドは履歴に保存しない
-setopt hist_no_store
+# ディレクトリ名のみでcd可能にする
+### shopt -s autocd
 
-# プロセス間で履歴を共有する
-setopt share_history
+# cdの細かいミスを修正する
+shopt -s cdspell
 
-# cdがなくてもディレクトリの移動を可能にする
-setopt auto_cd
-
-# cdのtab補完で過去の移動履歴を参照する
-setopt auto_pushd
-
-# ビープを鳴らさない
-setopt no_beep
-setopt nolistbeep
-
-# typoの修正
-setopt correct
-
-# emacsライクにする
-bindkey -d
-bindkey -e
-
-
-
-### ---------------- ###
-### zsh import files ###
-### ---------------- ###
-
-if [ ! -f ~/.zsh/completion/git-completion.zsh ]; then
-    echo "$(date '+%Y/%m/%d_%H:%M:%S')    ~/.zsh/completion/git-completion.zsh : No such file" \
-    >> ${HOME}/.zsh/zshrc_err.log
+# set
+set -o | grep history | grep -q on
+if [ $? != 0 ]; then
+    set -o history
 fi
 
-if [ ! -f ~/.zsh/completion/_docker ]; then
-    echo "$(date '+%Y/%m/%d_%H:%M:%S')    ~/.zsh/completion/_docker : No such file" \
-    >> ${HOME}/.zsh/zshrc_err.log
-fi
 
-if [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    . ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+### ----------------- ###
+### bash import files ###
+### ----------------- ###
+
+if [ -f ~/.bash/completion/git-completion.bash ]; then
+    . ~/.bash/completion/git-completion.bash
 else
-    echo "$(date '+%Y/%m/%d_%H:%M:%S')    ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh : No such file" \
-    >> ${HOME}/.zsh/zshrc_err.log
+    echo "$(date '+%Y/%m/%d_%H:%M:%S')    ~/.bash/completion/git-completion.bash : No such file" \
+    >> ${HOME}/.bash/bashrc_err.log
 fi
-
-if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    . ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f ~/.bash/completion/docker ]; then
+    . ~/.bash/completion/docker
 else
-    echo "$(date '+%Y/%m/%d_%H:%M:%S')    ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh : No such file" \
-    >> ${HOME}/.zsh/zshrc_err.log
+    echo "$(date '+%Y/%m/%d_%H:%M:%S')    ~/.bash/completion/docker : No such file" \
+    >> ${HOME}/.bash/bash_err.log
 fi
 
 
@@ -187,7 +153,6 @@ alias grepn='grep -i --color=auto'
 alias rm='rm -i'
 alias rm-y='\rm'
 alias dir='dir --color=auto'
-alias history='history -iD 1'
 alias ll='ls -l'
 alias la='ls -A'
 alias hn='hostname'
@@ -413,8 +378,8 @@ function -gitRepoPathWriter(){
         fi
     fi
     git_path_info=($(git rev-parse --show-toplevel --show-prefix 2> /dev/null))
-    echo ${git_path_info[1]} | xargs basename | xargs echo -n
-    echo -n "/"${git_path_info[2]}
+    echo ${git_path_info[0]} | xargs basename | xargs echo -n
+    echo -n "/"${git_path_info[1]}
 }
 
 

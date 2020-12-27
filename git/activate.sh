@@ -51,8 +51,13 @@ echo "update symbolic link"
 echo "    gitconfig_envdep_ln"        ; rm -f ~/dotfiles/git/gitconfig_envdep_ln ; ln -s ~/dotfiles/git/$(echo "$(uname 2>&1)" | tr [A-Z] [a-z])/gitconfig_envdep ~/dotfiles/git/gitconfig_envdep_ln
 echo "    gitconfig"                  ; rm -f ~/.gitconfig                           ; ln -s ~/dotfiles/git/gitconfig        ~/.gitconfig
 echo "    gitignore_global"           ; rm -f ~/.gitignore_global                    ; ln -s ~/dotfiles/git/gitignore_global ~/.gitignore_global
-echo "download git completion (bash)" ; rm -f ~/dotfiles/git/git-completion.bash ; ${OSDEP_DOWNLOAD_COMMAND} ~/dotfiles/git/git-completion.bash https://raw.githubusercontent.com/git/git/d9f6f3b6195a0ca35642561e530798ad1469bd41/contrib/completion/git-completion.bash
 
-mkdir -p ~/dotfiles/posix_shell/zsh/completion
 
-echo "download git completion (zsh)"  ; rm -f ~/dotfiles/git/git-completion.zsh ~/dotfiles/posix_shell/zsh/completion/git-completion.zsh ; ${OSDEP_DOWNLOAD_COMMAND} ~/dotfiles/git/git-completion.zsh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh ; ln -s ~/dotfiles/git/git-completion.zsh ~/dotfiles/posix_shell/zsh/completion/git-completion.zsh
+rm -f ~/.bash/completion/git-completion.bash ~/.zsh/completion/git-completion.zsh
+mkdir -p ~/.bash/completion ~/.zsh/completion
+
+${OSDEP_DOWNLOAD_COMMAND} ~/.bash/completion/git-completion.bash \
+https://raw.githubusercontent.com/git/git/d9f6f3b6195a0ca35642561e530798ad1469bd41/contrib/completion/git-completion.bash
+
+${OSDEP_DOWNLOAD_COMMAND} ~/.zsh/completion/git-completion.zsh \
+https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
