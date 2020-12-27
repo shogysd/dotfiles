@@ -10,17 +10,11 @@ else
     export OSDEP_DOWNLOAD_COMMAND='wget -q -O'
 fi
 
-unset bash_url fish_url
-bash_url='https://raw.githubusercontent.com/docker/docker-ce/master/components/cli/contrib/completion/bash/docker'
-zsh_url='https://raw.githubusercontent.com/docker/docker-ce/master/components/cli/contrib/completion/zsh/_docker'
-fish_url='https://raw.githubusercontent.com/docker/docker-ce/master/components/cli/contrib/completion/fish/docker.fish'
+rm -f ~/.bash/completion/docker ~/.zsh/completion/_docker
+mkdir -p ~/.bash/completion ~/.zsh/completion
 
-echo "download fish completion files"
-echo "    for bash" ; rm -f ~/dotfiles/docker/docker.bash ; ${OSDEP_DOWNLOAD_COMMAND} ~/dotfiles/docker/docker.bash ${bash_url}
-echo "    for zsh"  ; rm -f ~/dotfiles/docker/docker.zsh  ; ${OSDEP_DOWNLOAD_COMMAND} ~/dotfiles/docker/docker.zsh  ${zsh_url}
-echo "    for fish" ; rm -f ~/dotfiles/docker/docker.fish ; ${OSDEP_DOWNLOAD_COMMAND} ~/dotfiles/docker/docker.fish ${fish_url}
+${OSDEP_DOWNLOAD_COMMAND} ~/.bash/completion/docker \
+https://raw.githubusercontent.com/docker/docker-ce/master/components/cli/contrib/completion/bash/docker
 
-mkdir -p ~/dotfiles/posix_shell/zsh/completion
-rm -rf ~/dotfiles/posix_shell/zsh/completion/_docker ; ln -s ~/dotfiles/docker/docker.zsh ~/dotfiles/posix_shell/zsh/completion/_docker
-
-unset bash_url fish_url
+${OSDEP_DOWNLOAD_COMMAND} ~/.zsh/completion/_docker \
+https://raw.githubusercontent.com/docker/docker-ce/master/components/cli/contrib/completion/zsh/_docker
