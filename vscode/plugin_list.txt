@@ -14,13 +14,13 @@ formulahendry.auto-rename-tag
 garaemon.vscode-emacs-tab
 github.vscode-pull-request-github
 golang.go
-googlecloudtools.cloudcode
 jsynowiec.vscode-insertdatestring
 lextudio.restructuredtext
 mechatroner.rainbow-csv
 mosapride.zenkaku
 ms-ceintl.vscode-language-pack-ja
 ms-python.python
+ms-toolsai.jupyter
 ms-vscode-remote.remote-containers
 ms-vscode-remote.remote-ssh
 ms-vscode-remote.remote-ssh-edit

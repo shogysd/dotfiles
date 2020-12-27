@@ -40,39 +40,42 @@ echo -ne "${OSDEP_ESC_CODE}[1;35myes${OSDEP_ESC_CODE}[0;39m-or-other ( NOT 'y' )
 read start
 if [ -z ${start} ] || [ $start != "yes" ]; then
     :
-elif ! $(which code); then
-    echo "error: (code) command not found"
 else
-    echo ""
-    echo "----------------- update plugins -----------------"
-    cp ~/dotfiles/vscode/plugin_list.txt ~/dotfiles/vscode/plugin_list_tmp.txt && \
-        code --list-extensions >> ~/dotfiles/vscode/plugin_list_tmp.txt && \
-        cat ~/dotfiles/vscode/plugin_list_tmp.txt | sort | uniq > ~/dotfiles/vscode/plugin_list_currend_merged.txt && \
-        rm -f ~/dotfiles/vscode/plugin_list_tmp.txt
+    which code
+    if [ ${?} != 0 ]; then
+        echo "error: (code) command not found"
+    else
+        echo ""
+        echo "----------------- update plugins -----------------"
+        cp ~/dotfiles/vscode/plugin_list.txt ~/dotfiles/vscode/plugin_list_tmp.txt && \
+            code --list-extensions >> ~/dotfiles/vscode/plugin_list_tmp.txt && \
+            cat ~/dotfiles/vscode/plugin_list_tmp.txt | sort | uniq > ~/dotfiles/vscode/plugin_list_currend_merged.txt && \
+            rm -f ~/dotfiles/vscode/plugin_list_tmp.txt
 
-    for i in $(cat ~/dotfiles/vscode/plugin_list_currend_merged.txt)
-    do
-        cat ~/dotfiles/vscode/plugin_list.txt | grep -q ${i}
-        if [ $? != 0 ]; then
-            echo -ne "${OSDEP_ESC_CODE}[1;33mWARNING: ${OSDEP_ESC_CODE}[0;39m"
-            echo -n "current only plugin : "
-            echo -e "${OSDEP_ESC_CODE}[1;39m${i}${OSDEP_ESC_CODE}[0;39m"
-            echo -n "    add to plugin_list?: y-or-other: "
-            read add_to_list
-            if [ -z ${add_to_list} ] || [ ${add_to_list} != "y" ]; then
-                echo -n "    remove plugin?: y-or-other: "
-                read remove_plugin
+        for i in $(cat ~/dotfiles/vscode/plugin_list_currend_merged.txt)
+        do
+            cat ~/dotfiles/vscode/plugin_list.txt | grep -q ${i}
+            if [ $? != 0 ]; then
+                echo -ne "${OSDEP_ESC_CODE}[1;33mWARNING: ${OSDEP_ESC_CODE}[0;39m"
+                echo -n "current only plugin : "
+                echo -e "${OSDEP_ESC_CODE}[1;39m${i}${OSDEP_ESC_CODE}[0;39m"
+                echo -n "    add to plugin_list?: y-or-other: "
+                read add_to_list
                 if [ -z ${add_to_list} ] || [ ${add_to_list} != "y" ]; then
-                    :
+                    echo -n "    remove plugin?: y-or-other: "
+                    read remove_plugin
+                    if [ -z ${add_to_list} ] || [ ${add_to_list} != "y" ]; then
+                        :
+                    else
+                        code --uninstall-extension ${i}
+                    fi
                 else
-                    code --uninstall-extension ${i}
+                    echo ${i} >> ~/dotfiles/vscode/plugin_add_tmp_list.txt
                 fi
-            else
-                echo ${i} >> ~/dotfiles/vscode/plugin_add_tmp_list.txt
+                echo "-----"
             fi
-            echo "-----"
-        fi
-    done
+        done
+    fi
 
     rm -f ~/dotfiles/vscode/plugin_list_currend_merged.txt
 
