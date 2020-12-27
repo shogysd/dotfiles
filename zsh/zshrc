@@ -412,7 +412,7 @@ function -gitRepoPathWriter(){
             echo -ne "${OSDEP_ESC_CODE}[1;31;7mgit:${OSDEP_ESC_CODE}[0;39m "
         fi
     fi
-    git_path_info=($(git rev-parse --show-toplevel --show-prefix  2> /dev/null))
+    git_path_info=($(git rev-parse --show-toplevel --show-prefix 2> /dev/null))
     echo ${git_path_info[1]} | xargs basename | xargs echo -n
     echo -n "/"${git_path_info[2]}
 }
