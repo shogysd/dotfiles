@@ -1,21 +1,14 @@
+### ------------------ ###
+### shell environments ###
+### ------------------ ###
+
 SHELL_NAME='zsh'
 
 if [ -f ~/.zshrc ]; then
     :
     # . ~/.zshrc
 else
-    echo "~/.zshrc : No such file"
+    mkdir -p ${HOME}/.bash
+    echo "$(date '+%Y/%m/%d_%H:%M:%S')    ~/.zshrc : No such file" \
+    >> ${HOME}/.zsh/zshrc_err.log
 fi
-
-zstyle ':completion:*:*:git:*'      option-stacking yes
-zstyle ':completion:*:*:docker:*'   option-stacking yes
-zstyle ':completion:*:*:docker-*:*' option-stacking yes
-fpath=(~/dotfiles/posix_shell/zsh/completion $fpath)
-
-
-# if [ $(echo $SHELL | xargs basename) = 'zsh' ]; then
-#     $(which bash >/dev/null 2>&1)
-#     if [ $? = 0 ]; then
-#         exec bash
-#     fi
-# fi

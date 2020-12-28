@@ -1,3 +1,16 @@
+### ------------ ###
+### change shell ###
+### ------------ ###
+
+if [ $(echo $SHELL | xargs basename) = 'bash' ]; then
+    which zsh >/dev/null 2>&1
+    if [ $? = 0 ]; then
+        exec zsh
+    fi
+fi
+
+
+
 ### ------------------ ###
 ### shell environments ###
 ### ------------------ ###
@@ -14,6 +27,8 @@ else
     export OSDEP_ESC_CODE='\e'
     export OSDEP_DOWNLOAD_COMMAND='wget -q -O'
 fi
+
+
 
 ### ---------------- ###
 ### dir environments ###

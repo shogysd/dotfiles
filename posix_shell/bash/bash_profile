@@ -1,14 +1,26 @@
-SHELL_NAME='bash'
+### ------------ ###
+### change shell ###
+### ------------ ###
 
 if [ $(echo $SHELL | xargs basename) = 'bash' ]; then
-    $(which zsh >/dev/null 2>&1)
+    which zsh >/dev/null 2>&1
     if [ $? = 0 ]; then
         exec zsh
     fi
 fi
 
+
+
+### ------------------ ###
+### shell environments ###
+### ------------------ ###
+
+SHELL_NAME='bash'
+
 if [ -f ~/.bashrc ]; then
     . ~/.bashrc
 else
-    echo "~/.bashrc : No such file"
+    mkdir -p ${HOME}/.bash
+    echo "$(date '+%Y/%m/%d_%H:%M:%S')    ~/.bashrc : No such file" \
+    >> ${HOME}/.bash/bashrc_err.log
 fi

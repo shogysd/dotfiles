@@ -11,7 +11,7 @@ fi
 echo "update zsh configs symbolic links"
 
 rm -f ~/.zprofile ~/.zshrc
-ln -s ~/dotfiles/zsh/zprofile ~/.zprofile
+# ln -s ~/dotfiles/zsh/zprofile ~/.zprofile
 ln -s ~/dotfiles/zsh/zshrc    ~/.zshrc
 
 
