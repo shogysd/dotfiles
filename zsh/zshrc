@@ -256,9 +256,7 @@ function _zsh_exit() {
 }
 
 zle -N _zsh_exit
-# bindkey '^Z' _zsh_exit
-bindkey '^[Z' _zsh_exit
-# bindkey '^[z' _zsh_exit
+bindkey '^Z' _zsh_exit
 
 
 
