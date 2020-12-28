@@ -72,6 +72,9 @@ precmd() {
     fi
 }
 
+# EOFを受け取ってもシェルを終了しない
+setopt IGNOREEOF
+
 # プロンプト表示時に変数を展開
 setopt prompt_subst
 
@@ -107,6 +110,9 @@ setopt hist_no_store
 
 # プロセス間で履歴を共有する
 setopt share_history
+
+# コマンド補完で大文字と小文字を区別しない
+compctl -M 'm:{a-z}={A-Z}'
 
 # cdがなくてもディレクトリの移動を可能にする
 setopt auto_cd
@@ -233,6 +239,26 @@ export PYTHONDEVMODE=1
 
 # 文字コードをUTF-8に
 export PYTHONUTF8=1
+
+
+
+### ------- ###
+### kaybind ###
+### ------- ###
+
+function _zsh_exit() {
+    if [ "${BUFFER}" = "exit" ]; then
+        exit
+    #elif [ "${BUFFER}" = "" ]; then
+    #    LBUFFER="exit"
+    fi
+    BUFFER="exit"
+}
+
+zle -N _zsh_exit
+# bindkey '^Z' _zsh_exit
+bindkey '^[Z' _zsh_exit
+# bindkey '^[z' _zsh_exit
 
 
 
