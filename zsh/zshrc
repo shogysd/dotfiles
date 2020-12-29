@@ -102,7 +102,7 @@ setopt hist_ignore_space
 # 履歴から再実行する際に編集する機会を入れる
 setopt hist_verify
 
-# 履歴保存時に余分な空白を削除する
+# 履歴保存時に余分なスペースを削除する
 setopt hist_reduce_blanks
 
 # history コマンドは履歴に保存しない
@@ -247,12 +247,11 @@ export PYTHONUTF8=1
 ### ------- ###
 
 function _zsh_exit() {
-    if [ "${BUFFER}" = "exit" ]; then
+    if [ "${BUFFER}" = " : Type Ctrl-z to leave the shell." ]; then
         exit
-    #elif [ "${BUFFER}" = "" ]; then
-    #    LBUFFER="exit"
+    elif [ "${BUFFER}" = "" ]; then
+        LBUFFER=" : Type Ctrl-z to leave the shell."
     fi
-    BUFFER="exit"
 }
 
 zle -N _zsh_exit
