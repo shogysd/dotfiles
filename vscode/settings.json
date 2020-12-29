@@ -18,6 +18,7 @@
   "editor.renderControlCharacters": true,
   "editor.renderIndentGuides": true,
   "editor.folding": true,
+  "editor.suggestSelection": "first",
   // terminal
   "terminal.integrated.cursorBlinking": false,
   "terminal.integrated.fontSize": 14,
@@ -108,5 +109,6 @@
   "terminal.integrated.macOptionIsMeta": true,
   "files.associations": {
     "*.rmd": "markdown"
-  }
+  },
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
 }

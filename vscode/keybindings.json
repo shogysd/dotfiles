@@ -266,22 +266,33 @@
     "command": "workbench.action.closeWindow",
     "when": "!editorIsOpen && !multipleEditorGroups && !terminalFocus"
   },
+  //ターミナルを開く
+  {
+    "key": "cmd+t",
+    "command": "workbench.action.terminal.new"
+  },
+  // {
+  //  "key": "ctrl+`",
+  //  "command": "workbench.action.terminal.new"
+  //},
+  //{
+  //  "key": "ctrl+shift+`",
+  //  "command": "workbench.action.terminal.new"
+  //},
+  // Panelを開く/閉じる
+  {
+    "key": "ctrl+`",
+    "command": "workbench.action.togglePanel"
+  },
+  // Panelを 最大化/元のサイズに戻す
+  {
+    "key": "ctrl+shift+`",
+    "command": "workbench.action.toggleMaximizedPanel"
+  },
   // plugin
   {
     "key": "alt+t",
     "command": "insertDateString.insertOwnFormatDateTime",
     "when": "editorTextFocus"
-  },
-  {
-    "key": "cmd+t",
-    "command": "workbench.action.terminal.new"
-  },
-  {
-    "key": "ctrl+`",
-    "command": "workbench.action.terminal.new"
-  },
-  {
-    "key": "ctrl+shift+`",
-    "command": "workbench.action.terminal.new"
   }
 ]
