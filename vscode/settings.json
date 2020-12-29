@@ -90,6 +90,8 @@
   "bracket-pair-colorizer-2.showBracketsInGutter": true,
   // trailing-spaces
   "trailing-spaces.trimOnSave": true,
+  // vsintellicode
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   // todo-tree
   "todo-tree.tree.showScanModeButton": true,
   "todo-tree.general.tags": [
@@ -109,6 +111,5 @@
   "terminal.integrated.macOptionIsMeta": true,
   "files.associations": {
     "*.rmd": "markdown"
-  },
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
+  }
 }
