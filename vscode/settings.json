@@ -92,6 +92,8 @@
   "trailing-spaces.trimOnSave": true,
   // vsintellicode
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  // git lens
+  "gitlens.hovers.enabled": false,
   // todo-tree
   "todo-tree.tree.showScanModeButton": true,
   "todo-tree.general.tags": [
