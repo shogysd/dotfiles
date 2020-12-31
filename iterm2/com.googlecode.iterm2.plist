@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CopySelection</key>
+	<false/>
 	<key>Default Bookmark Guid</key>
 	<string>EE1281F3-932A-4294-B99B-F5FE29EC9A16</string>
 	<key>DimInactiveSplitPanes</key>
