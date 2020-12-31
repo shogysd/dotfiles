@@ -399,7 +399,7 @@ function gitignore_global-switch(){
 
 function shis() {
     # Support: 2.x and 3.x (both)
-    python -- <<'EOF' - "$@"
+    \python -E -- <<'EOF' - "$@"
 from datetime import datetime
 from os import getenv
 from re import search
@@ -434,6 +434,8 @@ for hist in histories:
         hist_list[-1]["cmd"] += " " * 23 + hist
         before_line_tail = hist[-2:]
 
+print_hists_dict = {}
+
 for hist in hist_list:
     if argv[1] in hist["cmd"]:
         if not bool(hist["dt"]):
@@ -444,17 +446,19 @@ for hist in hist_list:
             d_str = "{:04}-{:02}-{:02}".format(dt.year, dt.month, dt.day)
             t_str= "{:02}:{:02}:{:02}".format(dt.hour, dt.minute, dt.second)
             dt_str = d_str + " " + t_str
-        cmd_str = hist["cmd"].replace(argv[1], "\033[1;31m" + argv[1] + "\033[0m")
+        cmd_c_str = hist["cmd"].replace(argv[1], "\033[1;31m" + argv[1] + "\033[0m")
+        print_hists_dict[hist["cmd"]] = {"dt_int": hist["dt"], "dt_str": dt_str, "cmd_c_str": cmd_c_str}
 
-        stdout.write('{dt}    {cmd}'.format(dt=dt_str, cmd=cmd_str))
-        # print('{dt}    {cmd}'.format(dt=dt_str, cmd=cmd_str), end="")
+for print_hist in sorted(print_hists_dict.items(), key=lambda x:x[1]["dt_int"]):
+    stdout.write('{dt}    {cmd}'.format(dt=print_hist[1]["dt_str"], cmd=print_hist[1]["cmd_c_str"]))
+    # print('{dt}    {cmd}'.format(dt=print_hist[1]["dt_str"], cmd=print_hist[1]["cmd_c_str"]))
 EOF
 }
 
 
 function strrep() {
     # Support: 2.x and 3.x (both)
-    python -- <<'EOF' - "$@"
+    \python -E -- <<'EOF' - "$@"
 from glob import glob
 import os
 import subprocess
