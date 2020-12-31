@@ -449,9 +449,9 @@ for hist in hist_list:
         cmd_c_str = hist["cmd"].replace(argv[1], "\033[1;31m" + argv[1] + "\033[0m")
         print_hists_dict[hist["cmd"]] = {"dt_int": hist["dt"], "dt_str": dt_str, "cmd_c_str": cmd_c_str}
 
-for print_hist in sorted(print_hists_dict.items(), key=lambda x:x[1]["dt_int"]):
-    stdout.write('{dt}    {cmd}'.format(dt=print_hist[1]["dt_str"], cmd=print_hist[1]["cmd_c_str"]))
-    # print('{dt}    {cmd}'.format(dt=print_hist[1]["dt_str"], cmd=print_hist[1]["cmd_c_str"]))
+for print_hist in sorted(print_hists_dict.values(), key=lambda x:x["dt_int"]):
+    stdout.write('{dt}    {cmd}'.format(dt=print_hist["dt_str"], cmd=print_hist["cmd_c_str"]))
+    # print('{dt}    {cmd}'.format(dt=print_hist["dt_str"], cmd=print_hist["cmd_c_str"]))
 EOF
 }
 
