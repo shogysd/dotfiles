@@ -440,10 +440,12 @@ for hist in histories:
 for hist in hist_list:
     if argv[1] in hist["cmd"]:
         dt = datetime.fromtimestamp(hist["dt"])
-        dt_str = "{:04}-{:02}-{:02} {:02}:{:02}:{:02}".format(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second)
+        d_str = "{:04}-{:02}-{:02}".format(dt.year, dt.month, dt.day)
+        t_str= "{:02}:{:02}:{:02}".format(dt.hour, dt.minute, dt.second)
+        cmd_str = hist["cmd"].replace(argv[1], "\033[1;31m" + argv[1] + "\033[0m")
 
-        stdout.write('{dt}    {cmd}'.format(dt=dt_str, cmd=hist["cmd"].replace(argv[1], "\033[1;31m" + argv[1] + "\033[0m")))
-        # print('{dt}    {cmd}'.format(dt=dt_str, cmd=hist["cmd"].replace(argv[1], "\033[1;31m" + argv[1] + "\033[0m")), end="")
+        stdout.write('{d} {t}    {cmd}'.format(d=d_str, t=t_str, cmd=cmd_str))
+        # print('{d} {t}    {cmd}'.format(d=d_str, t=t_str, cmd=cmd_str), end="")
 EOF
 }
 
