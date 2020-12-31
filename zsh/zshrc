@@ -454,7 +454,7 @@ EOF
 
 function strrep() {
     # Support: 2.x and 3.x (both)
-    python3 -- <<'EOF' - "$@"
+    python -- <<'EOF' - "$@"
 from glob import glob
 import os
 import subprocess
