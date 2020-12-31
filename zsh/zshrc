@@ -351,19 +351,8 @@ function screen-clean(){
 }
 
 
-function pd(){
-    if [ $# = 0 ]; then
-        popd
-    elif [ $# = 1 ]; then
-        pushd ${1}
-    else
-        echo "error: arg error"
-    fi
-}
-
-
 function hosts-switch(){
-    if [ -f /etc/hosts ] && [ -f /etc/hosts_BAK ] && [ "$( cat /etc/hosts | grep '# disable mode' )" ]; then
+    if [ -f /etc/hosts ] && [ -f /etc/hosts_BAK ] && [ "$( head -n 1 /etc/hosts | grep '# disable mode' )" ]; then
         echo "currently disabled"
         echo -n "change to enable?: y-or-other: "
         read start
@@ -374,7 +363,7 @@ function hosts-switch(){
         sudo rm -f /etc/hosts && \
         sudo mv /etc/hosts_BAK /etc/hosts
         echo "/etc/hosts enabled"
-    elif [ -f /etc/hosts ] && [ ! -f /etc/hosts_BAK ] && [ "$( cat /etc/hosts | grep -v '# disable mode' )" ]; then
+    elif [ -f /etc/hosts ] && [ ! -f /etc/hosts_BAK ] && [ "$( head -n 1 /etc/hosts | grep -v '# disable mode' )" ]; then
         echo "currently enabled"
         echo -n "change to disable?: y-or-other: "
         read start
@@ -409,7 +398,7 @@ function gitignore_global-switch(){
 
 
 function shis() {
-    # Supports: 2.x and 3.x (both)
+    # Support: 2.x and 3.x (both)
     python -- <<'EOF' - "$@"
 from datetime import datetime
 from os import getenv
@@ -447,6 +436,28 @@ for hist in hist_list:
         stdout.write('{d} {t}    {cmd}'.format(d=d_str, t=t_str, cmd=cmd_str))
         # print('{d} {t}    {cmd}'.format(d=d_str, t=t_str, cmd=cmd_str), end="")
 EOF
+}
+
+
+
+### -------------- ###
+### zsh functiuons ###
+### -------------- ###
+
+zshaddhistory() {
+    local line=${1%%$'\n'}
+    local cmd=${line%% *}
+
+    if [[ ${cmd} = (l[sal])
+       || ${cmd} = (shis|history)
+       || ${cmd} = (hn|hostname)
+       || ${cmd} = gd
+       || ${cmd} = man
+    ]]; then
+        return 1
+    else
+        return 0
+    fi
 }
 
 
