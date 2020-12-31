@@ -420,8 +420,8 @@ from sys import stdout
 from sys import stderr
 
 if len(argv) != 2:
-    stderr.write("argument error: [" + ", ".join(argv) + "]")
-    # print("argument error: [" + ", ".join(argv) + "]" , file=stderr)
+    stderr.write("argument error: [" + ", ".join(argv[1:]) + "]")
+    # print("argument error: [" + ", ".join(argv[1:]) + "]" , file=stderr)
     exit(1)
 
 with open(getenv("HOME") + "/.zsh_history") as f:
