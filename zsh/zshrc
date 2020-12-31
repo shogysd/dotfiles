@@ -452,6 +452,46 @@ EOF
 }
 
 
+function strrep() {
+    # Support: 2.x and 3.x (both)
+    python3 -- <<'EOF' - "$@"
+from glob import glob
+import os
+import subprocess
+from sys import argv
+from sys import exit
+from sys import stderr
+
+def file_scaner(paths, files):
+    for p in paths:
+        if os.path.isfile(p):
+            f_type = subprocess.check_output("file "+str(p), stderr=subprocess.STDOUT, shell=True)
+            if bytes == type(f_type):
+                f_type = f_type.decode()
+            if "text" in str(f_type).split(": ")[-1]:
+                files.append(p)
+        else:
+            file_scaner(glob(p + "/*"), files)
+
+if len(argv) != 3:
+    stderr.write("argument error: [" + ", ".join(argv[1:]) + "]")
+    # print("argument error: [" + ", ".join(argv[1:]) + "]" , file=stderr)
+    exit(1)
+
+files = []
+file_scaner(["."], files)
+
+for file in files:
+    with open(file, "r") as f:
+        data = f.read()
+    if argv[1] in data:
+        data = data.replace(argv[1], argv[2])
+        with open(file, "w") as f:
+            f.write(data)
+EOF
+}
+
+
 
 ### -------------- ###
 ### zsh functiuons ###
