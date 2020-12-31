@@ -81,9 +81,6 @@ setopt prompt_subst
 # 補完
 autoload -Uz compinit && compinit
 
-# 履歴を保存するファイル
-HISTFILE=~/.zsh_history
-
 # 単語に含める文字 ( 区切り文字にしない記号 )  デフォルト : '*?_-.[]~=/&;!#$%^(){}<>'
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
@@ -105,11 +102,17 @@ setopt hist_verify
 # 履歴保存時に余分なスペースを削除する
 setopt hist_reduce_blanks
 
+# 履歴を保存するファイル
+HISTFILE=~/.zsh_history
+
 # history コマンドは履歴に保存しない
 setopt hist_no_store
 
 # プロセス間で履歴を共有する
 setopt share_history
+
+# HISTFILEに実行時間も記録する
+setopt extended_history
 
 # コマンド補完で大文字と小文字を区別しない
 compctl -M 'm:{a-z}={A-Z}'
@@ -406,7 +409,42 @@ function gitignore_global-switch(){
 
 
 function shis() {
-    \history -iD 1 | \grep -E "^ *[0-9]+( |\*)+[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2} +[0-9]+:[0-9]+ +.*"${1}".*"
+    # Supports: 2.x and 3.x (both)
+    python -- <<'EOF' - "$@"
+from datetime import datetime
+from os import getenv
+from re import search
+from sys import argv
+from sys import exit
+from sys import stdout
+from sys import stderr
+
+if len(argv) != 2:
+    stderr.write("argument error: [" + ", ".join(argv) + "]")
+    # print("argument error: [" + ", ".join(argv) + "]" , file=stderr)
+    exit(1)
+
+with open(getenv("HOME") + "/.zsh_history") as f:
+    histories = f.readlines()
+
+hist_list = []
+
+for hist in histories:
+    if search("^: *[0-9]+:[0-9]+;.*", hist):
+        dt = int(hist.split(":", 2)[1])
+        cmd = hist.split(";")[1]
+        hist_list.append({"dt": dt, "cmd": cmd})
+    else:
+        hist_list[-1]["cmd"] += hist
+
+for hist in hist_list:
+    if argv[1] in hist["cmd"]:
+        dt = datetime.fromtimestamp(hist["dt"])
+        dt_str = "{:04}-{:02}-{:02} {:02}:{:02}:{:02}".format(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second)
+
+        stdout.write('{dt}    {cmd}'.format(dt=dt_str, cmd=hist["cmd"].replace(argv[1], "\033[1;31m" + argv[1] + "\033[0m")))
+        # print('{dt}    {cmd}'.format(dt=dt_str, cmd=hist["cmd"].replace(argv[1], "\033[1;31m" + argv[1] + "\033[0m")), end="")
+EOF
 }
 
 
