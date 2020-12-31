@@ -417,24 +417,37 @@ with open(getenv("HOME") + "/.zsh_history") as f:
     histories = f.readlines()
 
 hist_list = []
+before_line_tail = ""
 
 for hist in histories:
     if search("^: *[0-9]+:[0-9]+;.*", hist):
         dt = int(hist.split(":", 2)[1])
         cmd = hist.split(";")[1]
         hist_list.append({"dt": dt, "cmd": cmd})
+        before_line_tail = hist[-2:]
+    elif "\\\n" != before_line_tail:
+        dt = 0
+        cmd = hist
+        hist_list.append({"dt": dt, "cmd": cmd})
+        before_line_tail = hist[-2:]
     else:
-        hist_list[-1]["cmd"] += hist
+        hist_list[-1]["cmd"] += " " * 23 + hist
+        before_line_tail = hist[-2:]
 
 for hist in hist_list:
     if argv[1] in hist["cmd"]:
-        dt = datetime.fromtimestamp(hist["dt"])
-        d_str = "{:04}-{:02}-{:02}".format(dt.year, dt.month, dt.day)
-        t_str= "{:02}:{:02}:{:02}".format(dt.hour, dt.minute, dt.second)
+        if not bool(hist["dt"]):
+            dt_str = "____-__-__ __:__:__"
+            # dt_str = "    -  -     :  :  "
+        else:
+            dt = datetime.fromtimestamp(hist["dt"])
+            d_str = "{:04}-{:02}-{:02}".format(dt.year, dt.month, dt.day)
+            t_str= "{:02}:{:02}:{:02}".format(dt.hour, dt.minute, dt.second)
+            dt_str = d_str + " " + t_str
         cmd_str = hist["cmd"].replace(argv[1], "\033[1;31m" + argv[1] + "\033[0m")
 
-        stdout.write('{d} {t}    {cmd}'.format(d=d_str, t=t_str, cmd=cmd_str))
-        # print('{d} {t}    {cmd}'.format(d=d_str, t=t_str, cmd=cmd_str), end="")
+        stdout.write('{dt}    {cmd}'.format(dt=dt_str, cmd=cmd_str))
+        # print('{dt}    {cmd}'.format(dt=dt_str, cmd=cmd_str), end="")
 EOF
 }
 
