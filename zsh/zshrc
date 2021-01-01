@@ -53,7 +53,7 @@ done
 
 PROMPT='
 $(shell_info)
-$(-bashIconWriter)$(-envWriter)\$ '
+$(_bashIconWriter)$(_envWriter)\$ '
 
 TMOUT=3
 
@@ -527,14 +527,14 @@ export BASICINFO="$(whoami)@$(hostname | sed -e 's/\.local//g')"
 
 function shell_info(){
     if ( ! $(git rev-parse --is-inside-work-tree > /dev/null 2>&1) ); then
-        echo -e "${BASICINFO}  ( $(-pathWriter) )"
+        echo -e "${BASICINFO}  ( $(_pathWriter) )"
     else
-        echo -e "${BASICINFO}  ( $(-gitRepoPathWriter) ) < $(-gitBranchPrinter) | $(-gitHashPrinter) >"
+        echo -e "${BASICINFO}  ( $(_gitRepoPathWriter) ) < $(_gitBranchPrinter) | $(_gitHashPrinter) >"
     fi
 }
 
 
-function -pathWriter(){
+function _pathWriter(){
     if [ "$( pwd | grep ${HOME} )" ]; then
         pwd | sed "s\`${HOME}\`~\`g"
     else
@@ -543,7 +543,7 @@ function -pathWriter(){
 }
 
 
-function -gitRepoPathWriter(){
+function _gitRepoPathWriter(){
     # Precondition: in git tree
     if [ -z "$(git status --porcelain 2> /dev/null)" ]; then
         # branch is clean
@@ -570,7 +570,7 @@ function -gitRepoPathWriter(){
 }
 
 
-function -gitBranchPrinter(){
+function _gitBranchPrinter(){
     # Precondition: in git tree
     gitBranch=$(git symbolic-ref --short HEAD 2> /dev/null)
     if [ $? = 0 ]; then
@@ -590,7 +590,7 @@ function -gitBranchPrinter(){
 }
 
 
-function -gitHashPrinter(){
+function _gitHashPrinter(){
     # Precondition: in git tree
     gitHash=$(git rev-parse --short HEAD 2> /dev/null)
     if [ $? = 0 ]; then
@@ -601,14 +601,14 @@ function -gitHashPrinter(){
 }
 
 
-function -envWriter(){
+function _envWriter(){
     if [ ! -z "$VIRTUAL_ENV" ]; then
         echo -n "[ venv: "`echo -n $VIRTUAL_ENV | xargs basename`" ] "
     fi
 }
 
 
-function -screenStatusPrinter(){
+function _screenStatusPrinter(){
     which screen > /dev/null 2>&1
     if [ $? = "0" ]; then
         # found screen command
@@ -621,7 +621,7 @@ function -screenStatusPrinter(){
     fi
 }
 
-function -sshScreenStarter(){
+function _sshScreenStarter(){
     which screen > /dev/null 2>&1
     # シェルの深さが1でSSHされている場合に起動
     if [ $SHLVL = 1 ] && [ "$TERM" != 'dumb' ] && [ "${SSH_CONNECTION}" != "" ] && [ $? = "0" ] && [ -f ~/.screenrc ]; then
@@ -630,7 +630,7 @@ function -sshScreenStarter(){
 }
 
 
-function -bashIconWriter(){
+function _bashIconWriter(){
     if [ "${SHELL_NAME}" = "bash" ]; then
         echo -n 'bash '
     elif [ "${SHELL_NAME}" = "zsh" ]; then
@@ -641,7 +641,7 @@ function -bashIconWriter(){
 }
 
 
-function -dir_status(){
+function _dir_status(){
     if [ `ls | wc -w` = 0 ]; then
         echo -e "Current directory is clean."
     elif [ "$(uname 2>&1)" = "Darwin" ]; then
@@ -652,7 +652,7 @@ function -dir_status(){
     fi
 }
 
-function -blankLinePrinter(){
+function _blankLinePrinter(){
     echo ''
 }
 
@@ -660,7 +660,7 @@ function -blankLinePrinter(){
 ###
 ### 初回のみ表示する内容
 ###
--blankLinePrinter
--sshScreenStarter
--screenStatusPrinter
--dir_status
+_blankLinePrinter
+_sshScreenStarter
+_screenStatusPrinter
+_dir_status
