@@ -246,7 +246,7 @@ export PYTHONUTF8=1
 
 
 ### ------- ###
-### kaybind ###
+### keybind ###
 ### ------- ###
 
 function _zsh_exit() {
@@ -472,7 +472,7 @@ def file_scaner(paths, files):
             f_type = subprocess.check_output("file "+str(p), stderr=subprocess.STDOUT, shell=True)
             if bytes == type(f_type):
                 f_type = f_type.decode()
-            if "text" in str(f_type).split(": ")[-1]:
+            if "text" in f_type.split(": ")[-1]:
                 files.append(p)
         else:
             file_scaner(glob(p + "/*"), files)
