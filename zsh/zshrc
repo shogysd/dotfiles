@@ -38,7 +38,7 @@ mkdir -p ${HOME}/.zsh
 ### PATH environments ###
 ### ----------------- ###
 
-for path_name in $( find ~/bin -maxdepth 1 -type d -or -type l -not -name '.*' ); do
+for path_name in $( find ~/bin -maxdepth 1 -type d -not -name '.*' ); do
     if [ ! "$( echo ${PATH} | grep ${path_name} )" ]; then
         PATH="${path_name}:${PATH}"
     fi
