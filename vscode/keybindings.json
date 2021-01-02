@@ -13,230 +13,230 @@
   {
     "key": "ctrl+f",
     "command": "cursorRight",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "PageDown",
     "command": "cursorRight",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "ctrl+b",
     "command": "cursorLeft",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "PageUp",
     "command": "cursorLeft",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   // カーソルの移動 (単語単位)
   {
     "key": "ctrl+shift+f",
     "command": "cursorWordEndRight",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "ctrl+shift+b",
     "command": "cursorWordEndLeft",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   // カーソルの移動 (行単位)
   {
     "key": "ctrl+a",
     "command": "cursorHome",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "ctrl+e",
     "command": "cursorEnd",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   // カーソルの移動 (ファイル単位)
   {
     "key": "alt+shift+,",
     "command": "cursorTop",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "alt+shift+.",
     "command": "cursorBottom",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   // 文字の削除
   {
     "key": "ctrl+d",
     "command": "deleteRight",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "ctrl+h",
     "command": "deleteLeft",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   // 文字の削除 (単語単位)
   {
     "key": "ctrl+w",
     "command": "deleteWordLeft",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "ctrl+shift+h",
     "command": "deleteWordLeft",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "ctrl+shift+d",
     "command": "deleteWordRight",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   // 文字の削除 (行単位)
   {
     "key": "ctrl+k",
     "command": "deleteAllRight",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "ctrl+shift+k",
     "command": "deleteAllLeft",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   // 選択
   {
     "key": "alt+p",
     "command": "cursorUpSelect",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "alt+n",
     "command": "cursorDownSelect",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "alt+f",
     "command": "cursorRightSelect",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "alt+b",
     "command": "cursorLeftSelect",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   // 選択 (行単位)
   {
     "key": "alt+a",
     "command": "cursorHomeSelect",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "alt+e",
     "command": "cursorEndSelect",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   // 選択 (単語単位)
   {
     "key": "alt+shift+f",
     "command": "cursorWordEndRightSelect",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "alt+shift+b",
     "command": "cursorWordEndLeftSelect",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   // 選択 (ファイル単位)
   {
     "key": "ctrl+shift+a",
     "command": "editor.action.selectAll",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "cmd+a",
     "command": "editor.action.selectAll",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   // 検索
   {
     "key": "ctrl+s",
     "command": "actions.find",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "ctrl+r",
     "command": "actions.find",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "alt+shift+s",
     "command": "editor.action.startFindReplaceAction",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "ctrl+shift+r",
     "command": "editor.action.startFindReplaceAction",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "alt+shift+5",
     "command": "editor.action.startFindReplaceAction",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   // copy, paste, cut
   {
     "key": "ctrl+c",
     "command": "editor.action.clipboardCopyAction",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "cmd+c",
     "command": "editor.action.clipboardCopyAction",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "ctrl+v",
     "command": "editor.action.clipboardPasteAction",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "cmd+v",
     "command": "editor.action.clipboardPasteAction",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "ctrl+x",
     "command": "editor.action.clipboardCutAction",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   {
     "key": "cmd+x",
     "command": "editor.action.clipboardCutAction",
-    "when": "!terminalFocus"
+    "when": "textInputFocus"
   },
   // redo, undo
   {
     "key": "ctrl+y",
     "command": "redo",
-    "when": "!terminalFocus"
+    "when": "editorTextFocus"
   },
   {
     "key": "ctrl+shift+z",
     "command": "redo",
-    "when": "!terminalFocus"
+    "when": "editorTextFocus"
   },
   {
     "key": "cmd+shift+z",
     "command": "redo",
-    "when": "!terminalFocus"
+    "when": "editorTextFocus"
   },
   {
     "key": "ctrl+z",
     "command": "undo",
-    "when": "!terminalFocus"
+    "when": "editorTextFocus"
   },
   {
     "key": "cmd+z",
     "command": "undo",
-    "when": "!terminalFocus"
+    "when": "editorTextFocus"
   },
   // 整形
   {
@@ -300,6 +300,12 @@
     "key": "ctrl+\\",
     "command": "workbench.action.focusActiveEditorGroup",
     "when": "terminalFocus"
+  },
+  // cmd + w で vs-code の終了はしない
+  {
+    "key": "cmd+w",
+    "command": "-workbench.action.closeWindow",
+    "when": "!editorIsOpen && !multipleEditorGroups"
   },
   // plugin
   {
