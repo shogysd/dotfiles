@@ -362,6 +362,105 @@ function gitignore_global-switch(){
 }
 
 
+function shis() {
+    # Support: 2.x and 3.x (both)
+    \python -E -- <<'EOF' - "$@"
+from datetime import datetime
+from os import getenv
+from re import search
+from sys import argv
+from sys import exit
+from sys import stdout
+from sys import stderr
+
+if len(argv) != 2:
+    stderr.write("argument error: [" + ", ".join(argv[1:]) + "]")
+    # print("argument error: [" + ", ".join(argv[1:]) + "]" , file=stderr)
+    exit(1)
+
+with open(getenv("HOME") + "/.zsh_history") as f:
+    histories = f.readlines()
+
+hist_list = []
+before_line_tail = ""
+
+for hist in histories:
+    if search("^: *[0-9]+:[0-9]+;.*", hist):
+        dt = int(hist.split(":", 2)[1])
+        cmd = hist.split(";")[1]
+        hist_list.append({"dt": dt, "cmd": cmd})
+        before_line_tail = hist[-2:]
+    elif "\\\n" != before_line_tail:
+        dt = 0
+        cmd = hist
+        hist_list.append({"dt": dt, "cmd": cmd})
+        before_line_tail = hist[-2:]
+    else:
+        hist_list[-1]["cmd"] += " " * 23 + hist
+        before_line_tail = hist[-2:]
+
+print_hists_dict = {}
+
+for hist in hist_list:
+    if argv[1] in hist["cmd"]:
+        if not bool(hist["dt"]):
+            dt_str = "____-__-__ __:__:__"
+            # dt_str = "    -  -     :  :  "
+        else:
+            dt = datetime.fromtimestamp(hist["dt"])
+            d_str = "{:04}-{:02}-{:02}".format(dt.year, dt.month, dt.day)
+            t_str= "{:02}:{:02}:{:02}".format(dt.hour, dt.minute, dt.second)
+            dt_str = d_str + " " + t_str
+        cmd_c_str = hist["cmd"].replace(argv[1], "\033[1;31m" + argv[1] + "\033[0m")
+        print_hists_dict[hist["cmd"]] = {"dt_int": hist["dt"], "dt_str": dt_str, "cmd_c_str": cmd_c_str}
+
+for print_hist in sorted(print_hists_dict.values(), key=lambda x:x["dt_int"]):
+    stdout.write('{dt}    {cmd}'.format(dt=print_hist["dt_str"], cmd=print_hist["cmd_c_str"]))
+    # print('{dt}    {cmd}'.format(dt=print_hist["dt_str"], cmd=print_hist["cmd_c_str"]))
+EOF
+}
+
+
+function strrep() {
+    # Support: 2.x and 3.x (both)
+    \python -E -- <<'EOF' - "$@"
+from glob import glob
+import os
+import subprocess
+from sys import argv
+from sys import exit
+from sys import stderr
+
+def file_scaner(paths, files):
+    for p in paths:
+        if os.path.isfile(p):
+            f_type = subprocess.check_output("file "+str(p), stderr=subprocess.STDOUT, shell=True)
+            if bytes == type(f_type):
+                f_type = f_type.decode()
+            if "text" in f_type.split(": ")[-1]:
+                files.append(p)
+        else:
+            file_scaner(glob(p + "/*"), files)
+
+if len(argv) != 3:
+    stderr.write("argument error: [" + ", ".join(argv[1:]) + "]")
+    # print("argument error: [" + ", ".join(argv[1:]) + "]" , file=stderr)
+    exit(1)
+
+files = []
+file_scaner(["."], files)
+
+for file in files:
+    with open(file, "r") as f:
+        data = f.read()
+    if argv[1] in data:
+        data = data.replace(argv[1], argv[2])
+        with open(file, "w") as f:
+            f.write(data)
+EOF
+}
+
+
 
 ### ----------------- ###
 ### prompt functiuons ###
