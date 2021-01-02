@@ -22,10 +22,11 @@
   // terminal
   "terminal.integrated.cursorBlinking": false,
   "terminal.integrated.fontSize": 14,
-  "terminal.integrated.confirmOnExit": true,
-  "terminal.integrated.scrollback": 9999,
+  "terminal.integrated.scrollback": 999999,
   "terminal.external.linuxExec": "xterm",
   "terminal.external.osxExec": "Terminal.app",
+  // vs-code終了時にactiveなterminalセッションがあった場合の警告有無
+  "terminal.integrated.confirmOnExit": false,
   // workbench
   "workbench.editor.enablePreview": false,
   "workbench.startupEditor": "none",
