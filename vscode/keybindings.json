@@ -279,27 +279,27 @@
   //  "key": "ctrl+shift+`",
   //  "command": "workbench.action.terminal.new"
   //},
-  // Panelを開く/閉じる
+  // togglePanel を開く/閉じる
   {
     "key": "ctrl+`",
     "command": "workbench.action.togglePanel"
   },
-  // Panelを 最大化/元のサイズに戻す
+  // togglePanel を最大化/元のサイズに戻す
   {
     "key": "ctrl+shift+`",
     "command": "workbench.action.toggleMaximizedPanel"
-  },
-  // editorTextFocus -> terminal
-  {
-    "key": "ctrl+\\",
-    "command": "workbench.action.terminal.focus",
-    "when": "editorTextFocus"
   },
   // editorTextFocus に移動
   {
     "key": "ctrl+\\",
     "command": "workbench.action.focusActiveEditorGroup",
     "when": "!editorTextFocus"
+  },
+  // editorTextFocus -> terminal
+  {
+    "key": "ctrl+shift+\\",
+    "command": "workbench.action.terminal.focus",
+    "when": "editorTextFocus"
   },
   // cmd + w で vs-code の終了はしない
   {
