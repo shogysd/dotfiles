@@ -19,7 +19,6 @@ github.vscode-pull-request-github
 golang.go
 iocave.monkey-patch
 jsynowiec.vscode-insertdatestring
-lextudio.restructuredtext
 mechatroner.rainbow-csv
 mosapride.zenkaku
 ms-ceintl.vscode-language-pack-ja
