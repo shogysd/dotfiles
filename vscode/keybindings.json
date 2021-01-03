@@ -289,17 +289,17 @@
     "key": "ctrl+shift+`",
     "command": "workbench.action.toggleMaximizedPanel"
   },
-  // フォーカスをターミナルからエディタに変更
+  // editorTextFocus -> terminal
   {
     "key": "ctrl+\\",
     "command": "workbench.action.terminal.focus",
-    "when": "editorFocus"
+    "when": "editorTextFocus"
   },
-  // フォーカスをエディタからターミナルに変更
+  // editorTextFocus に移動
   {
     "key": "ctrl+\\",
     "command": "workbench.action.focusActiveEditorGroup",
-    "when": "terminalFocus"
+    "when": "!editorTextFocus"
   },
   // cmd + w で vs-code の終了はしない
   {
