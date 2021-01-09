@@ -114,5 +114,51 @@
   "terminal.integrated.macOptionIsMeta": true,
   "files.associations": {
     "*.rmd": "markdown"
+  },
+  // languages
+  "[json]": {
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    "editor.suggest.insertMode": "replace",
+    "gitlens.codeLens.scopes": [
+      "document"
+    ],
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[python]": {
+    "gitlens.codeLens.symbolScopes": [
+      "!Module"
+    ],
+    "editor.wordBasedSuggestions": false,
+    "editor.defaultFormatter": "vscode.python"
+  },
+  "[go]": {
+    "editor.insertSpaces": false,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    },
+    "editor.defaultFormatter": "golang.go"
+  },
+  "[yaml]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "editor.autoIndent": "advanced",
+    "gitlens.codeLens.scopes": [
+      "document"
+    ]
+  },
+  "[git-commit]": {
+    "editor.rulers": [
+      72
+    ],
+    "workbench.editor.restoreViewState": false
+  },
+  "[git-rebase]": {
+    "workbench.editor.restoreViewState": false
   }
 }
