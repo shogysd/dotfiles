@@ -48,6 +48,13 @@
   // git
   "git.confirmSync": true,
   "git.enabled": true,
+  // git diff editor (disable)
+  "workbench.editorAssociations": [
+    {
+      "viewType": "default",
+      "filenamePattern": "git-rebase-todo"
+    }
+  ],
   // diffEditor
   "diffEditor.ignoreTrimWhitespace": true,
   "diffEditor.renderSideBySide": false,
@@ -108,7 +115,7 @@
     "WARNING",
     "ERROR"
   ],
-  //code-spell-checker
+  // code-spell-checker
   "cSpell.diagnosticLevel": "Hint",
   // macOC
   "terminal.integrated.macOptionIsMeta": true,
