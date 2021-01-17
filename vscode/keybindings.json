@@ -312,5 +312,22 @@
     "key": "alt+t",
     "command": "insertDateString.insertOwnFormatDateTime",
     "when": "editorTextFocus"
+  },
+  // csv
+  {
+    "key": "ctrl+]",
+    "command": "rainbow-csv.Align",
+    "when": "editorLangId==csv"
+  },
+  {
+    "key": "ctrl+shift+]",
+    "command": "rainbow-csv.RBQL",
+    "when": "editorLangId==csv"
+  },
+  // markdown
+  {
+    "key": "ctrl+]",
+    "command": "markdown.showPreviewToSide",
+    "when": "editorLangId==markdown && !notebookEditorForcused"
   }
 ]
