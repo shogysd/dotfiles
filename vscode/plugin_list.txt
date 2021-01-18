@@ -1,6 +1,7 @@
 CoenraadS.bracket-pair-colorizer-2
 Compulim.vscode-clock
 GitHub.vscode-pull-request-github
+GrapeCity.gc-excelviewer
 Gruntfuggly.todo-tree
 IBM.output-colorizer
 MS-CEINTL.vscode-language-pack-ja
