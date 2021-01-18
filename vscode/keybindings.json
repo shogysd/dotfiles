@@ -316,13 +316,13 @@
   // csv
   {
     "key": "ctrl+]",
-    "command": "csv.preview",
-    "when": "editorLangId==csv || editorLangId==tsv"
+    "command": "rainbow-csv.Align",
+    "when": "editorLangId==csv"
   },
   {
     "key": "ctrl+shift+]",
-    "command": "rainbow-csv.Align",
-    "when": "editorLangId==csv"
+    "command": "csv.preview",
+    "when": "editorLangId==csv || editorLangId==tsv"
   },
   //{
   //  "key": "ctrl+shift+]",
