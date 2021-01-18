@@ -316,17 +316,27 @@
   // csv
   {
     "key": "ctrl+]",
-    "command": "rainbow-csv.Align",
-    "when": "editorLangId==csv"
+    "command": "csv.preview",
+    "when": "editorLangId==csv || editorLangId==tsv"
   },
   {
     "key": "ctrl+shift+]",
-    "command": "rainbow-csv.RBQL",
+    "command": "rainbow-csv.Align",
     "when": "editorLangId==csv"
   },
+  //{
+  //  "key": "ctrl+shift+]",
+  //  "command": "rainbow-csv.RBQL",
+  //  "when": "editorLangId==csv"
+  //},
   // markdown
   {
     "key": "ctrl+]",
+    "command": "markdown.showPreview",
+    "when": "editorLangId==markdown && !notebookEditorForcused"
+  },
+  {
+    "key": "ctrl+shift+]",
     "command": "markdown.showPreviewToSide",
     "when": "editorLangId==markdown && !notebookEditorForcused"
   }
