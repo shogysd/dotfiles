@@ -314,6 +314,11 @@
     "command": "csv.preview",
     "when": "editorLangId==csv || editorLangId==tsv"
   },
+  {
+    "key": "ctrl+]",
+    "command": "csv.clearState",
+    "when": "!textInputFocus"
+  },
   //{
   //  "key": "ctrl+shift+]",
   //  "command": "rainbow-csv.RBQL",

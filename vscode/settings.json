@@ -19,6 +19,7 @@
   "editor.renderIndentGuides": true,
   "editor.folding": true,
   "editor.suggestSelection": "first",
+  "editor.autoClosingBrackets": "beforeWhitespace",
   // terminal
   "terminal.integrated.cursorBlinking": false,
   "terminal.integrated.fontSize": 14,
