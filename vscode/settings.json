@@ -117,6 +117,9 @@
   ],
   // code-spell-checker
   "cSpell.diagnosticLevel": "Hint",
+  // csv-preview
+  "csv-preview.lineNumbers": "source",
+  "csv-preview.resizeColumns": "all",
   // macOC
   "terminal.integrated.macOptionIsMeta": true,
   "files.associations": {

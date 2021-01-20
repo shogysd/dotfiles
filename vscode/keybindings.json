@@ -202,16 +202,6 @@
     "command": "editor.action.clipboardPasteAction",
     "when": "textInputFocus"
   },
-  {
-    "key": "ctrl+x",
-    "command": "editor.action.clipboardCutAction",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "cmd+x",
-    "command": "editor.action.clipboardCutAction",
-    "when": "textInputFocus"
-  },
   // redo, undo
   {
     "key": "ctrl+y",
@@ -329,6 +319,11 @@
   //  "command": "rainbow-csv.RBQL",
   //  "when": "editorLangId==csv"
   //},
+  {
+    "key": "ctrl+[",
+    "command": "rainbow-csv.Shrink",
+    "when": "editorLangId==csv"
+  },
   // markdown
   {
     "key": "ctrl+]",
