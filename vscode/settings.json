@@ -66,6 +66,8 @@
   "extensions.ignoreRecommendations": false,
   // window
   "window.openFilesInNewWindow": "off",
+  "window.openWithoutArgumentsInNewWindow": "on",
+  "window.restoreWindows": "none",
   // files
   "files.exclude": {
     "**/.git": true,
