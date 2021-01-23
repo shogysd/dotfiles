@@ -192,19 +192,19 @@ alias activate='source ./bin/activate'
 ### ------------------- ###
 
 # macOSのPATH
-if [ "$(uname 2>&1)" = "Darwin" ]; then
-    # macOS
-    for p in $(find /Library/Frameworks/Python.framework/Versions/* -maxdepth 1 -name bin | sort -r); do
-        ${p}/python3 --version | awk -F ' ' '{print $NF}' | grep -e a -e b > /dev/null
-        if [ ! $? -eq 0 ]; then
-            # PATH="${p}:$PATH"
-            PATH="$PATH:${p}"
-            break
-        fi
-        version=$(echo ${path} | awk -F '/' '{print $(NF - 1)}')
-        echo "    python${version} bin PATH added"
-    done
-fi
+#if [ "$(uname 2>&1)" = "Darwin" ]; then
+#    # macOS
+#    for p in $(find /Library/Frameworks/Python.framework/Versions/* -maxdepth 1 -name bin | sort -r); do
+#        ${p}/python3 --version | awk -F ' ' '{print $NF}' | grep -e a -e b > /dev/null
+#        if [ ! $? -eq 0 ]; then
+#            # PATH="${p}:$PATH"
+#            PATH="$PATH:${p}"
+#            break
+#        fi
+#        version=$(echo ${path} | awk -F '/' '{print $(NF - 1)}')
+#        echo "    python${version} bin PATH added"
+#    done
+#fi
 
 # virtualenvでpromptを変更しない
 export VIRTUAL_ENV_DISABLE_PROMPT=1
