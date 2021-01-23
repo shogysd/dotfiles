@@ -30,6 +30,7 @@ mkdir -p ${HOME}/.ssh
 mkdir -p ${HOME}/.ssh/local_conf
 mkdir -p ${HOME}/.ssh/controlmaster
 mkdir -p ${HOME}/bin
+mkdir -p ${HOME}/opt
 mkdir -p ${HOME}/.zsh
 
 
