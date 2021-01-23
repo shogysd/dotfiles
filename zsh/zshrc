@@ -74,7 +74,7 @@ precmd() {
 }
 
 # EOFを受け取ってもシェルを終了しない
-#setopt IGNOREEOF
+setopt IGNOREEOF
 
 # プロンプト表示時に変数を展開
 setopt prompt_subst
@@ -205,6 +205,7 @@ alias flush='rm -f *~ .*~ \#*\# \**\*'
 alias cp='cp -i'
 alias pd-clear='dirs -c'
 alias doc='docker'
+alias ex='exit'
 
 # git
 alias gd='cd $(git rev-parse --show-toplevel)'
