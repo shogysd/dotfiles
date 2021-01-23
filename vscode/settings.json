@@ -84,6 +84,7 @@
   },
   "files.autoSave": "onWindowChange",
   "files.trimFinalNewlines": true,
+  "files.hotExit": "off",
   // Compulim.vscode-clock
   "clock.dateFormat": "\tmmm dd yyyy\tHH:MM\t",
   // jsynowiec.vscode-insertdatestring
