@@ -511,6 +511,7 @@ zshaddhistory() {
        || ${cmd} = (hn|hostname)
        || ${cmd} = gd
        || ${cmd} = man
+       || ${cmd} = (ex|exit)
     ]]; then
         return 1
     else
