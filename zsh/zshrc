@@ -74,7 +74,7 @@ precmd() {
 }
 
 # EOFを受け取ってもシェルを終了しない
-setopt IGNOREEOF
+#setopt IGNOREEOF
 
 # プロンプト表示時に変数を展開
 setopt prompt_subst
@@ -250,16 +250,15 @@ export PYTHONUTF8=1
 ### keybind ###
 ### ------- ###
 
-function _zsh_exit() {
-    if [ "${BUFFER}" = " : Type Ctrl-z to leave the shell." ]; then
-        exit
-    elif [ "${BUFFER}" = "" ]; then
-        LBUFFER=" : Type Ctrl-z to leave the shell."
-    fi
-}
-
-zle -N _zsh_exit
-bindkey '^Z' _zsh_exit
+#function _zsh_exit() {
+#    if [ "${BUFFER}" = " : Type Ctrl-z to leave the shell." ]; then
+#        exit
+#    elif [ "${BUFFER}" = "" ]; then
+#        LBUFFER=" : Type Ctrl-z to leave the shell."
+#    fi
+#}
+#zle -N _zsh_exit
+#bindkey '^Z' _zsh_exit
 
 
 
