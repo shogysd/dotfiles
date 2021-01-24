@@ -376,8 +376,8 @@ from sys import exit
 from sys import stdout
 from sys import stderr
 
-if len(argv) != 2:
-    stderr.write("argument error: [" + ", ".join(argv[1:]) + "]")
+if len(argv) < 2:
+    stderr.write("argument error")
     # print("argument error: [" + ", ".join(argv[1:]) + "]" , file=stderr)
     exit(1)
 
@@ -417,8 +417,15 @@ if path.isfile(getenv("HOME") + "/.bash_history"):
 print_hists_dict = {}
 
 for hist in hist_list:
-    if argv[1] in hist["cmd"]:
-        if not bool(hist["dt"]):
+    search_result = True
+
+    for key in argv[1:]:
+        if key not in hist["cmd"]:
+            search_result = False
+            break
+
+    if search_result:
+        if 0 == hist["dt"]:
             dt_str = "____-__-__ __:__:__"
             # dt_str = "    -  -     :  :  "
         else:
@@ -427,6 +434,9 @@ for hist in hist_list:
             t_str= "{:02}:{:02}:{:02}".format(dt.hour, dt.minute, dt.second)
             dt_str = d_str + " " + t_str
         cmd_c_str = hist["cmd"].replace(argv[1], "\033[1;31m" + argv[1] + "\033[0m")
+        #for key in argv[2:]:
+        #    cmd_c_str = cmd_c_str.replace(key, "\033[31m" + key + "\033[0m")
+
         print_hists_dict[hist["cmd"]] = {"dt_int": hist["dt"], "dt_str": dt_str, "cmd_c_str": cmd_c_str}
 
 for print_hist in sorted(print_hists_dict.values(), key=lambda x:x["dt_int"]):
