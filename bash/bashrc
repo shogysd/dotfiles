@@ -369,6 +369,7 @@ function shis() {
     \python -E -- <<'EOF' - "$@"
 from datetime import datetime
 from os import getenv
+from os import path
 from re import search
 from sys import argv
 from sys import exit
@@ -380,26 +381,38 @@ if len(argv) != 2:
     # print("argument error: [" + ", ".join(argv[1:]) + "]" , file=stderr)
     exit(1)
 
-with open(getenv("HOME") + "/.zsh_history") as f:
-    histories = f.readlines()
-
 hist_list = []
-before_line_tail = ""
 
-for hist in histories:
-    if search("^: *[0-9]+:[0-9]+;.*", hist):
-        dt = int(hist.split(":", 2)[1])
-        cmd = hist.split(";")[1]
-        hist_list.append({"dt": dt, "cmd": cmd})
-        before_line_tail = hist[-2:]
-    elif "\\\n" != before_line_tail:
-        dt = 0
-        cmd = hist
-        hist_list.append({"dt": dt, "cmd": cmd})
-        before_line_tail = hist[-2:]
-    else:
-        hist_list[-1]["cmd"] += " " * 23 + hist
-        before_line_tail = hist[-2:]
+if path.isfile(getenv("HOME") + "/.zsh_history"):
+    with open(getenv("HOME") + "/.zsh_history") as f:
+        histories = f.readlines()
+    before_line_tail = ""
+    for hist in histories:
+        if search("^: *[0-9]+:[0-9]+;.*", hist):
+            dt = int(hist.split(":", 2)[1])
+            cmd = hist.split(";")[1]
+            hist_list.append({"dt": dt, "cmd": cmd})
+            before_line_tail = hist[-2:]
+        elif "\\\n" != before_line_tail:
+            dt = 0
+            cmd = hist
+            hist_list.append({"dt": dt, "cmd": cmd})
+            before_line_tail = hist[-2:]
+        else:
+            hist_list[-1]["cmd"] += " " * 23 + hist
+            before_line_tail = hist[-2:]
+
+if path.isfile(getenv("HOME") + "/.bash_history"):
+    with open(getenv("HOME") + "/.bash_history") as f:
+        histories = f.readlines()
+    dt = 0
+    for hist in histories:
+        if search("^#[0-9]+$", hist):
+            dt = int(hist[1:])
+        else:
+            cmd = hist
+            hist_list.append({"dt": dt, "cmd": cmd})
+            dt = 0
 
 print_hists_dict = {}
 
