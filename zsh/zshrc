@@ -56,7 +56,7 @@ PROMPT='
 $(shell_info)
 $(_bashIconWriter)$(_envWriter)\$ '
 
-TMOUT=3
+TMOUT=1
 
 TRAPALRM () {zle reset-prompt
 }
