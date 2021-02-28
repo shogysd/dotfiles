@@ -544,8 +544,7 @@ function _gitRepoPathWriter(){
 
 function _gitBranchPrinter(){
     # Precondition: in git tree
-    # gitBranch=$(git symbolic-ref --short HEAD 2> /dev/null)
-    gitBranch=$(git branch --show-current 2> /dev/null)
+    gitBranch=$(git symbolic-ref --short HEAD 2> /dev/null)
     if [ $? = 0 ]; then
         # defaultBranch=$(git symbolic-ref --short refs/remotes/origin/HEAD 2> /dev/null | xargs basename)
         remoteHead=$(git symbolic-ref --short refs/remotes/origin/HEAD 2> /dev/null)
