@@ -190,6 +190,16 @@ alias py='python3'
 alias python-disable_environment_variable='python3 -E'
 alias activate='source ./bin/activate'
 
+# json beautify
+python_bin_path=$(which python3 || which python)
+python_version=($(${python_bin_path} --version 2>&1 | awk -F ' ' '{print $NF}' | awk -F '.' '{printf "%s %s", $1, $2}'))
+
+if [[ ${python_version[0]} -ge 3 ]] && [[ ${python_version[1]} -ge 9 ]]; then
+    alias json_beautify='${python_bin_path} -m json.tool --no-ensure-ascii --indent 4'
+else
+    alias json_beautify='${python_bin_path} -m json.tool'
+fi
+
 
 
 ### ------------------- ###
