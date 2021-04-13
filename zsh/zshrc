@@ -219,7 +219,7 @@ alias py='python3'
 alias python-disable_environment_variable='python3 -E'
 alias activate='source ./bin/activate'
 
-# json parser
+# json beautify
 python_bin_path=$(which python3 || which python)
 python_version=($(${python_bin_path} --version 2>&1 | awk -F ' ' '{print $NF}' | awk -F '.' '{printf "%s %s", $1, $2}'))
 
