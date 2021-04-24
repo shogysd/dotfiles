@@ -54,6 +54,10 @@
     {
       "viewType": "default",
       "filenamePattern": "git-rebase-todo"
+    },
+    {
+      "viewType": "jupyter.notebook.ipynb",
+      "filenamePattern": "*.ipynb"
     }
   ],
   // diffEditor
