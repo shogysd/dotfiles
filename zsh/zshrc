@@ -82,10 +82,11 @@ PROMPT='
 $prompt_icon '
 
 REPORTTIME=1
-TMOUT=3
 
-TRAPALRM () {zle reset-prompt
-}
+# TMOUT=1
+# TRAPALRM () {
+#    zle reset-prompt
+# }
 
 preexec(){
     PREEXEC_UNIX_TIME=$(date +%s)
@@ -93,7 +94,7 @@ preexec(){
 
 precmd() {
     vcs_info
-    if [ "${PREEXEC_UNIX_TIME}" != "" ] && [ "$(expr $(date +%s) - ${PREEXEC_UNIX_TIME})" -gt 3 ]; then
+    if [ "${PREEXEC_UNIX_TIME}" != "" ] && [ "$(expr $(date +%s) - ${PREEXEC_UNIX_TIME})" -gt 5 ]; then
         echo "\n--"
         echo "$(expr $(date +%s) - ${PREEXEC_UNIX_TIME}) sec"
         echo "--"
