@@ -81,7 +81,8 @@ PROMPT='
 [ $(virtual_window_id)$(virtualenv_name)$vcs_info_msg_0_]
 $prompt_icon '
 
-REPORTTIME=1
+# 実行に指定時間 (s) 以上かかったら詳細を表示
+# REPORTTIME=10
 
 # TMOUT=1
 # TRAPALRM () {
