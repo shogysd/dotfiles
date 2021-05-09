@@ -58,10 +58,10 @@ setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true
 
 # staging されているファイルの変更: %c
-zstyle ':vcs_info:git:*' stagedstr "%F{yellow}stagedstr "
+zstyle ':vcs_info:git:*' stagedstr "%F{yellow}stg "
 
 # staging されていないファイルの変更: %u
-zstyle ':vcs_info:git:*' unstagedstr "%F{red}unstagedstr "
+zstyle ':vcs_info:git:*' unstagedstr "%F{red}unstg "
 
 # リポジトリのhashの取得: %i
 zstyle ':vcs_info:git:*' get-revision true
@@ -81,7 +81,7 @@ local prompt_icon="%(?,%f,%B%F{red})%(!,#,$)%b%f"
 # [ $(virtual_window_id)$(virtualenv_name)$vcs_info_msg_0_]
 # $prompt_icon '
 LPROMPT='
-%n@%m %~ [ $(virtual_window_id)$(virtualenv_name)$vcs_info_msg_0_]
+%m : %~ [ $(virtual_window_id)$(virtualenv_name)$vcs_info_msg_0_]
 $prompt_icon '
 
 PROMPT=${LPROMPT}
