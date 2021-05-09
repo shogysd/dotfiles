@@ -58,10 +58,10 @@ setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true
 
 # staging されているファイルの変更: %c
-zstyle ':vcs_info:git:*' stagedstr "%F{yellow}stg "
+zstyle ':vcs_info:git:*' stagedstr "%F{yellow}"
 
 # staging されていないファイルの変更: %u
-zstyle ':vcs_info:git:*' unstagedstr "%F{red}unstg "
+zstyle ':vcs_info:git:*' unstagedstr "%F{red}"
 
 # リポジトリのhashの取得: %i
 zstyle ':vcs_info:git:*' get-revision true
@@ -71,7 +71,8 @@ zstyle ':vcs_info:git:*' get-revision true
 # %S: リポジトリ内のPATH
 # %b: カレントブランチ
 # zstyle ':vcs_info:git*' formats "{ %c%ugit: %F{green}%r/%S [ %b | %7.7i ]%f } "
-zstyle ':vcs_info:git*' formats "{ %c%u%f[ %r | %b | %7.7i ] } "
+# zstyle ':vcs_info:git*' formats "{ %c%u%f[ %r | %b | %7.7i ] } "
+zstyle ':vcs_info:git*' formats "{ %c%u%r%f | %b | %7.7i } "
 zstyle ':vcs_info:git*' actionformats '[%b|%a]'
 
 local prompt_icon="%(?,%f,%B%F{red})%(!,#,$)%b%f"
@@ -81,7 +82,7 @@ local prompt_icon="%(?,%f,%B%F{red})%(!,#,$)%b%f"
 # [ $(virtual_window_id)$(virtualenv_name)$vcs_info_msg_0_]
 # $prompt_icon '
 LPROMPT='
-%m : %~ [ $(virtual_window_id)$(virtualenv_name)$vcs_info_msg_0_]
+%m %~ [ $(virtual_window_id)$(virtualenv_name)$vcs_info_msg_0_]
 $prompt_icon '
 
 PROMPT=${LPROMPT}
@@ -89,14 +90,14 @@ PROMPT=${LPROMPT}
 
 
 # 実行に指定時間 (s) 以上かかったら詳細を表示
-REPORTTIME=1
+REPORTTIME=10
 # REPORTTIME のフォーマット
 TIMEFMT='
 
----
+--
 $ %J
 %U user / %S system / %P cpu / %*E total
----
+--
 '
 
 # コマンド実行前に実行
