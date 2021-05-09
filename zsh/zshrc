@@ -82,24 +82,41 @@ PROMPT='
 $prompt_icon '
 
 # 実行に指定時間 (s) 以上かかったら詳細を表示
-# REPORTTIME=10
+REPORTTIME=1
+# REPORTTIME のフォーマット
+TIMEFMT='
 
-# TMOUT=1
-# TRAPALRM () {
-#    zle reset-prompt
+---
+$ %J
+%U user / %S system / %P cpu / %*E total
+---
+'
+
+# コマンド実行前に実行
+# preexec(){
+    # コマンド実行時刻をUNIXTIMEで保存
+    # PREEXEC_UNIX_TIME=$(date +%s)
 # }
 
-preexec(){
-    PREEXEC_UNIX_TIME=$(date +%s)
+# コマンド実行後に実行
+precmd() {
+    # コマンド実行直後にvcs情報を更新
+    vcs_info
+    # 実時間遅延情報の表示
+    # if [ "${PREEXEC_UNIX_TIME}" != "" ] && [ "$(expr $(date +%s) - ${PREEXEC_UNIX_TIME})" -gt 10 ]; then
+    #    echo "\n---"
+    #    echo "$(expr $(date +%s) - ${PREEXEC_UNIX_TIME}) sec"
+    #    echo "---"
+    # fi
 }
 
-precmd() {
+# TMOUTごとにTRAPALRMを実行
+TMOUT=1
+TRAPALRM () {
+    # vcs情報を更新
     vcs_info
-    if [ "${PREEXEC_UNIX_TIME}" != "" ] && [ "$(expr $(date +%s) - ${PREEXEC_UNIX_TIME})" -gt 5 ]; then
-        echo "\n--"
-        echo "$(expr $(date +%s) - ${PREEXEC_UNIX_TIME}) sec"
-        echo "--"
-    fi
+    # プロンプトを更新
+    zle reset-prompt
 }
 
 # EOFを受け取ってもシェルを終了しない
@@ -603,10 +620,6 @@ function _dir_status(){
     fi
 }
 
-function _blankLinePrinter(){
-    echo ''
-}
-
 function _screenStatusPrinter(){
     which screen > /dev/null 2>&1
     if [ $? = "0" ]; then
@@ -620,19 +633,19 @@ function _screenStatusPrinter(){
     fi
 }
 
-function _sshScreenStarter(){
-    which screen > /dev/null 2>&1
-    # シェルの深さが1でSSHされている場合に起動
-    if [ $SHLVL = 1 ] && [ "$TERM" != 'dumb' ] && [ "${SSH_CONNECTION}" != "" ] && [ $? = "0" ] && [ -f ~/.screenrc ]; then
-        $(which screen)
-    fi
-}
+# function _sshScreenStarter(){
+#    which screen > /dev/null 2>&1
+#    # シェルの深さが1でSSHされている場合に起動
+#    if [ $SHLVL = 1 ] && [ "$TERM" != 'dumb' ] && [ "${SSH_CONNECTION}" != "" ] && [ $? = "0" ] && [ -f ~/.screenrc ]; then
+#        $(which screen)
+#    fi
+#}
 
 
 ###
 ### 初回のみ表示する内容
 ###
-_blankLinePrinter
-_sshScreenStarter
+echo ''
+# _sshScreenStarter
 _screenStatusPrinter
 _dir_status
