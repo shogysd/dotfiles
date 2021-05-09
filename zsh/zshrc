@@ -76,10 +76,14 @@ zstyle ':vcs_info:git*' actionformats '[%b|%a]'
 local prompt_icon="%(?,%f,%B%F{red})%(!,#,$)%b%f"
 
 # PROMPT="%n@%m $virtual_window_id $virtualenv_name %~ $prompt_icon "
-PROMPT='
+
+LPROMPT='
 %n@%m %~
 [ $(virtual_window_id)$(virtualenv_name)$vcs_info_msg_0_]
 $prompt_icon '
+
+PROMPT=${LPROMPT}
+
 
 # 実行に指定時間 (s) 以上かかったら詳細を表示
 REPORTTIME=1
@@ -325,6 +329,19 @@ export GOPATH=${HOME}/.gopath_global
 ### functiuons ###
 ### ---------- ###
 
+function cpmode(){
+    CPMODE_PROMPT='
+$prompt_icon '
+
+    if [ ${PROMPT} != ${CPMODE_PROMPT} ]; then
+        PROMPT=${CPMODE_PROMPT}
+    else
+        PROMPT=${LPROMPT}
+    fi
+    unset CPMODE_PROMPT
+}
+
+
 function venv(){
     if [ -z ${VIRTUAL_ENV} ] && [ $# = 1 ] && [ -f ${1}/bin/activate ]; then
         source ${1}/bin/activate
@@ -401,37 +418,37 @@ function screen-clean(){
 }
 
 
-function hosts-switch(){
-    if [ -f /etc/hosts ] && [ -f /etc/hosts_BAK ] && [ "$( head -n 1 /etc/hosts | grep '# disable mode' )" ]; then
-        echo "currently disabled"
-        echo -n "change to enable?: y-or-other: "
-        read start
-        if [ -z ${start} ] || [ ${start} != "y" ]; then
-            return 1
-        fi
-        # disable to enable
-        sudo rm -f /etc/hosts && \
-        sudo mv /etc/hosts_BAK /etc/hosts
-        echo "/etc/hosts enabled"
-    elif [ -f /etc/hosts ] && [ ! -f /etc/hosts_BAK ] && [ "$( head -n 1 /etc/hosts | grep -v '# disable mode' )" ]; then
-        echo "currently enabled"
-        echo -n "change to disable?: y-or-other: "
-        read start
-        if [ -z ${start} ] || [ ${start} != "y" ]; then
-            return 1
-        fi
-        # enable to disable
-        sudo mv /etc/hosts /etc/hosts_BAK && \
-        sudo sh -c "echo '# disable mode' > /etc/hosts" && \
-        sudo sh -c "echo '127.0.0.1       localhost'     >> /etc/hosts" && \
-        sudo sh -c "echo '255.255.255.255 broadcasthost' >> /etc/hosts" && \
-        sudo sh -c "echo '::1             localhost'     >> /etc/hosts"
-        echo "/etc/hosts disabled"
-    else
-        echo error
-    fi
-    unset start
-}
+#function hosts-switch(){
+#    if [ -f /etc/hosts ] && [ -f /etc/hosts_BAK ] && [ "$( head -n 1 /etc/hosts | grep '# disable mode' )" ]; then
+#        echo "currently disabled"
+#        echo -n "change to enable?: y-or-other: "
+#        read start
+#        if [ -z ${start} ] || [ ${start} != "y" ]; then
+#            return 1
+#        fi
+#        # disable to enable
+#        sudo rm -f /etc/hosts && \
+#        sudo mv /etc/hosts_BAK /etc/hosts
+#        echo "/etc/hosts enabled"
+#    elif [ -f /etc/hosts ] && [ ! -f /etc/hosts_BAK ] && [ "$( head -n 1 /etc/hosts | grep -v '# disable mode' )" ]; then
+#        echo "currently enabled"
+#        echo -n "change to disable?: y-or-other: "
+#        read start
+#        if [ -z ${start} ] || [ ${start} != "y" ]; then
+#            return 1
+#        fi
+#        # enable to disable
+#        sudo mv /etc/hosts /etc/hosts_BAK && \
+#        sudo sh -c "echo '# disable mode' > /etc/hosts" && \
+#        sudo sh -c "echo '127.0.0.1       localhost'     >> /etc/hosts" && \
+#        sudo sh -c "echo '255.255.255.255 broadcasthost' >> /etc/hosts" && \
+#        sudo sh -c "echo '::1             localhost'     >> /etc/hosts"
+#        echo "/etc/hosts disabled"
+#    else
+#        echo error
+#    fi
+#    unset start
+#}
 
 
 function gitignore_global-switch(){
