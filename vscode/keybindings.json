@@ -30,6 +30,32 @@
     "command": "cursorLeft",
     "when": "textInputFocus"
   },
+  // 入力補完
+  {
+    "key": "tab",
+    "command": "selectNextSuggestion",
+    "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "selectNextSuggestion",
+    "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+  },
+  {
+    "key": "shift+tab",
+    "command": "selectPrevSuggestion",
+    "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "selectPrevSuggestion",
+    "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+  },
+  {
+    "key": "alt+space",
+    "command": "hideSuggestWidget",
+    "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+  },
   // カーソルの移動 (単語単位)
   {
     "key": "ctrl+shift+f",

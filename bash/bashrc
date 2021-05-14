@@ -70,7 +70,7 @@ export BASICINFO="$(whoami)@$(hostname | sed -e 's/\.local//g')"
 export HISTCONTROL=ignoreboth
 
 # 履歴に保存しないコマンド
-export HISTIGNORE='ls':'la':'ll':'shis':'history':'hn':'hostname':'gd':'man':'ex':'exit'
+export HISTIGNORE='ls':'la':'ll':'shis':'history':'hn':'hostname':'gd':'man':'ex':'exit':'z':'zz':'zzz':'zzzz':'zzzzz'
 
 # プロンプトの表示前に実行するコマンド
 PROMPT_COMMAND='history -a'
@@ -177,6 +177,10 @@ alias cp='cp -i'
 alias pd-clear='dirs -c'
 alias doc='docker'
 alias ex='exit'
+alias zz='exit'
+alias zzz='exit'
+alias zzzz='exit'
+alias zzzzz='exit'
 
 # git
 alias gd='cd $(git rev-parse --show-toplevel)'
@@ -185,6 +189,19 @@ alias gd='cd $(git rev-parse --show-toplevel)'
 alias py='python3'
 alias python-disable_environment_variable='python3 -E'
 alias activate='source ./bin/activate'
+
+# json beautify
+python_bin_path=$(which python3 || which python)
+python_version=($(${python_bin_path} --version 2>&1 | awk -F ' ' '{print $NF}' | awk -F '.' '{printf "%s %s", $1, $2}'))
+
+if [[ ${python_version[0]} -ge 3 ]] && [[ ${python_version[1]} -ge 9 ]]; then
+    alias jb="${python_bin_path} -m json.tool --no-ensure-ascii --indent 4"
+else
+    alias jb="${python_bin_path} -m json.tool"
+fi
+
+unset python_bin_path
+unset python_version
 
 
 
@@ -543,12 +560,15 @@ function _gitBranchPrinter(){
     gitBranch=$(git symbolic-ref --short HEAD 2> /dev/null)
     if [ $? = 0 ]; then
         # defaultBranch=$(git symbolic-ref --short refs/remotes/origin/HEAD 2> /dev/null | xargs basename)
-        defaultBranch=$(git symbolic-ref --short refs/remotes/origin/HEAD 2> /dev/null | awk -F '/' '{print $NF}')
-        if [ $? = 0 ]; then
-            defaultBranch="master"
+        remoteHead=$(git symbolic-ref --short refs/remotes/origin/HEAD 2> /dev/null)
+        if [ $? != 0 ]; then
+            defaultBranch=""
+        else
+            defaultBranch=$(echo ${remoteHead} | awk -F '/' '{print $NF}')
         fi
-        if [ ${gitBranch} = ${defaultBranch} ]; then
-            echo -n "${OSDEP_ESC_CODE}[0;33m${defaultBranch}${OSDEP_ESC_CODE}[0;39m"
+
+        if [ "${gitBranch}" = "${defaultBranch}" ]; then
+            echo -n "${OSDEP_ESC_CODE}[0;33m${gitBranch}${OSDEP_ESC_CODE}[0;39m"
         else
             echo -n "${gitBranch}"
         fi

@@ -259,6 +259,8 @@ alias flush='rm -f *~ .*~ \#*\# \**\*'
 alias cp='cp -i'
 alias pd-clear='dirs -c'
 alias dk='docker'
+alias doc='docker'
+alias ex='exit'
 alias zz='exit'
 alias zzz='exit'
 alias zzzz='exit'
@@ -616,7 +618,7 @@ zshaddhistory() {
        || ${cmd} = (hn|hostname)
        || ${cmd} = gd
        || ${cmd} = man
-       || ${cmd} = (ex|exit)
+       || ${cmd} = (z|zz|zzz|zzzz|zzzzz|ex|exit)
     ]]; then
         return 1
     else

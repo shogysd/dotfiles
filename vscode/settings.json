@@ -54,6 +54,10 @@
     {
       "viewType": "default",
       "filenamePattern": "git-rebase-todo"
+    },
+    {
+      "viewType": "jupyter.notebook.ipynb",
+      "filenamePattern": "*.ipynb"
     }
   ],
   // diffEditor
@@ -95,6 +99,7 @@
   "C_Cpp.clang_format_fallbackStyle": "Google",
   // ms-python.python
   "python.formatting.provider": "autopep8",
+  "python.pythonPath": "/usr/local/bin/python3",
   "workbench.statusBar.feedback.visible": false,
   // bracket-pair-colorizer-2
   "bracket-pair-colorizer-2.forceIterationColorCycle": false,
@@ -149,7 +154,7 @@
       "!Module"
     ],
     "editor.wordBasedSuggestions": false,
-    "editor.defaultFormatter": "vscode.python"
+    "editor.defaultFormatter": "ms-python.python",
   },
   "[go]": {
     "editor.insertSpaces": false,
