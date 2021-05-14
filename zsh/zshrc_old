@@ -51,80 +51,26 @@ done
 ### ---------------- ###
 ### zsh environments ###
 ### ---------------- ###
-autoload -Uz vcs_info
-setopt prompt_subst
 
-# vcsinfoの有効化
-zstyle ':vcs_info:git:*' check-for-changes true
+PROMPT='
+$(shell_info)
+$(_bashIconWriter)$(_envWriter)\$ '
 
-# staging されているファイルの変更: %c
-zstyle ':vcs_info:git:*' stagedstr "%F{yellow}"
+TMOUT=3
 
-# staging されていないファイルの変更: %u
-zstyle ':vcs_info:git:*' unstagedstr "%F{red}"
-
-# リポジトリのhashの取得: %i
-zstyle ':vcs_info:git:*' get-revision true
-
-# %r: リポジトリ名
-# %R: リポジトリ名 ( PATH付き )
-# %S: リポジトリ内のPATH
-# %b: カレントブランチ
-# zstyle ':vcs_info:git*' formats "{ %c%ugit: %F{green}%r/%S [ %b | %7.7i ]%f } "
-# zstyle ':vcs_info:git*' formats "{ %c%u%f[ %r | %b | %7.7i ] } "
-zstyle ':vcs_info:git*' formats "{ %c%u%r%f | %b | %7.7i } "
-zstyle ':vcs_info:git*' actionformats '[%b|%a]'
-
-local prompt_icon="%(?,%f,%B%F{red})%(!,#,$)%b%f"
-
-# LPROMPT='
-# %n@%m %~
-# [ $(virtual_window_id)$(virtualenv_name)$vcs_info_msg_0_]
-# $prompt_icon '
-LPROMPT='
-%m %~ [ $(virtual_window_id)$(virtualenv_name)$vcs_info_msg_0_]
-$prompt_icon '
-
-PROMPT=${LPROMPT}
-# RPROMPT='%D{%b/%d/%Y} %*'
-
-
-# 実行に指定時間 (s) 以上かかったら詳細を表示
-REPORTTIME=10
-# REPORTTIME のフォーマット
-TIMEFMT='
-
---
-$ %J
-%U user / %S system / %P cpu / %*E total
---
-'
-
-# コマンド実行前に実行
-# preexec(){
-    # コマンド実行時刻をUNIXTIMEで保存
-    # PREEXEC_UNIX_TIME=$(date +%s)
-# }
-
-# コマンド実行後に実行
-precmd() {
-    # コマンド実行直後にvcs情報を更新
-    vcs_info
-    # 実時間遅延情報の表示
-    # if [ "${PREEXEC_UNIX_TIME}" != "" ] && [ "$(expr $(date +%s) - ${PREEXEC_UNIX_TIME})" -gt 10 ]; then
-    #    echo "\n---"
-    #    echo "$(expr $(date +%s) - ${PREEXEC_UNIX_TIME}) sec"
-    #    echo "---"
-    # fi
+TRAPALRM () {zle reset-prompt
 }
 
-# TMOUTごとにTRAPALRMを実行
-TMOUT=1
-TRAPALRM () {
-    # vcs情報を更新
-    vcs_info
-    # プロンプトを更新
-    zle reset-prompt
+preexec(){
+    PREEXEC_UNIX_TIME=$(date +%s)
+}
+
+precmd() {
+    if [ "${PREEXEC_UNIX_TIME}" != "" ] && [ "$(expr $(date +%s) - ${PREEXEC_UNIX_TIME})" -gt 3 ]; then
+        echo "\n--"
+        echo "$(expr $(date +%s) - ${PREEXEC_UNIX_TIME}) sec"
+        echo "--"
+    fi
 }
 
 # EOFを受け取ってもシェルを終了しない
@@ -258,13 +204,8 @@ alias hn='hostname'
 alias flush='rm -f *~ .*~ \#*\# \**\*'
 alias cp='cp -i'
 alias pd-clear='dirs -c'
-alias dk='docker'
 alias doc='docker'
 alias ex='exit'
-alias zz='exit'
-alias zzz='exit'
-alias zzzz='exit'
-alias zzzzz='exit'
 
 # git
 alias gd='cd $(git rev-parse --show-toplevel)'
@@ -274,18 +215,6 @@ alias py='python3'
 alias python-disable_environment_variable='python3 -E'
 alias activate='source ./bin/activate'
 
-# json beautify
-python_bin_path=$(which python3 || which python)
-python_version=($(${python_bin_path} --version 2>&1 | awk -F ' ' '{print $NF}' | awk -F '.' '{printf "%s %s", $1, $2}'))
-
-if [[ ${python_version[0]} -ge 3 ]] && [[ ${python_version[1]} -ge 9 ]]; then
-    alias jb="${python_bin_path} -m json.tool --no-ensure-ascii --indent 4"
-else
-    alias jb="${python_bin_path} -m json.tool"
-fi
-
-unset python_bin_path
-unset python_version
 
 
 ### ------------------- ###
@@ -346,19 +275,6 @@ export GOPATH=${HOME}/.gopath_global
 ### ---------- ###
 ### functiuons ###
 ### ---------- ###
-
-function cpmode(){
-    CPMODE_PROMPT='
-$prompt_icon '
-
-    if [ ${PROMPT} != ${CPMODE_PROMPT} ]; then
-        PROMPT=${CPMODE_PROMPT}
-    else
-        PROMPT=${LPROMPT}
-    fi
-    unset CPMODE_PROMPT
-}
-
 
 function venv(){
     if [ -z ${VIRTUAL_ENV} ] && [ $# = 1 ] && [ -f ${1}/bin/activate ]; then
@@ -436,37 +352,37 @@ function screen-clean(){
 }
 
 
-#function hosts-switch(){
-#    if [ -f /etc/hosts ] && [ -f /etc/hosts_BAK ] && [ "$( head -n 1 /etc/hosts | grep '# disable mode' )" ]; then
-#        echo "currently disabled"
-#        echo -n "change to enable?: y-or-other: "
-#        read start
-#        if [ -z ${start} ] || [ ${start} != "y" ]; then
-#            return 1
-#        fi
-#        # disable to enable
-#        sudo rm -f /etc/hosts && \
-#        sudo mv /etc/hosts_BAK /etc/hosts
-#        echo "/etc/hosts enabled"
-#    elif [ -f /etc/hosts ] && [ ! -f /etc/hosts_BAK ] && [ "$( head -n 1 /etc/hosts | grep -v '# disable mode' )" ]; then
-#        echo "currently enabled"
-#        echo -n "change to disable?: y-or-other: "
-#        read start
-#        if [ -z ${start} ] || [ ${start} != "y" ]; then
-#            return 1
-#        fi
-#        # enable to disable
-#        sudo mv /etc/hosts /etc/hosts_BAK && \
-#        sudo sh -c "echo '# disable mode' > /etc/hosts" && \
-#        sudo sh -c "echo '127.0.0.1       localhost'     >> /etc/hosts" && \
-#        sudo sh -c "echo '255.255.255.255 broadcasthost' >> /etc/hosts" && \
-#        sudo sh -c "echo '::1             localhost'     >> /etc/hosts"
-#        echo "/etc/hosts disabled"
-#    else
-#        echo error
-#    fi
-#    unset start
-#}
+function hosts-switch(){
+    if [ -f /etc/hosts ] && [ -f /etc/hosts_BAK ] && [ "$( head -n 1 /etc/hosts | grep '# disable mode' )" ]; then
+        echo "currently disabled"
+        echo -n "change to enable?: y-or-other: "
+        read start
+        if [ -z ${start} ] || [ ${start} != "y" ]; then
+            return 1
+        fi
+        # disable to enable
+        sudo rm -f /etc/hosts && \
+        sudo mv /etc/hosts_BAK /etc/hosts
+        echo "/etc/hosts enabled"
+    elif [ -f /etc/hosts ] && [ ! -f /etc/hosts_BAK ] && [ "$( head -n 1 /etc/hosts | grep -v '# disable mode' )" ]; then
+        echo "currently enabled"
+        echo -n "change to disable?: y-or-other: "
+        read start
+        if [ -z ${start} ] || [ ${start} != "y" ]; then
+            return 1
+        fi
+        # enable to disable
+        sudo mv /etc/hosts /etc/hosts_BAK && \
+        sudo sh -c "echo '# disable mode' > /etc/hosts" && \
+        sudo sh -c "echo '127.0.0.1       localhost'     >> /etc/hosts" && \
+        sudo sh -c "echo '255.255.255.255 broadcasthost' >> /etc/hosts" && \
+        sudo sh -c "echo '::1             localhost'     >> /etc/hosts"
+        echo "/etc/hosts disabled"
+    else
+        echo error
+    fi
+    unset start
+}
 
 
 function gitignore_global-switch(){
@@ -618,7 +534,7 @@ zshaddhistory() {
        || ${cmd} = (hn|hostname)
        || ${cmd} = gd
        || ${cmd} = man
-       || ${cmd} = (z|zz|zzz|zzzz|zzzzz|ex|exit)
+       || ${cmd} = (ex|exit)
     ]]; then
         return 1
     else
@@ -632,28 +548,90 @@ zshaddhistory() {
 ### prompt functiuons ###
 ### ----------------- ###
 
-function virtual_window_id(){
-    if [ ! -z "$WINDOW" ]; then
-        echo -n "{ vwid: "`echo -n $WINDOW`" } "
-    fi
-}
+export BASICINFO="$(whoami)@$(hostname | sed -e 's/\.local//g')"
 
-function virtualenv_name(){
-    if [ ! -z "$VIRTUAL_ENV" ]; then
-        echo -n "{ venv: "`echo -n $VIRTUAL_ENV | xargs basename`" } "
-    fi
-}
-
-function _dir_status(){
-    if [ `ls | wc -w` = 0 ]; then
-        echo -e "Current directory is clean."
-    elif [ "$(uname 2>&1)" = "Darwin" ]; then
-        ls -G
+function shell_info(){
+    if ( ! $(git rev-parse --is-inside-work-tree > /dev/null 2>&1) ); then
+        echo -e "${BASICINFO}  ( $(_pathWriter) )"
     else
-        # Linux
-        ls --color=auto
+        echo -e "${BASICINFO}  ( $(_gitRepoPathWriter) ) < $(_gitBranchPrinter) | $(_gitHashPrinter) >"
     fi
 }
+
+
+function _pathWriter(){
+    if [ "$( pwd | grep ${HOME} )" ]; then
+        pwd | sed "s\`${HOME}\`~\`g"
+    else
+        pwd
+    fi
+}
+
+
+function _gitRepoPathWriter(){
+    # Precondition: in git tree
+    if [ -z "$(git status --porcelain 2> /dev/null)" ]; then
+        # branch is clean
+        if [ -f ~/.gitignore_global ]; then
+            # ~/.gitignore_global is enabled
+            echo -n "git: "
+        else
+            # ~/.gitignore_global is disabled
+            echo -ne "${OSDEP_ESC_CODE}[0;39;7mgit:${OSDEP_ESC_CODE}[0;39m "
+        fi
+    else
+        # branch is not clean
+        if [ -f ~/.gitignore_global ]; then
+            # ~/.gitignore_global is enabled
+            echo -ne "${OSDEP_ESC_CODE}[1;31mgit:${OSDEP_ESC_CODE}[0;39m "
+        else
+            # ~/.gitignore_global is disabled
+            echo -ne "${OSDEP_ESC_CODE}[1;31;7mgit:${OSDEP_ESC_CODE}[0;39m "
+        fi
+    fi
+    git_path_info=($(git rev-parse --show-toplevel --show-prefix 2> /dev/null))
+    echo ${git_path_info[1]} | xargs basename | xargs echo -n
+    echo -n "/"${git_path_info[2]}
+}
+
+
+function _gitBranchPrinter(){
+    # Precondition: in git tree
+    gitBranch=$(git symbolic-ref --short HEAD 2> /dev/null)
+    if [ $? = 0 ]; then
+        # defaultBranch=$(git symbolic-ref --short refs/remotes/origin/HEAD 2> /dev/null | xargs basename)
+        defaultBranch=$(git symbolic-ref --short refs/remotes/origin/HEAD 2> /dev/null | awk -F '/' '{print $NF}')
+        if [ $? = 0 ]; then
+            defaultBranch="master"
+        fi
+        if [ ${gitBranch} = ${defaultBranch} ]; then
+            echo -n "${OSDEP_ESC_CODE}[0;33m${defaultBranch}${OSDEP_ESC_CODE}[0;39m"
+        else
+            echo -n "${gitBranch}"
+        fi
+    else
+        echo -n "${OSDEP_ESC_CODE}[0;36mdetached${OSDEP_ESC_CODE}[0;39m"
+    fi
+}
+
+
+function _gitHashPrinter(){
+    # Precondition: in git tree
+    gitHash=$(git rev-parse --short HEAD 2> /dev/null)
+    if [ $? = 0 ]; then
+        echo -n "${gitHash}"
+    else
+        echo -n "Not committed"
+    fi
+}
+
+
+function _envWriter(){
+    if [ ! -z "$VIRTUAL_ENV" ]; then
+        echo -n "[ venv: "`echo -n $VIRTUAL_ENV | xargs basename`" ] "
+    fi
+}
+
 
 function _screenStatusPrinter(){
     which screen > /dev/null 2>&1
@@ -668,19 +646,46 @@ function _screenStatusPrinter(){
     fi
 }
 
-# function _sshScreenStarter(){
-#    which screen > /dev/null 2>&1
-#    # シェルの深さが1でSSHされている場合に起動
-#    if [ $SHLVL = 1 ] && [ "$TERM" != 'dumb' ] && [ "${SSH_CONNECTION}" != "" ] && [ $? = "0" ] && [ -f ~/.screenrc ]; then
-#        $(which screen)
-#    fi
-#}
+function _sshScreenStarter(){
+    which screen > /dev/null 2>&1
+    # シェルの深さが1でSSHされている場合に起動
+    if [ $SHLVL = 1 ] && [ "$TERM" != 'dumb' ] && [ "${SSH_CONNECTION}" != "" ] && [ $? = "0" ] && [ -f ~/.screenrc ]; then
+        $(which screen)
+    fi
+}
+
+
+function _bashIconWriter(){
+    if [ "${SHELL_NAME}" = "bash" ]; then
+        echo -n 'bash '
+    elif [ "${SHELL_NAME}" = "zsh" ]; then
+        echo -n 'zsh '
+    else
+        echo "SHELL_NAME is '${SHELL_NAME}'"
+    fi
+}
+
+
+function _dir_status(){
+    if [ `ls | wc -w` = 0 ]; then
+        echo -e "Current directory is clean."
+    elif [ "$(uname 2>&1)" = "Darwin" ]; then
+        ls -G
+    else
+        # Linux
+        ls --color=auto
+    fi
+}
+
+function _blankLinePrinter(){
+    echo ''
+}
 
 
 ###
 ### 初回のみ表示する内容
 ###
-echo ''
-# _sshScreenStarter
+_blankLinePrinter
+_sshScreenStarter
 _screenStatusPrinter
 _dir_status
