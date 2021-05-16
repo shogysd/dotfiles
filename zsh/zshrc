@@ -75,13 +75,16 @@ zstyle ':vcs_info:git:*' get-revision true
 zstyle ':vcs_info:git*' formats "{ %c%u%r%f | %b | %7.7i } "
 zstyle ':vcs_info:git*' actionformats '[%b|%a]'
 
-local prompt_icon="%(?,%f,%B%F{red})%(!,#,$)%b%f"
+local most_recently_executed_status="%(?,,
+%B%F{red}--------------------%f%b)"
+# local prompt_icon="%(?,%f,%B%F{red})%(!,#,$)%b%f"
+local prompt_icon="%(!,#,$)"
 
 # LPROMPT='
 # %n@%m %~
 # [ $(virtual_window_id)$(virtualenv_name)$vcs_info_msg_0_]
 # $prompt_icon '
-LPROMPT='
+LPROMPT='$most_recently_executed_status
 %m %~ [ $(virtual_window_id)$(virtualenv_name)$vcs_info_msg_0_]
 $prompt_icon '
 
