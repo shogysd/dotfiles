@@ -10,6 +10,7 @@
   "editor.renderLineHighlight": "all",
   "editor.tabSize": 4,
   "editor.minimap.enabled": false,
+  "editor.minimap.showSlider": "always",
   "editor.renderWhitespace": "boundary",
   "editor.trimAutoWhitespace": true,
   "editor.wrappingIndent": "indent",
@@ -90,7 +91,7 @@
   "files.trimFinalNewlines": true,
   "files.hotExit": "off",
   // Compulim.vscode-clock
-  "clock.dateFormat": "\tmmm dd yyyy\tHH:MM\t",
+  "clock.dateFormat": "\tmmm dd yyyy\tHH:MM:ss  \t",
   // jsynowiec.vscode-insertdatestring
   "insertDateString.format": "'Time-stamp: <'YYYY-MM-DD hh:mm:ss ZZZ'>'",
   // rafaelmaiolla.remote-vscode;
