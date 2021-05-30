@@ -607,6 +607,133 @@ EOF
 }
 
 
+function code_autoformat_update() {
+    # Support: 2.x and 3.x (both)
+    \python -E -- <<'EOF' - "$@"
+import platform
+import sys
+from os.path import expanduser
+from os.path import isfile
+
+
+def help_printer():
+    print(
+        """
+-e : enable auto format
+-d : disable auto format
+-s : switch auto format
+
+-----
+
+target configs
+  - editor.formatOnSave
+  - editor.formatOnType
+  - editor.formatOnPaste
+"""
+    )
+
+
+def get_config_filepath():
+    home = expanduser("~")
+    kernel = platform.system()
+    if isfile(home + "/dotfiles/vscode/settings.json"):
+        return home + "/dotfiles/vscode/settings.json"
+    elif "Darwin" == kernel:
+        return home + "/Library/Application Support/Code/User/settings.json"
+    elif "Linux" == kernel:
+        return home + "/.config/Code/User/settings.json"
+    else:
+        False
+
+
+def arg_parser():
+    if 2 == len(sys.argv):
+        if "-e" == sys.argv[1]:
+            return {"result": True, "ope": "enable"}
+        elif "-d" == sys.argv[1]:
+            return {"result": True, "ope": "disable"}
+        elif "-s" == sys.argv[1]:
+            return {"result": True, "ope": "switch"}
+        else:
+            help_printer()
+            return {"result": False}
+    else:
+        help_printer()
+        return {"result": False}
+
+
+def main(ope, filepath):
+    new_config = []
+
+    target_configs = {
+        "editor.formatOnSave",
+        "editor.formatOnType",
+        "editor.formatOnPaste"
+    }
+
+    config_up_dict = {
+        "enable": {
+            "true": "true",
+            "true,": "true,",
+            "false": "true",
+            "false,": "true,"
+        },
+        "disable": {
+            "true": "false",
+            "true,": "false,",
+            "false": "false",
+            "false,": "false,"
+        },
+        "switch": {
+            "true": "false",
+            "true,": "false,",
+            "false": "true",
+            "false,": "true,"
+        }
+    }
+
+    with open(filepath, "r") as f:
+        code_config = [i.rstrip() for i in f.readlines()]
+
+    for code_config_line in code_config:
+        for target_config in target_configs:
+            if target_config in code_config_line:
+                tmp = code_config_line.split(": ")
+                tmp[1] = config_up_dict[ope][code_config_line.split(": ")[1]]
+                # print(": ".join(tmp))
+                new_config.append(": ".join(tmp) + "\n")
+                break
+        else:
+            # print(code_config_line)
+            new_config.append(code_config_line + "\n")
+    return new_config
+
+
+def config_export(new_config, filepath):
+    with open(filepath, "w") as f:
+        f.write("".join(new_config))
+    return True
+
+
+config_filepath = get_config_filepath()
+if not config_filepath:
+    sys.exit(1)
+
+result = arg_parser()
+if not result["result"]:
+    sys.exit(2)
+
+new_config = main(result["ope"], config_filepath)
+if not new_config:
+    sys.exit(3)
+
+result = config_export(new_config, config_filepath)
+if not result:
+    sys.exit(4)
+EOF
+}
+
+
 
 ### -------------- ###
 ### zsh functiuons ###
