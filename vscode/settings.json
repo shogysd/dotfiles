@@ -51,16 +51,10 @@
   "git.confirmSync": true,
   "git.enabled": true,
   // git diff editor (disable)
-  "workbench.editorAssociations": [
-    {
-      "viewType": "default",
-      "filenamePattern": "git-rebase-todo"
-    },
-    {
-      "viewType": "jupyter.notebook.ipynb",
-      "filenamePattern": "*.ipynb"
-    }
-  ],
+  "workbench.editorAssociations": {
+    "git-rebase-todo": "default",
+    "*.ipynb": "jupyter.notebook.ipynb"
+  },
   // diffEditor
   "diffEditor.ignoreTrimWhitespace": true,
   "diffEditor.renderSideBySide": false,
