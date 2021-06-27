@@ -89,11 +89,27 @@
     "command": "cursorBottom",
     "when": "textInputFocus"
   },
+  // マルチカーソル
+  {
+    "key": "ctrl+alt+p",
+    "command": "editor.action.insertCursorAbove",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+n",
+    "command": "editor.action.insertCursorBelow",
+    "when": "editorTextFocus"
+  },
   // 文字の削除
   {
     "key": "ctrl+d",
     "command": "deleteRight",
     "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+a",
+    "command": "commandId",
+    "when": "editorTextFocus"
   },
   {
     "key": "ctrl+h",
@@ -104,16 +120,6 @@
   {
     "key": "ctrl+w",
     "command": "deleteWordLeft",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+shift+h",
-    "command": "deleteWordLeft",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+shift+d",
-    "command": "deleteWordRight",
     "when": "textInputFocus"
   },
   // 文字の削除 (行単位)
@@ -129,22 +135,22 @@
   },
   // 選択
   {
-    "key": "alt+p",
+    "key": "ctrl+shift+p",
     "command": "cursorUpSelect",
     "when": "textInputFocus"
   },
   {
-    "key": "alt+n",
+    "key": "ctrl+shift+n",
     "command": "cursorDownSelect",
     "when": "textInputFocus"
   },
   {
-    "key": "alt+f",
+    "key": "ctrl+shift+f",
     "command": "cursorRightSelect",
     "when": "textInputFocus"
   },
   {
-    "key": "alt+b",
+    "key": "ctrl+shift+b",
     "command": "cursorLeftSelect",
     "when": "textInputFocus"
   },
@@ -181,31 +187,36 @@
     "command": "editor.action.selectAll",
     "when": "textInputFocus"
   },
-  // 検索
+  // 検索・置換
   {
-    "key": "ctrl+s",
+    "key": "ctrl+shift+f",
     "command": "actions.find",
-    "when": "textInputFocus"
+    "when": "editorForcus || editorIsOpen"
   },
   {
-    "key": "ctrl+r",
+    "key": "cmd+f",
     "command": "actions.find",
-    "when": "textInputFocus"
+    "when": "editorForcus || editorIsOpen"
   },
   {
-    "key": "alt+shift+s",
+    "key": "ctrl+shift+h",
     "command": "editor.action.startFindReplaceAction",
-    "when": "textInputFocus"
+    "when": "editorForcus || editorIsOpen"
   },
   {
-    "key": "ctrl+shift+r",
+    "key": "cmd+h",
     "command": "editor.action.startFindReplaceAction",
-    "when": "textInputFocus"
+    "when": "editorForcus || editorIsOpen"
   },
   {
-    "key": "alt+shift+5",
-    "command": "editor.action.startFindReplaceAction",
-    "when": "textInputFocus"
+    "key": "alt+h",
+    "command": "editor.action.addSelectionToNextFindMatch",
+    "when": "editorFocus"
+  },
+  {
+    "key": "cmd+d",
+    "command": "-editor.action.addSelectionToNextFindMatch",
+    "when": "editorFocus"
   },
   // copy, paste, cut
   {
@@ -262,18 +273,13 @@
   },
   // 保存
   {
-    "key": "ctrl+x ctrl+s",
+    "key": "ctrl+s",
     "command": "workbench.action.files.save",
     "when": "!terminalFocus"
   },
   {
-    "key": "ctrl+x ctrl+shift+s",
-    "command": "workbench.action.files.saveWithoutFormatting",
-    "when": "!terminalFocus"
-  },
-  {
-    "key": "ctrl+x ctrl+a",
-    "command": "workbench.action.files.saveAll",
+    "key": "ctrl+x ctrl+s",
+    "command": "workbench.action.files.save",
     "when": "!terminalFocus"
   },
   // ウィンドウを閉じる
@@ -287,15 +293,6 @@
     "key": "cmd+t",
     "command": "workbench.action.terminal.new"
   },
-  // {
-  //  "key": "ctrl+`",
-  //  "command": "workbench.action.terminal.new"
-  //},
-  //{
-  //  "key": "ctrl+shift+`",
-  //  "command": "workbench.action.terminal.new"
-  //},
-  // togglePanel を開く/閉じる
   {
     "key": "ctrl+`",
     "command": "workbench.action.togglePanel"
@@ -345,11 +342,6 @@
     "command": "csv.clearState",
     "when": "!textInputFocus"
   },
-  //{
-  //  "key": "ctrl+shift+]",
-  //  "command": "rainbow-csv.RBQL",
-  //  "when": "editorLangId==csv"
-  //},
   {
     "key": "ctrl+[",
     "command": "rainbow-csv.Shrink",
