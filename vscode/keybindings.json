@@ -56,17 +56,6 @@
     "command": "hideSuggestWidget",
     "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
   },
-  // カーソルの移動 (単語単位)
-  {
-    "key": "ctrl+shift+f",
-    "command": "cursorWordEndRight",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+shift+b",
-    "command": "cursorWordEndLeft",
-    "when": "textInputFocus"
-  },
   // カーソルの移動 (行単位)
   {
     "key": "ctrl+a",
@@ -105,11 +94,6 @@
     "key": "ctrl+d",
     "command": "deleteRight",
     "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+a",
-    "command": "commandId",
-    "when": "editorTextFocus"
   },
   {
     "key": "ctrl+h",
