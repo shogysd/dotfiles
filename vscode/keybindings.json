@@ -281,10 +281,10 @@
     "key": "ctrl+`",
     "command": "workbench.action.togglePanel"
   },
-  {
-    "key": "ctrl+shift+`",
-    "command": "workbench.action.createTerminalEditor"
-  },
+  //{
+  //  "key": "ctrl+shift+`",
+  //  "command": "workbench.action.createTerminalEditor"
+  //},
   // editor group
   //// 分割
   {
