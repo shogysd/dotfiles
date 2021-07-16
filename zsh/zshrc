@@ -803,11 +803,11 @@ function _screenStatusPrinter(){
 
 function _git_untracked_file(){
     # git status -s 2> /dev/null | grep "^??" > /dev/null 2>&1
-    untracked_files=$(git status -s 2> /dev/null | grep "^??" 2>/dev/null)
+    git status -s 2> /dev/null | grep "^??" 2>/dev/null
     if [ $? = 0 ]; then
         # untracked file found
         # echo -e "${OSDEP_ESC_CODE}[1;35mUT${OSDEP_ESC_CODE}[0;39m |"
-        echo -e "| ${OSDEP_ESC_CODE}[1;35muntracked: $(echo ${untracked_files} | wc -l | tr -d ' ')${OSDEP_ESC_CODE}[0;39m "
+        echo -e "| ${OSDEP_ESC_CODE}[1;35muntracked${OSDEP_ESC_CODE}[0;39m "
     fi
 }
 
