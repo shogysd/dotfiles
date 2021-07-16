@@ -284,7 +284,7 @@
   // togglePanel を最大化/元のサイズに戻す
   {
     "key": "ctrl+shift+`",
-    "command": "workbench.action.toggleMaximizedPanel"
+    "command": "workbench.action.createTerminalEditor"
   },
   // editorTextFocus に移動
   {
