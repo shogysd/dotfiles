@@ -261,17 +261,26 @@
     "command": "workbench.action.previousEditor"
     // "when": "!terminalFocus"
   },
-  // ウィンドウを閉じる
+  // エディタを閉じる
   {
     "key": "ctrl+w",
-    "command": "workbench.action.closeWindow",
-    "when": "!editorIsOpen && !multipleEditorGroups" // && !terminalFocus"
+    "command": "workbench.action.closeActiveEditor"
   },
   {
     "key": "ctrl+x ctrl+c",
-    "command": "workbench.action.closeWindow",
-    "when": "!editorIsOpen && !multipleEditorGroups" // && !terminalFocus"
+    "command": "workbench.action.closeActiveEditor"
   },
+  // ウィンドウを閉じる
+  //{
+  //  "key": "ctrl+w",
+  //  "command": "workbench.action.closeWindow",
+  //  "when": "!editorIsOpen && !multipleEditorGroups" // && !terminalFocus"
+  //},
+  //{
+  //  "key": "ctrl+x ctrl+c",
+  //  "command": "workbench.action.closeWindow",
+  //  "when": "!editorIsOpen && !multipleEditorGroups" // && !terminalFocus"
+  //},
   //ターミナルを開く
   {
     "key": "cmd+t",
