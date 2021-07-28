@@ -52,7 +52,7 @@
     "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
   },
   {
-    "key": "alt+space",
+    "key": "Escape",
     "command": "hideSuggestWidget",
     "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
   },
@@ -68,24 +68,36 @@
     "when": "textInputFocus"
   },
   // カーソルの移動 (ファイル単位)
+  //// ファイルの先頭
   {
-    "key": "alt+shift+,",
+    "key": "alt+up",
     "command": "cursorTop",
     "when": "textInputFocus"
   },
+  //// ファイルの末尾
   {
-    "key": "alt+shift+.",
+    "key": "alt+down",
     "command": "cursorBottom",
     "when": "textInputFocus"
   },
   // マルチカーソル
   {
-    "key": "ctrl+alt+p",
+    "key": "ctrl+shift+p",
     "command": "editor.action.insertCursorAbove",
     "when": "editorTextFocus"
   },
   {
-    "key": "ctrl+alt+n",
+    "key": "ctrl+shift+up",
+    "command": "editor.action.insertCursorAbove",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+n",
+    "command": "editor.action.insertCursorBelow",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+down",
     "command": "editor.action.insertCursorBelow",
     "when": "editorTextFocus"
   },
@@ -100,67 +112,39 @@
     "command": "deleteLeft",
     "when": "textInputFocus"
   },
-  // 文字の削除 (単語単位)
-  {
-    "key": "ctrl+w",
-    "command": "deleteWordLeft",
-    "when": "textInputFocus"
-  },
   // 文字の削除 (行単位)
   {
     "key": "ctrl+k",
     "command": "deleteAllRight",
     "when": "textInputFocus"
   },
-  {
-    "key": "ctrl+shift+k",
-    "command": "deleteAllLeft",
-    "when": "textInputFocus"
-  },
+  //{
+  //  "key": "ctrl+shift+k",
+  //  "command": "deleteAllLeft",
+  //  "when": "textInputFocus"
+  //},
   // 選択
   {
-    "key": "ctrl+shift+p",
+    "key": "ctrl+alt+p",
     "command": "cursorUpSelect",
     "when": "textInputFocus"
   },
   {
-    "key": "ctrl+shift+n",
+    "key": "ctrl+alt+n",
     "command": "cursorDownSelect",
     "when": "textInputFocus"
   },
   {
-    "key": "ctrl+shift+f",
+    "key": "ctrl+alt+f",
     "command": "cursorRightSelect",
     "when": "textInputFocus"
   },
   {
-    "key": "ctrl+shift+b",
+    "key": "ctrl+alt+b",
     "command": "cursorLeftSelect",
     "when": "textInputFocus"
   },
-  // 選択 (行単位)
-  {
-    "key": "alt+a",
-    "command": "cursorHomeSelect",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "alt+e",
-    "command": "cursorEndSelect",
-    "when": "textInputFocus"
-  },
-  // 選択 (単語単位)
-  {
-    "key": "alt+shift+f",
-    "command": "cursorWordEndRightSelect",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "alt+shift+b",
-    "command": "cursorWordEndLeftSelect",
-    "when": "textInputFocus"
-  },
-  // 選択 (ファイル単位)
+  // 選択 (全選択)
   {
     "key": "ctrl+shift+a",
     "command": "editor.action.selectAll",
@@ -266,12 +250,37 @@
     "command": "workbench.action.files.save",
     "when": "!terminalFocus"
   },
-  // ウィンドウを閉じる
+  // editor tab の移動
+  {
+    "key": "ctrl+right",
+    "command": "workbench.action.nextEditor"
+    // "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+left",
+    "command": "workbench.action.previousEditor"
+    // "when": "!terminalFocus"
+  },
+  // エディタを閉じる
+  {
+    "key": "ctrl+w",
+    "command": "workbench.action.closeActiveEditor"
+  },
   {
     "key": "ctrl+x ctrl+c",
-    "command": "workbench.action.closeWindow",
-    "when": "!editorIsOpen && !multipleEditorGroups && !terminalFocus"
+    "command": "workbench.action.closeActiveEditor"
   },
+  // ウィンドウを閉じる
+  //{
+  //  "key": "ctrl+w",
+  //  "command": "workbench.action.closeWindow",
+  //  "when": "!editorIsOpen && !multipleEditorGroups" // && !terminalFocus"
+  //},
+  //{
+  //  "key": "ctrl+x ctrl+c",
+  //  "command": "workbench.action.closeWindow",
+  //  "when": "!editorIsOpen && !multipleEditorGroups" // && !terminalFocus"
+  //},
   //ターミナルを開く
   {
     "key": "cmd+t",
@@ -281,16 +290,40 @@
     "key": "ctrl+`",
     "command": "workbench.action.togglePanel"
   },
-  // togglePanel を最大化/元のサイズに戻す
-  {
-    "key": "ctrl+shift+`",
-    "command": "workbench.action.createTerminalEditor"
-  },
-  // editorTextFocus に移動
+  //{
+  //  "key": "ctrl+shift+`",
+  //  "command": "workbench.action.createTerminalEditor"
+  //},
+  // editor group
+  //// 分割
   {
     "key": "ctrl+\\",
-    "command": "workbench.action.focusActiveEditorGroup",
-    "when": "!editorTextFocus"
+    "command": "workbench.action.splitEditor"
+  },
+  //// 分割
+  {
+    "key": "cmd+\\",
+    "command": "workbench.action.splitEditor"
+  },
+  //// 左の editor group に移動
+  {
+    "key": "ctrl+shift+left",
+    "command": "workbench.action.focusLeftGroup"
+  },
+  //// 左の editor group に移動
+  {
+    "key": "cmd+k left",
+    "command": "-workbench.action.focusLeftGroup"
+  },
+  //// 右の editor group に移動
+  {
+    "key": "ctrl+shift+right",
+    "command": "workbench.action.focusRightGroup"
+  },
+  //// 右の editor group に移動
+  {
+    "key": "cmd+k right",
+    "command": "-workbench.action.focusRightGroup"
   },
   // editorTextFocus -> terminal
   {
@@ -332,11 +365,13 @@
     "when": "editorLangId==csv"
   },
   // markdown
+  //// mdプレビュー
   {
     "key": "ctrl+]",
     "command": "markdown.showPreview",
     "when": "editorLangId==markdown && !notebookEditorForcused"
   },
+  //// mdプレビュー ( 右画面 )
   {
     "key": "ctrl+shift+]",
     "command": "markdown.showPreviewToSide",
