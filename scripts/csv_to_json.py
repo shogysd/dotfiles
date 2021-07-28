@@ -17,15 +17,25 @@ def main():
         sys.exit(999)
 
     elif 2 == len(sys.argv):
-        with open(sys.argv[1], "r") as f:
-            print(
-                json.dumps(
-                    [
-                        i for i in csv.DictReader(f)
-                    ],
-                    ensure_ascii=False
+        try:
+            with open(sys.argv[1], "r") as f:
+                print(
+                    json.dumps(
+                        [
+                            i for i in csv.DictReader(f)
+                        ],
+                        sort_keys=True,
+                        indent=4,
+                        ensure_ascii=False
+                    )
                 )
+        except FileNotFoundError:
+            print(
+                "error: " +
+                str(sys.argv[1]) +
+                ": No such file", file=sys.stderr
             )
+            sys.exit(999)
 
     else:
         if not select.select([sys.stdin], [], [], 0.0)[0]:
@@ -46,6 +56,8 @@ def main():
                             )
                         )
                     ],
+                    sort_keys=True,
+                    indent=4,
                     ensure_ascii=False
                 )
             )
