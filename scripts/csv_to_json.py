@@ -7,6 +7,22 @@ import select
 import sys
 
 
+def file_encode_flag(filename):
+    file_encode = ""
+    try:
+        with open(filename, "r", encoding="utf-8") as f:
+            if "\ufeff" == f.readline()[0]:
+                file_encode = "utf-8-sig"
+            else:
+                file_encode = "utf-8"
+
+    except UnicodeDecodeError:
+        print("UnicodeDecodeError: 'utf-8' codec can't decode", file=sys.stderr)
+        sys.exit(999)
+
+    return file_encode
+
+
 def main():
     if 2 < len(sys.argv):
         print(
@@ -18,7 +34,7 @@ def main():
 
     elif 2 == len(sys.argv):
         try:
-            with open(sys.argv[1], "r") as f:
+            with open(sys.argv[1], "r", encoding=file_encode_flag(filename=sys.argv[1])) as f:
                 print(
                     json.dumps(
                         [
