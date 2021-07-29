@@ -24,7 +24,6 @@ def main():
                         [
                             i for i in csv.DictReader(f)
                         ],
-                        sort_keys=True,
                         indent=4,
                         ensure_ascii=False
                     )
@@ -56,7 +55,6 @@ def main():
                             )
                         )
                     ],
-                    sort_keys=True,
                     indent=4,
                     ensure_ascii=False
                 )
