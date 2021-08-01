@@ -365,17 +365,6 @@ $prompt_icon '
 }
 
 
-function venv(){
-    if [ -z ${VIRTUAL_ENV} ] && [ $# = 1 ] && [ -f ${1}/bin/activate ]; then
-        source ${1}/bin/activate
-    elif [ ! -z ${VIRTUAL_ENV} ] && [ $# = 0 ]; then
-        deactivate
-    else
-        echo "error: please check argument and virtualenv root path."
-    fi
-}
-
-
 function screen_status(){
     screen -ls | grep Attached | tr '.' ' ' | echo -e "${OSDEP_ESC_CODE}[1;32m`awk '{printf "%s %s\t(Attached)\n", $1, $2}'`${OSDEP_ESC_CODE}[0;39m"
     screen -ls | grep Detached | tr '.' ' ' | awk '{printf "%s %s\t(Detached)\n", $1, $2}'
