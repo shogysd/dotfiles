@@ -248,28 +248,26 @@ else
 fi
 
 # command
-alias sudo='sudo '
-alias grep='grep --color=auto'
-alias grepn='grep -i --color=auto'
-alias rm='rm -i'
-alias rm-y='\rm'
-alias dir='dir --color=auto'
-alias history='history -iD 1'
-alias ll='ls -l'
-alias la='ls -A'
-alias hn='hostname'
-alias flush='rm -f *~ .*~ \#*\# \**\*'
 alias cp='cp -i'
-alias pd-clear='dirs -c'
+alias desktop='cd ~/Desktop'
+alias dir='dir --color=auto'
 alias dk='docker'
 alias doc='docker'
-alias ex='exit'
-alias desktop='cd ~/Desktop'
 alias download='cd ~/Download'
+alias ex='exit'
+alias flush='rm -f *~ .*~ \#*\# \**\*'
+alias grep='grep --color=auto'
+alias grepn='grep -i --color=auto'
+alias history='history -iD 1'
+alias hn='hostname'
+alias la='ls -A --color=auto'
+alias ll='ls -l --color=auto'
+alias pd-clear='dirs -c'
+alias rm='rm -i'
+alias ssh='_ssh_'
+alias sudo='sudo '
 alias zz='exit'
 alias zzz='exit'
-alias zzzz='exit'
-alias zzzzz='exit'
 
 # git
 alias gd='cd $(git rev-parse --show-toplevel)'
@@ -280,7 +278,7 @@ alias python-disable_environment_variable='python3 -E'
 alias activate='source ./bin/activate'
 
 # json beautify
-python_bin_path=$(which python3 || which python)
+python_bin_path=$(which python3 2>/dev/null || which python 2>/dev/null)
 python_version=($(${python_bin_path} --version 2>&1 | awk -F ' ' '{print $NF}' | awk -F '.' '{printf "%s %s", $1, $2}'))
 
 if [[ ${python_version[0]} -ge 3 ]] && [[ ${python_version[1]} -ge 9 ]]; then
@@ -351,6 +349,21 @@ export GOPATH=${HOME}/.gopath_global
 ### ---------- ###
 ### functiuons ###
 ### ---------- ###
+
+function _ssh_(){
+    if [ -e ~/.minimal.zshrc ] && [ 1 = $# ]; then
+        \ssh ${1} 'ls ~/.zshrc >/dev/null 2>&1'
+        if [ $? != 0 ]; then
+            scp ~/.minimal.zshrc ${USER}@${1}:.zshrc
+        else
+            echo "zshrc already exists"
+        fi
+    else
+        echo "zshrc copy skipped"
+    fi
+    \ssh $@
+}
+
 
 function cpmode(){
     CPMODE_PROMPT='
@@ -739,7 +752,7 @@ zshaddhistory() {
        || ${cmd} = (hn|hostname)
        || ${cmd} = gd
        || ${cmd} = man
-       || ${cmd} = (z|zz|zzz|zzzz|zzzzz|ex|exit)
+       || ${cmd} = (z|zz|zzz|ex|exit)
     ]]; then
         return 1
     else
