@@ -13,6 +13,7 @@ echo "update zsh configs symbolic links"
 rm -f ~/.zprofile ~/.zshrc
 # ln -s ~/dotfiles/zsh/zprofile ~/.zprofile
 ln -s ~/dotfiles/zsh/zshrc    ~/.zshrc
+ln -s ~/dotfiles/zsh/minimal.zshrc    ~/.minimal.zshrc
 
 
 rm -rf ~/.zsh/zsh-autosuggestions ~/.zsh/zsh-syntax-highlighting ~/.zsh/completion
