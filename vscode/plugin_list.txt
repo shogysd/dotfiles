@@ -7,6 +7,7 @@ IBM.output-colorizer
 MS-CEINTL.vscode-language-pack-ja
 Mikhail-Arkhipov.r
 VisualStudioExptTeam.vscodeintellicode
+alexcvzz.vscode-sqlite
 christian-kohler.path-intellisense
 chrmarti.regex
 dongli.python-preview
@@ -20,6 +21,7 @@ github.vscode-pull-request-github
 golang.go
 iocave.monkey-patch
 jsynowiec.vscode-insertdatestring
+marp-team.marp-vscode
 mechatroner.rainbow-csv
 mosapride.zenkaku
 ms-ceintl.vscode-language-pack-ja
