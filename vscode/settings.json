@@ -93,9 +93,8 @@
   // ms-vscode.cpptools
   "C_Cpp.clang_format_fallbackStyle": "Google",
   // ms-python.python
-  "python.formatting.provider": "autopep8",
+  // "python.formatting.provider": "autopep8",
   "python.pythonPath": "/usr/local/bin/python3",
-  "workbench.statusBar.feedback.visible": false,
   // bracket-pair-colorizer-2
   "bracket-pair-colorizer-2.forceIterationColorCycle": false,
   "bracket-pair-colorizer-2.forceUniqueOpeningColor": false,
