@@ -9,6 +9,8 @@
 	ui = true
 [push]
 	default = simple
+[pull]
+	rebase = false
 [fetch]
 	prune = true
 [alias]
