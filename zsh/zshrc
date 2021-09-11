@@ -1,3 +1,5 @@
+### --- zshrc --- ###
+
 ### ------------------ ###
 ### shell environments ###
 ### ------------------ ###
@@ -265,7 +267,6 @@ alias ll='ls -l --color=auto'
 alias pd-clear='dirs -c'
 alias rm='rm -i'
 alias ssh='_ssh_'
-alias ssh-f='_ssh_f_'
 alias sudo='sudo '
 alias zz='exit'
 alias zzz='exit'
@@ -353,7 +354,7 @@ export GOPATH=${HOME}/.gopath_global
 
 function _ssh_(){
     if [ -e ~/.minimal.zshrc ] && [ 1 = $# ]; then
-        \ssh ${1} 'ls ~/.zshrc >/dev/null 2>&1'
+        \ssh ${1} "head -n 1 ~/.zshrc 2>/dev/null | grep -q -E '^### --- zshrc --- ###$'"
         if [ $? != 0 ]; then
             scp ~/.minimal.zshrc ${USER}@${1}:.zshrc
         else
@@ -361,26 +362,6 @@ function _ssh_(){
         fi
     else
         echo "zshrc copy skipped"
-    fi
-    \ssh $@
-}
-
-
-function _ssh_f_(){
-    echo -n "exec _ssh_f_?: n-or-other: "
-    read start
-    if [ ! -z ${start} ] && [ ${start} = "n" ]; then
-        if [ ! -e ~/.minimal.zshrc ]; then
-            echo "~/.minimal.zshrc not found"
-            return 1
-        elif [ 1 = $# ]; then
-            echo "too many args"
-            return 1
-        else
-            scp ~/.minimal.zshrc ${USER}@${1}:.zshrc
-        fi
-    else
-        return 128
     fi
     \ssh $@
 }
