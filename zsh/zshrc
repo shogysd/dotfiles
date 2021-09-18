@@ -270,6 +270,8 @@ alias ssh='_ssh_'
 alias sudo='sudo '
 alias zz='exit'
 alias zzz='exit'
+alias っz='exit'
+alias っっz='exit'
 
 # git
 alias gd='cd $(git rev-parse --show-toplevel)'
