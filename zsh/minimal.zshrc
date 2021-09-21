@@ -140,6 +140,7 @@ alias ls='ls --color=auto'
 alias rm='rm -i'
 alias sudo='sudo '
 alias zz='exit'
+alias っz='exit'
 
 # git
 alias gd='cd $(git rev-parse --show-toplevel)'
