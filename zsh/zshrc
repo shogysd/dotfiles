@@ -357,12 +357,16 @@ export GOPATH=${HOME}/.gopath_global
 function _ssh_(){
     if [ -e ~/.minimal.zshrc ] && [ 1 = $# ]; then
         \ssh ${1} "head -n 1 ~/.zshrc 2>/dev/null | grep -q -E '^### --- zshrc --- ###$'"
-        if [ $? = 255 ]; then
+        SSH_RESPONSE_CODE=${?}
+        if [ ${SSH_RESPONSE_CODE} = 255 ]; then
+            unset SSH_RESPONSE_CODE
             return 1
-        elif [ $? = 1 ] || [ $? != 0 ]; then
+        elif [ ${SSH_RESPONSE_CODE} = 1 ] || [ ${SSH_RESPONSE_CODE} != 0 ]; then
+            unset SSH_RESPONSE_CODE
             scp ~/.minimal.zshrc ${USER}@${1}:.zshrc
         else
             # $? == 0
+            unset SSH_RESPONSE_CODE
             echo "zshrc already exists"
         fi
     else
