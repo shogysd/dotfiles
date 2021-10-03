@@ -150,6 +150,10 @@
     "editor.wordBasedSuggestions": false,
     "editor.defaultFormatter": "ms-python.python",
   },
+  "[javascript]": {
+    // "editor.tabSize": 2,
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
   "[go]": {
     "editor.insertSpaces": false,
     "editor.codeActionsOnSave": {
