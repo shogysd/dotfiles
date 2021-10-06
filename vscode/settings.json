@@ -21,6 +21,7 @@
   "editor.folding": true,
   "editor.suggestSelection": "first",
   "editor.autoClosingBrackets": "beforeWhitespace",
+  "editor.copyWithSyntaxHighlighting": false,
   // terminal
   "terminal.integrated.cursorBlinking": false,
   "terminal.integrated.fontSize": 14,
@@ -28,7 +29,7 @@
   "terminal.external.linuxExec": "xterm",
   "terminal.external.osxExec": "Terminal.app",
   // vs-code終了時にactiveなterminalセッションがあった場合の警告有無
-  "terminal.integrated.confirmOnExit": false,
+  "terminal.integrated.confirmOnExit": "never",
   // workbench
   "workbench.editor.enablePreview": false,
   "workbench.startupEditor": "none",
@@ -45,7 +46,7 @@
     // 現在行の背景色
     "editor.lineHighlightBackground": "#383838",
     // 選択範囲の背景色
-    "editor.selectionBackground": "#383838"
+    "editor.selectionBackground": "#6e6e6e"
   },
   // git
   "git.confirmSync": true,
