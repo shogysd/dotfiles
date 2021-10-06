@@ -1,39 +1,36 @@
 {
   // editor
-  "editor.fontFamily": "'Bitstream Vera Sans Mono', Menlo, Monaco, 'Courier New', monospace",
-  "editor.fontSize": 14,
-  "editor.formatOnSave": true,
-  "editor.formatOnType": true,
-  "editor.formatOnPaste": true,
-  "editor.cursorBlinking": "solid",
-  "editor.cursorStyle": "block",
-  "editor.renderLineHighlight": "all",
-  "editor.tabSize": 4,
-  "editor.minimap.enabled": false,
-  "editor.minimap.showSlider": "always",
-  "editor.renderWhitespace": "boundary",
-  "editor.trimAutoWhitespace": true,
-  "editor.wrappingIndent": "indent",
-  "editor.wordWrap": "on",
-  "editor.wordWrapColumn": 80,
-  "editor.renderControlCharacters": true,
-  "editor.renderIndentGuides": true,
-  "editor.folding": true,
-  "editor.suggestSelection": "first",
   "editor.autoClosingBrackets": "beforeWhitespace",
   "editor.copyWithSyntaxHighlighting": false,
+  "editor.cursorBlinking": "solid",
+  "editor.cursorStyle": "block",
+  "editor.folding": true,
+  "editor.fontFamily": "'Bitstream Vera Sans Mono', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 14,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.minimap.enabled": false,
+  "editor.minimap.showSlider": "always",
+  "editor.renderControlCharacters": true,
+  "editor.renderIndentGuides": true,
+  "editor.renderLineHighlight": "all",
+  "editor.renderWhitespace": "boundary",
+  "editor.suggestSelection": "first",
+  "editor.tabSize": 4,
+  "editor.trimAutoWhitespace": true,
+  "editor.wordWrap": "on",
+  "editor.wordWrapColumn": 80,
+  "editor.wrappingIndent": "indent",
   // terminal
+  "terminal.external.linuxExec": "xterm",
+  "terminal.external.osxExec": "Terminal.app",
   "terminal.integrated.cursorBlinking": false,
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.scrollback": 999999,
-  "terminal.external.linuxExec": "xterm",
-  "terminal.external.osxExec": "Terminal.app",
   // vs-code終了時にactiveなterminalセッションがあった場合の警告有無
   "terminal.integrated.confirmOnExit": "never",
   // workbench
-  "workbench.editor.enablePreview": false,
-  "workbench.startupEditor": "none",
-  "workbench.panel.defaultLocation": "bottom",
   "workbench.colorCustomizations": {
     // ステータスバー背景色
     "statusBar.background": "#000000",
@@ -48,6 +45,9 @@
     // 選択範囲の背景色
     "editor.selectionBackground": "#6e6e6e"
   },
+  "workbench.editor.enablePreview": false,
+  "workbench.panel.defaultLocation": "bottom",
+  "workbench.startupEditor": "none",
   // git
   "git.confirmSync": true,
   "git.enabled": true,
@@ -69,6 +69,8 @@
   "window.openWithoutArgumentsInNewWindow": "on",
   "window.restoreWindows": "none",
   // files
+  "files.autoSave": "onWindowChange",
+  "files.autoGuessEncoding": true,
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
@@ -76,13 +78,8 @@
     "**/CVS": true,
     "**/.DS_Store": true
   },
-  "files.autoGuessEncoding": true,
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
-  "[markdown]": {
-    "files.trimTrailingWhitespace": false
-  },
-  "files.autoSave": "onWindowChange",
   "files.trimFinalNewlines": true,
   "files.hotExit": "off",
   // Compulim.vscode-clock
@@ -108,7 +105,6 @@
   // git lens
   "gitlens.hovers.enabled": false,
   // todo-tree
-  "todo-tree.tree.showScanModeButton": true,
   "todo-tree.general.tags": [
     "BUG",
     "HACK",
@@ -178,6 +174,9 @@
   },
   "[git-rebase]": {
     "workbench.editor.restoreViewState": false
+  },
+  "[markdown]": {
+    "files.trimTrailingWhitespace": false
   },
   "notebook.cellToolbarLocation": {
     "default": "right",
