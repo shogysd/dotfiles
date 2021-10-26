@@ -14,7 +14,7 @@
 [fetch]
 	prune = true
 [alias]
-	ad = "!git rev-parse --is-inside-work-tree > /dev/null && cd $(git rev-parse --show-toplevel) && xattr -cr 2>/dev/null ; find . -name .DS_Store | xargs rm -rf && git add ."
+	ad = "!git rev-parse --is-inside-work-tree > /dev/null && cd $(git rev-parse --show-toplevel) && xattr -cr ./ 2>/dev/null ; find . -name .DS_Store | xargs rm -rf && git add ."
 	br = branch -v
 	cl = clone
 	cla = clone --recursive
