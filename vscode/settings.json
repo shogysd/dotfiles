@@ -83,7 +83,7 @@
   "files.trimFinalNewlines": true,
   "files.hotExit": "off",
   // Compulim.vscode-clock
-  "clock.dateFormat": "\tmmm dd yyyy\tHH:MM\t",
+  "clock.dateFormat": "\tmmm dd yyyy\tHH:MM:ss\t",
   // jsynowiec.vscode-insertdatestring
   "insertDateString.format": "'Time-stamp: <'YYYY-MM-DD hh:mm:ss ZZZ'>'",
   // rafaelmaiolla.remote-vscode;

@@ -376,5 +376,15 @@
     "key": "ctrl+shift+]",
     "command": "markdown.showPreviewToSide",
     "when": "editorLangId==markdown && !notebookEditorForcused"
+  },
+  {
+    "key": "ctrl+o",
+    "command": "workbench.action.files.showOpenedFileInNewWindow",
+    "when": "emptyWorkspaceSupport"
+  },
+  {
+    "key": "alt+o",
+    "command": "workbench.action.files.showOpenedFileInNewWindow",
+    "when": "emptyWorkspaceSupport"
   }
 ]
