@@ -1,7 +1,7 @@
 [include]
 	path = ~/.gitconfig_userinfo
 [core]
-	editor = "$(which code >/dev/null 2>&1; if [ $? = 0 ]; then echo 'code --wait'; else echo 'emacs -nw'; fi)"
+	editor = "$(which code >/dev/null 2>&1; if [ $? = 0 ]; then echo 'code --wait'; else echo vim; fi)"
 	excludesfile = ~/.gitignore_global
 	pager = less
 	autocrlf = input
@@ -20,12 +20,9 @@
 	cla = clone --recursive
 	co = checkout
 	comm = !git rev-parse --is-inside-work-tree > /dev/null && cd $(git rev-parse --show-toplevel) && git commit
-	df = diff
 	di = diff
 	diffname = diff --name-only
 	diffword = diff --word-diff
-	din = diff --name-only
-	diw = diff --word-diff
 	gr = grep -n
 	grepn = grep -n
 	hash = rev-parse --short HEAD
