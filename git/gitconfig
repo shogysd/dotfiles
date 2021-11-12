@@ -8,7 +8,7 @@
 [color]
 	ui = true
 [push]
-	default = simple
+	default = current
 [pull]
 	rebase = false
 [fetch]
@@ -23,6 +23,7 @@
 	di = diff
 	diffname = diff --name-only
 	diffword = diff --word-diff
+	fpush = push --force-with-lease
 	gr = grep -n
 	grepn = grep -n
 	hash = rev-parse --short HEAD
