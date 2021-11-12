@@ -101,6 +101,17 @@
     "command": "editor.action.insertCursorBelow",
     "when": "editorTextFocus"
   },
+  // カーソルのredo
+  {
+    "key": "ctrl+u",
+    "command": "cursorUndo",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "cmd+u",
+    "command": "cursorUndo",
+    "when": "textInputFocus"
+  },
   // 文字の削除
   {
     "key": "ctrl+d",
@@ -261,9 +272,19 @@
     "command": "workbench.action.previousEditor"
     // "when": "!terminalFocus"
   },
+  // 新しいウィンドウで開く
+  {
+    "key": "ctrl+x w",
+    "command": "workbench.action.files.showOpenedFileInNewWindow",
+    "when": "emptyWorkspaceSupport"
+  },
   // エディタを閉じる
   {
     "key": "ctrl+w",
+    "command": "workbench.action.closeActiveEditor"
+  },
+  {
+    "key": "cmd+w",
     "command": "workbench.action.closeActiveEditor"
   },
   {
@@ -271,16 +292,16 @@
     "command": "workbench.action.closeActiveEditor"
   },
   // ウィンドウを閉じる
-  //{
-  //  "key": "ctrl+w",
-  //  "command": "workbench.action.closeWindow",
-  //  "when": "!editorIsOpen && !multipleEditorGroups" // && !terminalFocus"
-  //},
-  //{
-  //  "key": "ctrl+x ctrl+c",
-  //  "command": "workbench.action.closeWindow",
-  //  "when": "!editorIsOpen && !multipleEditorGroups" // && !terminalFocus"
-  //},
+  {
+    "key": "ctrl+shift+w",
+    "command": "workbench.action.closeWindow",
+    "when": "!editorIsOpen"
+  },
+  {
+    "key": "cmd+shift+w",
+    "command": "workbench.action.closeWindow",
+    "when": "!editorIsOpen"
+  },
   //ターミナルを開く
   {
     "key": "cmd+t",
@@ -337,6 +358,19 @@
     "command": "-workbench.action.closeWindow",
     "when": "!editorIsOpen && !multipleEditorGroups"
   },
+  // フォントの拡大・縮小・リセット
+  {
+    "key": "ctrl+x shift+=",
+    "command": "editor.action.fontZoomIn"
+  },
+  {
+    "key": "ctrl+x -",
+    "command": "editor.action.fontZoomOut"
+  },
+  {
+    "key": "ctrl+x 0",
+    "command": "editor.action.fontZoomReset"
+  },
   // plugin
   {
     "key": "alt+t",
@@ -376,15 +410,5 @@
     "key": "ctrl+shift+]",
     "command": "markdown.showPreviewToSide",
     "when": "editorLangId==markdown && !notebookEditorForcused"
-  },
-  {
-    "key": "ctrl+o",
-    "command": "workbench.action.files.showOpenedFileInNewWindow",
-    "when": "emptyWorkspaceSupport"
-  },
-  {
-    "key": "alt+o",
-    "command": "workbench.action.files.showOpenedFileInNewWindow",
-    "when": "emptyWorkspaceSupport"
   }
 ]
