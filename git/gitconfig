@@ -23,7 +23,7 @@
 	di = diff
 	diffname = diff --name-only
 	diffword = diff --word-diff
-	fpush = push --force-with-lease
+	fpush = push --force-if-includes
 	gr = grep -n
 	grepn = grep -n
 	hash = rev-parse --short HEAD
