@@ -13,7 +13,6 @@
   "editor.minimap.enabled": false,
   "editor.minimap.showSlider": "always",
   "editor.renderControlCharacters": true,
-  "editor.renderIndentGuides": true,
   "editor.renderLineHighlight": "all",
   "editor.renderWhitespace": "boundary",
   "editor.suggestSelection": "first",
