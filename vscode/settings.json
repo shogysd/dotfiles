@@ -21,6 +21,7 @@
   "editor.wordWrap": "on",
   "editor.wordWrapColumn": 80,
   "editor.wrappingIndent": "indent",
+  "editor.inlineSuggest.enabled": true,
   // terminal
   "terminal.external.linuxExec": "xterm",
   "terminal.external.osxExec": "Terminal.app",
@@ -125,6 +126,15 @@
   "files.associations": {
     "*.rmd": "markdown"
   },
+  // github copilot
+  "github.copilot.enable": {
+    "*": true,
+    "txt": false,
+    "yaml": false,
+    "plaintext": false,
+    "markdown": false,
+    "ini": false
+  },
   // languages
   "[json]": {
     "editor.quickSuggestions": {
@@ -176,6 +186,9 @@
   },
   "[markdown]": {
     "files.trimTrailingWhitespace": false
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
   },
   "notebook.cellToolbarLocation": {
     "default": "right",
