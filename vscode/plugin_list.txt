@@ -20,6 +20,7 @@ garaemon.vscode-emacs-tab
 github.vscode-pull-request-github
 golang.go
 iocave.monkey-patch
+joaompinto.vscode-graphviz
 jsynowiec.vscode-insertdatestring
 marp-team.marp-vscode
 mechatroner.rainbow-csv
