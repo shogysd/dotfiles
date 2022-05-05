@@ -399,16 +399,39 @@
     "when": "editorLangId==csv"
   },
   // markdown
-  //// mdプレビュー
+  //// mdプレビュー ( 右画面 )
   {
     "key": "ctrl+]",
+    "command": "markdown.showPreviewToSide",
+    "when": "editorLangId==markdown && !notebookEditorForcused"
+  },
+  //// mdプレビュー
+  {
+    "key": "ctrl+shift+]",
     "command": "markdown.showPreview",
     "when": "editorLangId==markdown && !notebookEditorForcused"
   },
-  //// mdプレビュー ( 右画面 )
+  // dot lang
+  //// dotプレビュー ( 右画面 )
+  {
+    "key": "ctrl+]",
+    "command": "graphviz.previewToSide",
+    "when": "editorTextFocus && editorLangId == 'dot'"
+  },
+  {
+    "key": "cmd+k shift+v",
+    "command": "-graphviz.previewToSide",
+    "when": "editorTextFocus && editorLangId == 'dot'"
+  },
+  //// dotプレビュー
   {
     "key": "ctrl+shift+]",
-    "command": "markdown.showPreviewToSide",
-    "when": "editorLangId==markdown && !notebookEditorForcused"
+    "command": "graphviz.preview",
+    "when": "editorTextFocus && editorLangId == 'dot'"
+  },
+  {
+    "key": "shift+cmd+v",
+    "command": "-graphviz.preview",
+    "when": "editorTextFocus && editorLangId == 'dot'"
   }
 ]
