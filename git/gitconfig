@@ -1,8 +1,8 @@
 [include]
 	path = ~/.gitconfig_userinfo
 [core]
-	editor = "$(echo ${TERM_PROGRAM} | grep 'vscode' >/dev/null 2>&1; if [ $? = 0 ]; then echo 'code --wait'; else which emacs >/dev/null 2>&1; if [ $? = 0 ]; then echo 'emacs -nw'; else echo vim; fi; fi)"
-	# editor = "$(echo ${TERM_PROGRAM} | grep 'vscode' >/dev/null 2>&1; if [ $? = 0 ]; then echo 'code --wait'; else echo vim; fi)"
+	# editor = "$(echo ${TERM_PROGRAM} | grep 'vscode' >/dev/null 2>&1; if [ $? = 0 ]; then echo 'code --wait'; else which emacs >/dev/null 2>&1; if [ $? = 0 ]; then echo 'emacs -nw'; else echo vim; fi; fi)"
+	editor = "$(echo ${TERM_PROGRAM} | grep 'vscode' >/dev/null 2>&1; if [ $? = 0 ]; then echo 'code --wait'; else echo vim; fi)"
 	# editor = "$(which code >/dev/null 2>&1; if [ $? = 0 ]; then echo 'code --wait'; else echo vim; fi)"
 	excludesfile = ~/.gitignore_global
 	pager = less
