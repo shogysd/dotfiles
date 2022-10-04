@@ -5,8 +5,8 @@
   "editor.cursorBlinking": "solid",
   "editor.cursorStyle": "block",
   "editor.folding": true,
-  "editor.fontFamily": "'Bitstream Vera Sans Mono', Menlo, Monaco, 'Courier New', monospace",
-  "editor.fontSize": 14,
+  "editor.fontFamily": "'MyricaM M', 'Bitstream Vera Sans Mono', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 16.5,
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
@@ -22,12 +22,16 @@
   "editor.wordWrapColumn": 80,
   "editor.wrappingIndent": "indent",
   "editor.inlineSuggest.enabled": true,
+  "editor.guides.bracketPairs": true,
+  "editor.guides.bracketPairsHorizontal": true,
   // terminal
   "terminal.external.linuxExec": "xterm",
   "terminal.external.osxExec": "Terminal.app",
   "terminal.integrated.cursorBlinking": false,
-  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.fontFamily": "'MyricaM M', 'Bitstream Vera Sans Mono', Menlo, Monaco, 'Courier New', monospace",
+  "terminal.integrated.fontSize": 16.5,
   "terminal.integrated.scrollback": 999999,
+  "terminal.integrated.shellIntegration.decorationsEnabled": "never",
   // vs-code終了時にactiveなterminalセッションがあった場合の警告有無
   "terminal.integrated.confirmOnExit": "never",
   // workbench
@@ -60,7 +64,7 @@
   "diffEditor.ignoreTrimWhitespace": true,
   "diffEditor.renderSideBySide": false,
   // debug
-  "debug.inlineValues": true,
+  "debug.inlineValues": "on",
   // extends
   "extensions.autoUpdate": true,
   "extensions.ignoreRecommendations": false,
@@ -125,15 +129,6 @@
   "terminal.integrated.macOptionIsMeta": true,
   "files.associations": {
     "*.rmd": "markdown"
-  },
-  // github copilot
-  "github.copilot.enable": {
-    "*": true,
-    "txt": false,
-    "yaml": false,
-    "plaintext": false,
-    "markdown": false,
-    "ini": false
   },
   // languages
   "[json]": {
