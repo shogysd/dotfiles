@@ -119,6 +119,9 @@ setopt auto_pushd
 setopt no_beep
 setopt nolistbeep
 
+# 展開に失敗した際にzshのエラーを表示しない
+setopt +o nomatch
+
 # typoの修正
 setopt correct
 

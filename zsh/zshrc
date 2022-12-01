@@ -191,6 +191,9 @@ setopt nolistbeep
 # typoの修正
 setopt correct
 
+# 展開に失敗した際にzshのエラーを表示しない
+setopt +o nomatch
+
 # emacsライクにする
 bindkey -d
 bindkey -e
