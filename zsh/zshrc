@@ -4,7 +4,8 @@
 ### shell environments ###
 ### ------------------ ###
 
-SHELL_NAME='zsh'
+export SHELL_NAME=zsh
+export LANG=C
 
 if [ "$(uname 2>&1)" = "Darwin" ]; then
     # macOS

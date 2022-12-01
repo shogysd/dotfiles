@@ -15,7 +15,8 @@ fi
 ### shell environments ###
 ### ------------------ ###
 
-SHELL_NAME='bash'
+export SHELL_NAME='bash'
+export LANG=C
 
 if [ "$(uname 2>&1)" = "Darwin" ]; then
     # macOS
