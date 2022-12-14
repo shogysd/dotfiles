@@ -4,7 +4,7 @@
 
 # bashがSHELLに設定されている AND ( SSH接続でない OR sshのttyがある )
 # -> scp では exec zsh しない
-if [ $(echo $SHELL | xargs basename) = 'bash' ] && ( [ "${SSH_CONNECTION}" = "" ] || [ "$SSH_TTY" != "" ] ) ; then
+if [ $(echo $SHELL | xargs basename) = 'bash' ] && ( [ "${SSH_CONNECTION}" = "" ] || [ "$SSH_TTY" != "" ] ); then
     which zsh >/dev/null 2>&1
     if [ $? = 0 ]; then
         exec zsh
