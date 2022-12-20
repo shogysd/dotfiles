@@ -18,7 +18,9 @@ fi
 ### ------------------ ###
 
 export SHELL_NAME='bash'
-export LANG=C
+# export LANG=C
+export LANG=ja_JP.UTF-8
+export LESSCHARSET=utf-8
 
 if [ "$(uname 2>&1)" = "Darwin" ]; then
     # macOS
