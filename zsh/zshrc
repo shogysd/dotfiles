@@ -240,13 +240,16 @@ if [ "$(uname 2>&1)" = "Darwin" ]; then
     # macOS
     alias ls='ls -G'
     alias md5sum='md5'
-    alias ema='emacs'
+    alias ema='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+    alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+    alias emacs-x='/Applications/Emacs.app/Contents/MacOS/Emacs'
     alias open='open ./'
 else
     # Linux "$(uname 2>&1)" = "Linux"
     alias ls='ls --color=auto'
     alias ema='emacs -nw'
     alias emacs='emacs -nw'
+    # alias emacs-x='emacs'
     alias term-profile-export='dconf dump /org/gnome/terminal/legacy/profiles:/ \
                                > ~/dotfiles/Linux/gnome_terminal/gnome-terminal.profile'
     alias term-profile-import='dconf reset -f /org/gnome/terminal/legacy/profiles:/; \
@@ -282,28 +285,23 @@ alias っっｚ='exit'
 # git
 alias gd='cd $(git rev-parse --show-toplevel)'
 
-# python
-alias py='python3'
-alias python-disable_environment_variable='python3 -E'
-alias activate='source ./bin/activate'
-
 # json beautify
 python_bin_path=$(which python3 2>/dev/null || which python 2>/dev/null)
 python_version=($(${python_bin_path} --version 2>&1 | awk -F ' ' '{print $NF}' | awk -F '.' '{printf "%s %s", $1, $2}'))
 
 if [[ ${python_version[0]} -ge 3 ]] && [[ ${python_version[1]} -ge 9 ]]; then
-    alias jb="${python_bin_path} -m json.tool --no-ensure-ascii --indent 4"
+    alias json_beautify="${python_bin_path} -m json.tool --no-ensure-ascii --indent 4"
 else
-    alias jb="${python_bin_path} -m json.tool"
+    alias json_beautify="${python_bin_path} -m json.tool"
 fi
 
 unset python_bin_path
 unset python_version
 
 
-### ------------------- ###
-### python environments ###
-### ------------------- ###
+### ------ ###
+### python ###
+### ------ ###
 
 # macOSのPATH
 #if [ "$(uname 2>&1)" = "Darwin" ]; then
@@ -323,12 +321,20 @@ unset python_version
 # virtualenvでpromptを変更しない
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-# 開発モードを有効に
-export PYTHONDEVMODE=1
-
 # 文字コードをUTF-8に
 export PYTHONUTF8=1
 
+# 開発モードを有効に
+# export PYTHONDEVMODE=1
+
+export PYTHONMALLOC=debug
+export PYTHONASYNCIODEBUG=1
+
+# alias
+alias py='python3 -W default -X faulthandler'
+alias python='python3 -W default -X faulthandler'
+alias python3='python3 -W default -X faulthandler'
+alias python-disable_environment_variable='python3 -E'
 
 
 ### ------- ###
