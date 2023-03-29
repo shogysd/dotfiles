@@ -15,7 +15,7 @@ git_user_name=$(git config user.name)
 git_user_email=$(git config user.email)
 reset_flag="False"
 echo ""
-if [ ! -f ~/.gitconfig_userinfo ] || [ -z "${git_user_name}" ] || [ -z "${git_user_email}" ]; then
+if [ ! -f ~/.gitconfig_hidden ] || [ -z "${git_user_name}" ] || [ -z "${git_user_email}" ]; then
     echo -e "${OSDEP_ESC_CODE}[1;39msetup git user global info${OSDEP_ESC_CODE}[0;39m"
     reset_flag="True"
 else
@@ -41,10 +41,10 @@ if [ "${reset_flag}" = "True" ]; then
         echo -e "${OSDEP_ESC_CODE}[1;39mupdate skip${OSDEP_ESC_CODE}[0;39m ( entered string is blank )"
     fi
 fi
-rm -f ~/.gitconfig ~/.gitconfig_userinfo
+rm -f ~/.gitconfig ~/.gitconfig_hidden
 git   config --global user.name  "${git_user_name}"
 git   config --global user.email "${git_user_email}"
-mv    ~/.gitconfig ~/.gitconfig_userinfo
+mv    ~/.gitconfig ~/.gitconfig_hidden
 unset git_user_name git_user_email git_user_name_read git_user_email_read update reset_flag
 echo ""
 echo "update symbolic link"

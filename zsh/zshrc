@@ -849,13 +849,45 @@ function _git_status(){
 #    if [ $SHLVL = 1 ] && [ "$TERM" != 'dumb' ] && [ "${SSH_CONNECTION}" != "" ] && [ $? = "0" ] && [ -f ~/.screenrc ]; then
 #        $(which screen)
 #    fi
-#}
+# }
+
+function _login_status_check(){
+    print_status=0
+
+    # git check
+    which git 2>&1 >/dev/null
+    if [ $? = 0 ]; then
+        if [ $(git --version | awk -F ' ' '{print $3}' | awk -F '.' '{print $1}') -lt 2 ]; then
+            echo "${OSDEP_ESC_CODE}[1;33mWARNING${OSDEP_ESC_CODE}[0;39m: $(git --version)"
+            print_status=1
+        fi
+
+        git config user.name 2>&1 >/dev/null
+        if [ $? != 0 ]; then
+            echo "${OSDEP_ESC_CODE}[1;33mWARNING${OSDEP_ESC_CODE}[0;39m: git congig user.name is not found"
+            echo ">>> hint: git config --global user.name \"\""
+            print_status=1
+        fi
+        git config user.email 2>&1 >/dev/null
+        if [ $? != 0 ]; then
+            echo "${OSDEP_ESC_CODE}[1;33mWARNING${OSDEP_ESC_CODE}[0;39m: git congig user.email is not found"
+            echo ">>> hint: git config --global user.email \"\""
+            print_status=1
+        fi
+    fi
+
+    if [ ${print_status} != 0 ]; then
+        echo ''
+    fi
+    unset print_status
+}
 
 
 ###
 ### 初回のみ表示する内容
 ###
 echo ''
+_login_status_check
 # _sshScreenStarter
 _screenStatusPrinter
 _dir_status
