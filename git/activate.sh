@@ -15,7 +15,7 @@ git_user_name=$(git config user.name)
 git_user_email=$(git config user.email)
 reset_flag="False"
 echo ""
-if [ ! -f ~/.gitconfig_hidden ] || [ -z "${git_user_name}" ] || [ -z "${git_user_email}" ]; then
+if [ -z "${git_user_name}" ] || [ -z "${git_user_email}" ]; then
     echo -e "${OSDEP_ESC_CODE}[1;39msetup git user global info${OSDEP_ESC_CODE}[0;39m"
     reset_flag="True"
 else
