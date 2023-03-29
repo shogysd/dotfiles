@@ -14,10 +14,18 @@ if [ "$(uname 2>&1)" = "Darwin" ]; then
     export OSDEP_ESC_CODE='\033'
     export OSDEP_DOWNLOAD_COMMAND='curl -s -o'
     # export BASH_SILENCE_DEPRECATION_WARNING=1
+    find /Applications/Emacs.app/Contents/MacOS/Emacs 2>&1 >/dev/null
+    if [ $? = 0 ]; then
+        export EDITOR='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+    fi
 else
     # Linux
     export OSDEP_ESC_CODE='\e'
     export OSDEP_DOWNLOAD_COMMAND='wget -q -O'
+    which emacs 2>&1 >/dev/null
+    if [ $? = 0 ]; then
+        export EDITOR='emacs -nw'
+    fi
 fi
 
 zstyle ':completion:*:*:git:*'      option-stacking yes
