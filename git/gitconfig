@@ -29,6 +29,8 @@
 	gr = grep -n
 	grepn = grep -n
 	hash = rev-parse --short HEAD
+	pl = pull
+	pu = push
 	st = status
 	sub = submodule update --init --recursive
 	repoup-origin = !git fetch origin && git reset --hard origin/$(git symbolic-ref --short refs/remotes/origin/HEAD | xargs basename)
