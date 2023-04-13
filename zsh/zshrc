@@ -6,7 +6,8 @@
 
 export SHELL_NAME=zsh
 # export LANG=C
-export LANG=ja_JP.UTF-8
+export LANG=C.UTF-8
+# export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
 
 if [ "$(uname 2>&1)" = "Darwin" ]; then
@@ -274,7 +275,8 @@ alias dk='docker'
 alias doc='docker'
 alias download='cd ~/Download'
 alias ex='exit'
-alias flush='rm -f *~ .*~ \#*\# \**\*'
+alias flush='rm -f *~ .*~ \#*\# \**\* .DS_Store'
+alias flush-r='rm -rf *~ .*~ \#*\# \**\* .DS_Store'
 alias grep='grep --color=auto'
 alias grepn='grep -i --color=auto'
 alias history='history -iD 1'
