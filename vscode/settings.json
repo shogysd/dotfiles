@@ -8,7 +8,7 @@
   "editor.fontFamily": "'MyricaM M', 'Bitstream Vera Sans Mono', Menlo, Monaco, 'Courier New', monospace",
   "editor.fontSize": 16.5,
   "editor.formatOnPaste": true,
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "editor.formatOnType": true,
   "editor.minimap.enabled": false,
   "editor.minimap.showSlider": "always",
